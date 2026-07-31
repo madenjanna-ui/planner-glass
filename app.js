@@ -184,7 +184,7 @@ if (dayOfWeek === 6 || dayOfWeek === 0) {
             <button
             class="add-task-day"
             data-date="${dateKey}">
-            ＋
+            ➕
             </button>
 
 
