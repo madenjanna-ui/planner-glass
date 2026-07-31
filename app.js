@@ -233,7 +233,8 @@ if (dayOfWeek === 6 || dayOfWeek === 0) {
 
     activateAddButtons();
 
-
+planner.style.minHeight =
+    window.innerHeight + "px";
 
 }
 
@@ -641,17 +642,18 @@ function resetUITimer(){
 
 function hideUI(){
 
-    body.classList.add(
-        "ui-hidden"
-    );
+    document.body.classList.add("ui-hidden");
+
+    planner.style.minHeight =
+        window.innerHeight + "px";
 
 }
 
 function showUI(){
 
-    body.classList.remove(
-        "ui-hidden"
-    );
+    document.body.classList.remove("ui-hidden");
+
+    planner.style.minHeight = "";
 
     resetUITimer();
 
@@ -688,3 +690,15 @@ resetUITimer();
 
 renderWeek();
 
+window.addEventListener(
+
+    "resize",
+
+    ()=>{
+
+        planner.style.minHeight =
+            window.innerHeight + "px";
+
+    }
+
+);
