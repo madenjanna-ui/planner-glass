@@ -1,0 +1,1273 @@
+/* =====================================================
+   MaDenFlow 4.0
+   Base Theme
+===================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+
+:root{
+
+    --bg:#edf4ff;
+    --bg2:#f8fbff;
+
+    --glass:rgba(255,255,255,.72);
+
+    --weekday:#eef6ff;
+    --weekend:#ffe8ee;
+
+    --primary:#4f8cff;
+    --primary-dark:#2f6be0;
+
+    --success:#4dbb74;
+    --warning:#ffb648;
+    --danger:#ea5c75;
+
+    --text:#24364d;
+    --text2:#6f7f96;
+
+    --border:rgba(255,255,255,.45);
+
+    --radius:18px;
+
+    --shadow:
+        0 10px 30px rgba(40,60,120,.10);
+
+    --shadow-large:
+        0 20px 50px rgba(20,30,60,.18);
+
+}
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    font-family:'Nunito',sans-serif;
+
+    color:var(--text);
+
+    background:
+        linear-gradient(
+            180deg,
+            #fbfdff 0%,
+            #f1f6ff 45%,
+            #e9f2ff 100%
+        );
+
+    min-height:100vh;
+
+    padding-top:120px;
+
+    padding-bottom:95px;
+
+    -webkit-font-smoothing:antialiased;
+
+}
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.glass-header{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+    right:0;
+
+    padding:
+        max(env(safe-area-inset-top),14px)
+        18px
+        18px;
+
+    backdrop-filter:blur(22px);
+
+    background:rgba(255,255,255,.68);
+
+    border-bottom:1px solid rgba(255,255,255,.35);
+
+    z-index:999;
+
+    box-shadow:0 6px 20px rgba(0,0,0,.05);
+
+}
+
+.logo{
+
+    font-size:28px;
+
+    font-weight:800;
+
+    text-align:center;
+
+    color:var(--primary);
+
+    margin-bottom:8px;
+
+}
+
+#weekTitle{
+
+    text-align:center;
+
+    font-size:17px;
+
+    font-weight:700;
+
+    margin-bottom:14px;
+
+}
+
+/* =====================================================
+   WEEK NAVIGATION
+===================================================== */
+
+.week-nav{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+.week-nav button{
+
+    width:46px;
+    height:46px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:white;
+
+    box-shadow:var(--shadow);
+
+    font-size:20px;
+
+    transition:.25s;
+
+    cursor:pointer;
+
+}
+
+.week-nav button:hover{
+
+    transform:translateY(-2px);
+
+}
+
+.week-nav button:active{
+
+    transform:scale(.95);
+
+}
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+#planner{
+
+    width:min(760px,94%);
+
+    margin:auto;
+
+}
+
+/* =====================================================
+   DAY CARD
+===================================================== */
+
+.day{
+
+    background:var(--weekday);
+
+    border-radius:22px;
+
+    padding:18px;
+
+    margin-bottom:18px;
+
+    box-shadow:var(--shadow);
+
+    transition:.25s;
+
+}
+
+.day:hover{
+
+    transform:translateY(-2px);
+
+}
+
+.day.weekend{
+
+    background:var(--weekend);
+
+}
+
+.day.today{
+
+    border:3px solid var(--primary);
+
+}
+
+.day-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:14px;
+
+}
+
+.day-name{
+
+    font-size:20px;
+
+    font-weight:800;
+
+}
+
+.day-date{
+
+    color:var(--text2);
+
+    font-weight:700;
+
+}
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+button{
+
+    font-family:inherit;
+
+}
+
+.primary{
+
+    background:var(--primary);
+
+    color:white;
+
+}
+
+.secondary{
+
+    background:white;
+
+}
+
+.danger{
+
+    background:var(--danger);
+
+    color:white;
+
+}
+
+/* =====================================================
+   HIDDEN
+===================================================== */
+
+.hidden{
+
+    display:none !important;
+
+}
+/* =====================================================
+   TASKS
+===================================================== */
+
+.tasks{
+
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+
+}
+
+.task{
+
+    display:flex;
+    align-items:center;
+
+    position:relative;
+
+    min-height:52px;
+
+    padding:14px 18px;
+
+    background:#fff;
+
+    border-radius:16px;
+
+    box-shadow:
+        0 6px 18px rgba(20,40,80,.08);
+
+    transition:
+        transform .18s,
+        box-shadow .18s,
+        background .18s;
+
+    cursor:pointer;
+
+    overflow:hidden;
+
+}
+
+.task:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 10px 22px rgba(20,40,80,.14);
+
+}
+
+.task.selected{
+
+    transform:scale(.985);
+
+    background:#f8fbff;
+
+}
+
+/* ==========================================
+   Priority stripe
+========================================== */
+
+.task::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    top:0;
+    bottom:0;
+
+    width:6px;
+
+    border-radius:6px 0 0 6px;
+
+    background:#cfd8e8;
+
+}
+
+.task.normal::before{
+
+    background:#71c88b;
+
+}
+
+.task.important::before{
+
+    background:#ffb648;
+
+}
+
+.task.urgent::before{
+
+    background:#ea5c75;
+
+}
+
+/* ==========================================
+   Done
+========================================== */
+
+.task.done{
+
+    opacity:.55;
+
+    text-decoration:line-through;
+
+}
+
+/* ==========================================
+   Text
+========================================== */
+
+.task span{
+
+    flex:1;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    color:var(--text);
+
+    word-break:break-word;
+
+}
+
+/* ==========================================
+   Checkbox
+========================================== */
+
+.task-check{
+
+    width:24px;
+
+    height:24px;
+
+    margin-right:14px;
+
+    border-radius:50%;
+
+    border:2px solid #bdd2f5;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    flex-shrink:0;
+
+    transition:.2s;
+
+}
+
+.task.done .task-check{
+
+    background:var(--success);
+
+    border-color:var(--success);
+
+    color:#fff;
+
+}
+
+/* =====================================================
+   TASK MENU
+===================================================== */
+
+.task-menu{
+
+    position:fixed;
+
+    min-width:220px;
+
+    background:rgba(255,255,255,.92);
+
+    backdrop-filter:blur(20px);
+
+    border-radius:18px;
+
+    box-shadow:
+        0 18px 40px rgba(0,0,0,.18);
+
+    overflow:hidden;
+
+    z-index:5000;
+
+    animation:menuShow .18s ease;
+
+}
+
+.task-menu button{
+
+    width:100%;
+
+    border:none;
+
+    background:none;
+
+    padding:15px 18px;
+
+    text-align:left;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    transition:.18s;
+
+}
+
+.task-menu button:hover{
+
+    background:#edf5ff;
+
+}
+
+.task-menu hr{
+
+    border:none;
+
+    border-top:1px solid #edf0f6;
+
+}
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+.modal{
+
+    position:fixed;
+
+    inset:0;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:rgba(0,0,0,.22);
+
+    backdrop-filter:blur(8px);
+
+    padding:18px;
+
+    z-index:4000;
+
+}
+
+.modal-box,
+.modal-content{
+
+    width:min(430px,100%);
+
+    background:rgba(255,255,255,.90);
+
+    backdrop-filter:blur(22px);
+
+    border-radius:24px;
+
+    padding:24px;
+
+    box-shadow:
+        0 25px 55px rgba(0,0,0,.20);
+
+    animation:modalShow .25s ease;
+
+}
+
+.modal h3{
+
+    text-align:center;
+
+    margin-bottom:20px;
+
+    font-size:22px;
+
+}
+
+.modal input{
+
+    width:100%;
+
+    padding:14px 16px;
+
+    margin-top:8px;
+    margin-bottom:18px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#f4f8ff;
+
+    font-size:16px;
+
+    outline:none;
+
+}
+
+.modal-buttons{
+
+    display:flex;
+
+    gap:12px;
+
+}
+
+.modal-buttons button{
+
+    flex:1;
+
+    height:48px;
+
+    border:none;
+
+    border-radius:14px;
+
+    font-weight:700;
+
+}
+
+#saveTaskBtn{
+
+    background:var(--primary);
+
+    color:#fff;
+
+}
+
+#cancelTaskBtn{
+
+    background:#eef4ff;
+
+}
+
+/* =====================================================
+   ANIMATIONS
+===================================================== */
+
+@keyframes modalShow{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateY(20px)
+            scale(.96);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+@keyframes menuShow{
+
+    from{
+
+        opacity:0;
+
+        transform:scale(.92);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:scale(1);
+
+    }
+
+}
+/* =====================================================
+   SERVICE WINDOW
+===================================================== */
+
+.service-window{
+
+    width:min(480px,100%);
+
+}
+
+.service-header{
+
+    text-align:center;
+
+    font-size:28px;
+
+    font-weight:800;
+
+    color:var(--primary);
+
+    margin-bottom:8px;
+
+}
+
+.service-month{
+
+    text-align:center;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    color:var(--text2);
+
+    margin-bottom:22px;
+
+}
+
+/* =====================================================
+   SERVICE LIST
+===================================================== */
+
+.service-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+    max-height:340px;
+
+    overflow-y:auto;
+
+    margin-bottom:20px;
+
+    padding-right:4px;
+
+}
+
+.service-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:16px 18px;
+
+    background:#fff;
+
+    border-radius:18px;
+
+    box-shadow:0 6px 18px rgba(20,40,80,.08);
+
+    transition:.2s;
+
+    cursor:pointer;
+
+}
+
+.service-item:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 10px 24px rgba(20,40,80,.14);
+
+}
+
+.service-date{
+
+    font-size:16px;
+
+    font-weight:700;
+
+}
+
+.service-time{
+
+    color:var(--primary);
+
+    font-weight:800;
+
+    font-size:17px;
+
+}
+
+/* =====================================================
+   TOTAL
+===================================================== */
+
+.service-total{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:18px;
+
+    margin-top:18px;
+
+    background:#edf5ff;
+
+    border-radius:18px;
+
+    font-weight:800;
+
+    font-size:18px;
+
+}
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.service-add,
+.service-close{
+
+    width:100%;
+
+    height:50px;
+
+    border:none;
+
+    border-radius:16px;
+
+    margin-top:14px;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    transition:.2s;
+
+}
+
+.service-add{
+
+    background:var(--primary);
+
+    color:white;
+
+}
+
+.service-close{
+
+    background:#eef4ff;
+
+}
+
+.service-add:hover,
+.service-close:hover{
+
+    transform:translateY(-2px);
+
+}
+
+/* =====================================================
+   SERVICE FORM
+===================================================== */
+
+.service-add-window label{
+
+    display:block;
+
+    margin-top:10px;
+
+    margin-bottom:8px;
+
+    font-weight:700;
+
+    color:var(--text);
+
+}
+
+.service-add-window input{
+
+    width:100%;
+
+    height:48px;
+
+    padding:0 16px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#f5f8ff;
+
+    font-size:16px;
+
+}
+
+.service-buttons{
+
+    display:flex;
+
+    gap:12px;
+
+    margin-top:24px;
+
+}
+
+.service-buttons button{
+
+    flex:1;
+
+    height:50px;
+
+    border:none;
+
+    border-radius:16px;
+
+    font-size:16px;
+
+    font-weight:700;
+
+}
+
+#saveServiceBtn{
+
+    background:var(--primary);
+
+    color:white;
+
+}
+
+#deleteServiceBtn{
+
+    background:var(--danger);
+
+    color:white;
+
+}
+
+#cancelServiceBtn{
+
+    width:100%;
+
+    margin-top:14px;
+
+    height:48px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:#eef4ff;
+
+    font-weight:700;
+
+}
+
+/* =====================================================
+   SCROLLBAR
+===================================================== */
+
+.service-list::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+.service-list::-webkit-scrollbar-thumb{
+
+    background:#cfd9ea;
+
+    border-radius:20px;
+
+}
+
+/* =====================================================
+   FUTURE STATS WINDOW
+===================================================== */
+
+.stats-window{
+
+    width:min(520px,100%);
+
+}
+
+.stats-card{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:18px;
+
+    margin-bottom:16px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.stats-title{
+
+    font-size:18px;
+
+    font-weight:800;
+
+    margin-bottom:10px;
+
+}
+
+.stats-value{
+
+    font-size:34px;
+
+    font-weight:800;
+
+    color:var(--primary);
+
+}
+/* =====================================================
+   BOTTOM BAR
+===================================================== */
+
+.bottom-bar{
+
+    position:fixed;
+
+    left:18px;
+    right:18px;
+    bottom:max(18px,env(safe-area-inset-bottom));
+
+    height:68px;
+
+    display:flex;
+    justify-content:space-evenly;
+    align-items:center;
+
+    background:rgba(255,255,255,.82);
+
+    backdrop-filter:blur(24px);
+
+    border-radius:24px;
+
+    box-shadow:
+        0 12px 30px rgba(20,40,80,.18);
+
+    z-index:999;
+
+}
+
+.bottom-bar button{
+
+    width:52px;
+    height:52px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:transparent;
+
+    font-size:28px;
+
+    transition:.2s;
+
+    cursor:pointer;
+
+}
+
+.bottom-bar button:hover{
+
+    background:#eef5ff;
+
+}
+
+.bottom-bar button:active{
+
+    transform:scale(.92);
+
+}
+
+.bottom-bar button.active{
+
+    background:var(--primary);
+
+    color:white;
+
+}
+
+/* =====================================================
+   INPUTS
+===================================================== */
+
+input,
+select,
+textarea{
+
+    font-family:inherit;
+
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+
+    outline:none;
+
+    box-shadow:
+        0 0 0 3px rgba(79,140,255,.18);
+
+}
+
+/* =====================================================
+   NICE TRANSITIONS
+===================================================== */
+
+.day,
+.task,
+.service-item,
+button,
+.modal-content,
+.modal-box{
+
+    transition:
+        transform .2s,
+        box-shadow .2s,
+        background .2s,
+        opacity .2s;
+
+}
+
+/* =====================================================
+   FADE ANIMATION
+===================================================== */
+
+.fade-in{
+
+    animation:fadeIn .25s ease;
+
+}
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(12px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:none;
+
+    }
+
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width:640px){
+
+    body{
+
+        padding-top:108px;
+
+    }
+
+    .logo{
+
+        font-size:24px;
+
+    }
+
+    #weekTitle{
+
+        font-size:15px;
+
+    }
+
+    .day{
+
+        padding:16px;
+
+        border-radius:18px;
+
+    }
+
+    .day-name{
+
+        font-size:18px;
+
+    }
+
+    .task{
+
+        min-height:48px;
+
+        padding:12px 14px;
+
+    }
+
+    .modal-box,
+    .modal-content{
+
+        padding:20px;
+
+        border-radius:20px;
+
+    }
+
+}
+
+/* =====================================================
+   LARGE SCREENS
+===================================================== */
+
+@media (min-width:900px){
+
+    #planner{
+
+        width:760px;
+
+    }
+
+}
+
+/* =====================================================
+   IOS SAFE AREA
+===================================================== */
+
+@supports(padding:max(0px)){
+
+    body{
+
+        padding-bottom:
+            calc(95px + env(safe-area-inset-bottom));
+
+    }
+
+}
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media (prefers-reduced-motion:reduce){
+
+    *{
+
+        animation:none !important;
+
+        transition:none !important;
+
+        scroll-behavior:auto !important;
+
+    }
+
+}
