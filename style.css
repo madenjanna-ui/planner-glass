@@ -189,11 +189,22 @@ opacity .35s ease;
    MAIN
 ===================================================== */
 
+
+
 #planner{
 
-    width:min(760px,94%);
+    max-width:700px;
 
-    margin:0 auto;
+    margin:auto;
+
+    min-height:calc(100vh - var(--header-space) - var(--bottom-space));
+
+    transition:min-height .35s ease;
+
+}
+body.ui-hidden #planner{
+
+    min-height:calc(100vh - 24px);
 
 }
 
@@ -1297,7 +1308,19 @@ button,
 
     body{
 
-        padding-top:240px;
+         --header-space:170px;
+
+    --bottom-space:95px;
+
+    padding-top:var(--header-space);
+
+    padding-bottom:var(--bottom-space);
+
+    transition:
+
+        padding-top .35s ease,
+
+        padding-bottom .35s ease;
 
     }
 
@@ -1460,5 +1483,17 @@ body.ui-hidden .bottom-bar{
     transform:translateY(120%);
 
     opacity:0;
+
+}
+
+/* ===========================================
+   Освобождаем экран при скрытии интерфейса
+=========================================== */
+
+body.ui-hidden{
+
+    padding-top:14px;
+
+    padding-bottom:10px;
 
 }
