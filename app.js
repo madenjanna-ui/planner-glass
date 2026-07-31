@@ -615,7 +615,71 @@ window.addEventListener(
 
 });
 
+// =====================================
+// Автоскрытие интерфейса
+// =====================================
 
+let uiTimer;
+
+const body = document.body;
+
+const topHandle =
+document.getElementById("topHandle");
+
+function resetUITimer(){
+
+    clearTimeout(uiTimer);
+
+    body.classList.remove(
+        "ui-hidden"
+    );
+
+    uiTimer =
+    setTimeout(hideUI,5000);
+
+}
+
+function hideUI(){
+
+    body.classList.add(
+        "ui-hidden"
+    );
+
+}
+
+function showUI(){
+
+    body.classList.remove(
+        "ui-hidden"
+    );
+
+    resetUITimer();
+
+}
+
+[
+"click",
+"touchstart",
+"keydown",
+"wheel"
+].forEach(event=>{
+
+    document.addEventListener(
+        event,
+        resetUITimer,
+        {passive:true}
+    );
+
+});
+
+if(topHandle){
+
+    topHandle.onclick =
+    showUI;
+
+}
+
+resetUITimer();
 
 
 
