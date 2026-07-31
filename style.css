@@ -245,6 +245,18 @@ body{
 
 }
 
+.day-title{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:10px;
+
+}
+
 .day-name{
 
     font-size:17px;
@@ -258,6 +270,40 @@ body{
     color:var(--text2);
 
     font-weight:700;
+
+}
+
+.add-task-day{
+
+    position:absolute;
+
+    top:12px;
+
+    right:12px;
+
+    width:34px;
+
+    height:34px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:var(--primary);
+
+    color:#fff;
+
+    font-size:20px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    cursor:pointer;
+
+    box-shadow:0 4px 12px rgba(79,140,255,.25);
 
 }
 
