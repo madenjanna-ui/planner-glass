@@ -205,7 +205,7 @@ if (dayOfWeek === 6 || dayOfWeek === 0) {
 
         planner.appendChild(section);
 
-
+    console.log(i, weekDays[i], dateKey);
 
 
         if(typeof loadTasks==="function"){
