@@ -30,7 +30,7 @@ if (list.length >= 3) {
         task.className = "task";
 
         if (taskData.done) {
-            task.classList.add("completed");
+            task.classList.add("done");
         }
 
         switch (taskData.priority) {
