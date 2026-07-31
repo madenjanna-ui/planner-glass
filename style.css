@@ -1497,3 +1497,136 @@ body.ui-hidden{
     padding-bottom:10px;
 
 }
+/* =====================================
+   AUTO HIDE UI
+===================================== */
+
+.top-handle{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:14px;
+
+    z-index:99999;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:.35s;
+
+}
+
+.top-line{
+
+    width:90px;
+
+    height:4px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.85);
+
+    box-shadow:
+    0 0 10px rgba(0,0,0,.15);
+
+}
+
+.ui-hidden .top-handle{
+
+    opacity:1;
+
+    pointer-events:auto;
+
+}
+
+
+/* Верхняя панель */
+
+.glass-header{
+
+    transition:
+    transform .35s ease,
+    opacity .35s ease;
+
+}
+
+
+/* Нижняя панель */
+
+.bottom-bar{
+
+    transition:
+    transform .35s ease,
+    opacity .35s ease;
+
+}
+
+
+/* Прячем обе панели */
+
+.ui-hidden .glass-header{
+
+    transform:translateY(-110%);
+
+    opacity:0;
+
+}
+
+.ui-hidden .bottom-bar{
+
+    transform:translateY(120%);
+
+    opacity:0;
+
+}
+
+
+/* Освобождаем экран */
+
+body{
+
+    transition:
+    padding .35s ease;
+
+}
+
+body.ui-hidden{
+
+    padding-top:8px !important;
+
+    padding-bottom:8px !important;
+
+}
+
+
+/* Планировщик занимает весь экран */
+
+#planner{
+
+    min-height:100vh;
+
+    transition:
+    padding .35s ease;
+
+}
+
+body.ui-hidden #planner{
+
+    padding-top:8px;
+
+    padding-bottom:8px;
+
+}
