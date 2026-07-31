@@ -659,20 +659,9 @@ function showUI(){
 
 }
 
-[
-"click",
-"touchstart",
-"keydown",
-"wheel"
-].forEach(event=>{
-
-    document.addEventListener(
-        event,
-        resetUITimer,
-        {passive:true}
-    );
-
-});
+document
+.getElementById("topHandle")
+.addEventListener("click", showUI);
 
 if(topHandle){
 
