@@ -354,9 +354,23 @@ button{
 
 .tasks{
 
-    display:flex;
-    flex-direction:column;
-    gap:10px;
+    display:grid;
+
+    grid-template-columns:1fr;
+
+    gap:8px;
+
+}
+
+.tasks.two-columns{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+.tasks.three-columns{
+
+    grid-template-columns:repeat(3,1fr);
 
 }
 
@@ -403,6 +417,20 @@ button{
     transform:scale(.985);
 
     background:#f8fbff;
+
+}
+
+.task-text{
+
+    overflow:hidden;
+
+    display:-webkit-box;
+
+    -webkit-line-clamp:2;
+
+    -webkit-box-orient:vertical;
+
+    word-break:break-word;
 
 }
 
