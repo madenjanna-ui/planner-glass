@@ -386,7 +386,57 @@ button{
 
 .tasks.three-columns{
 
-    grid-template-columns:repeat(3,1fr);
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:8px;
+
+}
+
+.tasks.compact{
+
+    gap:6px;
+
+}
+
+.tasks.compact .task{
+
+    min-height:44px;
+
+    padding:8px;
+
+    border-radius:16px;
+
+}
+
+.tasks.compact .task-text{
+
+    font-size:15px;
+
+}
+.tasks.ultra-compact{
+
+    gap:4px;
+
+}
+
+.tasks.ultra-compact .task{
+
+    min-height:36px;
+
+    padding:5px 6px;
+
+    border-radius:12px;
+
+}
+
+.tasks.ultra-compact .task-text{
+
+    font-size:13px;
+
+    line-height:1.1;
 
 }
 
