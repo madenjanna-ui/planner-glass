@@ -9,17 +9,18 @@ function loadTasks(date, container) {
 
     const list = getTasks(date);
 
-  container.classList.remove(
-    "two-columns",
-    "three-columns"
-);
-
-if (list.length === 2) {
-    container.classList.add("two-columns");
-}
+container.className = "tasks";
 
 if (list.length >= 3) {
     container.classList.add("three-columns");
+}
+
+if (list.length >= 4) {
+    container.classList.add("compact");
+}
+
+if (list.length >= 7) {
+    container.classList.add("ultra-compact");
 }
     
     list.forEach((taskData, index) => {
