@@ -120,7 +120,17 @@ function showTaskMenu(task, date, index) {
 
     const menu = document.createElement("div");
     menu.className = "task-menu";
+const taskData = getTasks(date)[index];
 
+const preview =
+document.createElement("div");
+
+preview.className = "task-preview";
+
+preview.textContent =
+taskData.text;
+
+menu.appendChild(preview);
     menu.innerHTML = `
 
         <button data-action="important">
