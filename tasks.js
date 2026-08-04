@@ -15,13 +15,7 @@ if (list.length >= 3) {
     container.classList.add("three-columns");
 }
 
-if (list.length >= 4) {
-    container.classList.add("compact");
-}
 
-if (list.length >= 7) {
-    container.classList.add("ultra-compact");
-}
     
     list.forEach((taskData, index) => {
 
@@ -46,6 +40,11 @@ if (list.length >= 7) {
 
             default:
                 task.classList.add("normal");
+
+        }
+        if (container.classList.contains("three-columns")) {
+
+    task.classList.add("grid-task");
 
         }
 
