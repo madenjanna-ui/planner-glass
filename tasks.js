@@ -118,11 +118,6 @@ function showTaskMenu(task, date, index) {
 
     closeTaskMenu();
 
-    const menu = document.createElement("div");
-    menu.className = "task-menu";
-const taskData = getTasks(date)[index];
-
-const preview =
 const menu = document.createElement("div");
 menu.className = "task-menu";
 
@@ -135,25 +130,25 @@ menu.innerHTML = `
 </div>
 
 <button data-action="important">
-    ⭐ Важное
+    Важное
 </button>
 
 <button data-action="urgent">
-    🔴 Срочное
+    Срочное
 </button>
 
 <button data-action="normal">
-    🟢 Обычное
+    Обычное
 </button>
 
 <div class="task-menu-line"></div>
 
 <button data-action="edit">
-    ✏️ Редактировать
+    Редактировать
 </button>
 
 <button data-action="delete">
-    🗑 Удалить
+    Удалить
 </button>
 
 `;
