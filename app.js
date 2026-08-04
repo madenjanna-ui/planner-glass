@@ -104,7 +104,34 @@ function renderWeek(){
         monday.getDate()+6
     );
 
+// =====================================
+// Максимальное количество задач недели
+// =====================================
 
+let maxTasks = 0;
+
+for(let d=0; d<7; d++){
+
+    const tempDate = new Date(monday);
+
+    tempDate.setDate(
+        monday.getDate()+d
+    );
+
+    const key =
+    tempDate.toISOString()
+    .split("T")[0];
+
+    const count =
+    getTasks(key).length;
+
+    if(count > maxTasks){
+
+        maxTasks = count;
+
+    }
+
+}
 
     weekTitle.textContent =
 
@@ -232,6 +259,36 @@ if (dayOfWeek === 6 || dayOfWeek === 0) {
     activateDays();
 
     activateAddButtons();
+
+    planner.classList.remove(
+
+    "week-normal",
+    "week-compact",
+    "week-ultra"
+
+);
+
+if(maxTasks <= 2){
+
+    planner.classList.add(
+        "week-normal"
+    );
+
+}
+else if(maxTasks <= 6){
+
+    planner.classList.add(
+        "week-compact"
+    );
+
+}
+else{
+
+    planner.classList.add(
+        "week-ultra"
+    );
+
+}
 
 planner.style.minHeight =
     window.innerHeight + "px";
