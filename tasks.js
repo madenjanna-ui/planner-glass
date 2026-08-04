@@ -123,41 +123,42 @@ function showTaskMenu(task, date, index) {
 const taskData = getTasks(date)[index];
 
 const preview =
-document.createElement("div");
+const menu = document.createElement("div");
+menu.className = "task-menu";
 
-preview.className = "task-preview";
+const taskData = getTasks(date)[index];
 
-preview.textContent =
-taskData.text;
+menu.innerHTML = `
 
-menu.appendChild(preview);
-    menu.innerHTML = `
+<div class="task-preview">
+    ${taskData.text}
+</div>
 
-        <button data-action="important">
-            Важное
-        </button>
+<button data-action="important">
+    ⭐ Важное
+</button>
 
-        <button data-action="urgent">
-            Срочное
-        </button>
+<button data-action="urgent">
+    🔴 Срочное
+</button>
 
-        <button data-action="normal">
-            Обычное
-        </button>
+<button data-action="normal">
+    🟢 Обычное
+</button>
 
-        <div class="task-menu-line"></div>
+<div class="task-menu-line"></div>
 
-        <button data-action="edit">
-            Редактировать
-        </button>
+<button data-action="edit">
+    ✏️ Редактировать
+</button>
 
-        <button data-action="delete">
-            Удалить
-        </button>
+<button data-action="delete">
+    🗑 Удалить
+</button>
 
-    `;
+`;
 
-    document.body.appendChild(menu);
+document.body.appendChild(menu);
 
     const rect = task.getBoundingClientRect();
 
