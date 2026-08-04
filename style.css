@@ -376,8 +376,23 @@ button{
 
     gap:8px;
 
+   transition:.25s;
+
+display:flex;
+
+align-items:center;
+
+justify-content:flex-start;
+
 }
 
+.grid-task{
+
+    min-height:54px;
+
+    padding:10px 8px;
+
+}
 .tasks.two-columns{
 
     grid-template-columns:repeat(2,1fr);
@@ -392,6 +407,8 @@ button{
         repeat(3,1fr);
 
     gap:8px;
+
+    align-items:start;
 
 }
 
@@ -1600,5 +1617,46 @@ body.ui-hidden #planner{
     padding-top:8px;
 
     padding-bottom:8px;
+
+}
+/* =======================================
+   Адаптация всей недели
+======================================= */
+
+.week-normal .grid-task{
+
+    min-height:54px;
+
+    font-size:15px;
+
+}
+
+.week-compact .grid-task{
+
+    min-height:44px;
+
+    padding:7px;
+
+}
+
+.week-compact .task-text{
+
+    font-size:14px;
+
+}
+
+.week-ultra .grid-task{
+
+    min-height:34px;
+
+    padding:4px;
+
+}
+
+.week-ultra .task-text{
+
+    font-size:12px;
+
+    line-height:1.1;
 
 }
