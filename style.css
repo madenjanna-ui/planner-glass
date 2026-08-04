@@ -683,6 +683,30 @@ button{
 
 }
 
+.task-preview{
+
+    padding:20px;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    line-height:1.45;
+
+    color:var(--text);
+
+    border-bottom:1px solid rgba(255,255,255,.35);
+
+    white-space:normal;
+
+    word-break:break-word;
+
+    max-height:180px;
+
+    overflow:auto;
+
+}
+
 .task-menu button{
 
     width:100%;
