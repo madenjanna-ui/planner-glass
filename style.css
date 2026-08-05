@@ -412,16 +412,17 @@ button{
 
     display:grid;
 
-    grid-template-columns:
-        repeat(3,1fr);
+    grid-template-columns:repeat(3,1fr);
 
-    align-content:start;
+    grid-auto-rows:min-content;
+
+    gap:4px;
 
 }
 
 .grid-task{
 
-    min-height:100%;
+    min-height:34px;
 
     padding:6px;
 
@@ -432,9 +433,17 @@ button{
 
 }
 
+.day-content{
 
+    overflow:hidden;
 
+}
 
+.tasks{
+
+    overflow:hidden;
+
+}
 
 .task{
 
@@ -1640,8 +1649,6 @@ body.ui-hidden{
 /* Планировщик занимает весь экран */
 
 #planner{
-
-    min-height:100vh;
 
     transition:
     padding .35s ease;
