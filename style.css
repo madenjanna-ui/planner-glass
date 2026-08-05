@@ -314,6 +314,8 @@ body.ui-hidden #planner{
     flex-direction:column;
 
     justify-content:flex-start;
+    
+    overflow:hidden;
 
 }
 
@@ -405,6 +407,8 @@ button{
     flex-direction:column;
 
     gap:8px;
+    
+    overflow:hidden;
 
 }
 
@@ -433,17 +437,6 @@ button{
 
 }
 
-.day-content{
-
-    overflow:hidden;
-
-}
-
-.tasks{
-
-    overflow:hidden;
-
-}
 
 .task{
 
@@ -483,13 +476,7 @@ button{
 
 }
 
-.task.selected{
 
-    transform:scale(.985);
-
-    background:#f8fbff;
-
-}
 
 .task-text{
 
@@ -556,26 +543,8 @@ button{
     opacity:.55;
 
     text-decoration:line-through;
-
-}
-
-/* ==========================================
-   Text
-========================================== */
-
-.task span{
-
-    flex:1;
-
-    font-size:16px;
-
-    font-weight:700;
-
-    color:var(--text);
-
-    word-break:break-word;
-
-}
+    
+    }
 
 /* ==========================================
    Checkbox
@@ -892,25 +861,7 @@ button{
 
 }
 
-@keyframes menuShow{
 
-    from{
-
-        opacity:0;
-
-        transform:scale(.92);
-
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:scale(1);
-
-    }
-
-}
 @keyframes taskMenuShow{
 
     from{
