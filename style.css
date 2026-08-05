@@ -1588,26 +1588,7 @@ button,
 }
 
 
-/* Верхняя панель */
 
-.glass-header{
-
-    transition:
-    transform .35s ease,
-    opacity .35s ease;
-
-}
-
-
-/* Нижняя панель */
-
-.bottom-bar{
-
-    transition:
-    transform .35s ease,
-    opacity .35s ease;
-
-}
 
 
 /* Прячем обе панели */
@@ -1631,12 +1612,7 @@ button,
 
 /* Освобождаем экран */
 
-body{
 
-    transition:
-    padding .35s ease;
-
-}
 
 body.ui-hidden{
 
@@ -1662,44 +1638,4 @@ body.ui-hidden #planner{
     padding-bottom:8px;
 
 }
-/* =======================================
-   Адаптация всей недели
-======================================= */
 
-.week-normal .grid-task{
-
-    min-height:54px;
-
-    font-size:15px;
-
-}
-
-.week-compact .grid-task{
-
-    min-height:44px;
-
-    padding:7px;
-
-}
-
-.week-compact .task-text{
-
-    font-size:14px;
-
-}
-
-.week-ultra .grid-task{
-
-    min-height:34px;
-
-    padding:4px;
-
-}
-
-.week-ultra .task-text{
-
-    font-size:12px;
-
-    line-height:1.1;
-
-}
