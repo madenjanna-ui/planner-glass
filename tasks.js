@@ -11,8 +11,26 @@ function loadTasks(date, container) {
 
 container.className = "tasks";
 
-if (list.length >= 3) {
+if (list.length === 1) {
+
+    // одна колонка
+
+}
+else if (list.length === 2) {
+
+    container.classList.add("two-columns");
+
+}
+else if (list.length >= 3) {
+
     container.classList.add("three-columns");
+
+}
+
+if (list.length >= 7) {
+
+    container.classList.add("compact");
+
 }
 
 
@@ -42,11 +60,17 @@ if (list.length >= 3) {
                 task.classList.add("normal");
 
         }
-        if (container.classList.contains("three-columns")) {
+      if (
+
+    container.classList.contains("two-columns") ||
+
+    container.classList.contains("three-columns")
+
+){
 
     task.classList.add("grid-task");
 
-        }
+}
 
         task.innerHTML = `
 
