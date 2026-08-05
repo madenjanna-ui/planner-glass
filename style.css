@@ -243,7 +243,6 @@ body.ui-hidden #planner{
 
     box-shadow:var(--shadow);
 
-    overflow:hidden;
 
 }
 
@@ -433,7 +432,11 @@ button{
 }
 .tasks.two-columns{
 
+    display:grid;
+
     grid-template-columns:repeat(2,1fr);
+
+    gap:4px;
 
 }
 
@@ -463,7 +466,6 @@ button{
 
     cursor:pointer;
 
-    overflow:hidden;
 
 }
 
