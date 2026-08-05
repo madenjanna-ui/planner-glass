@@ -290,17 +290,6 @@ else{
 
 }
 
-planner.style.minHeight =
-    window.innerHeight + "px";
-
-}
-
-
-
-
-
-
-
 
 // =====================================
 // Выбор дня
