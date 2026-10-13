@@ -4780,31 +4780,31 @@ body.dark:not([data-scenic-glass="off"]) #sidePanel::after { background:rgba(25,
 body.dark:not([data-scenic-glass="off"]) #sidePanel .side-nav-btn { background:rgba(42,56,76,.84)!important;color:#f4f7ff!important; }
 
 
-/* MaDenFlow 8.6 — stronger milky-white frost on weekly day cards */
+/* MaDenFlow 8.7 - stronger matte cards, crisp headings; preserve layout */
 body:not([data-scenic-glass="off"]) #planner .day {
-  background: rgba(248, 251, 255, .76) !important;
-  border: 1px solid rgba(255, 255, 255, .94) !important;
-  -webkit-backdrop-filter: blur(var(--day-card-blur, 16px)) saturate(105%) !important;
-  backdrop-filter: blur(var(--day-card-blur, 16px)) saturate(105%) !important;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.82), 0 5px 18px rgba(28,43,63,.12) !important;
+  background: rgba(248, 251, 255, .88) !important;
+  border: 1px solid rgba(255,255,255,.96) !important;
+  -webkit-backdrop-filter: blur(var(--day-card-blur, 12px)) saturate(105%) !important;
+  backdrop-filter: blur(var(--day-card-blur, 12px)) saturate(105%) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.92), 0 3px 12px rgba(28,43,63,.09) !important;
 }
 body:not([data-scenic-glass="off"]) #planner .day-title {
-  background: rgba(250, 252, 255, .94) !important;
+  background: rgba(250,252,255,.96) !important;
   color: #24364c !important;
-  border: 1px solid rgba(255,255,255,.99) !important;
-  -webkit-backdrop-filter: blur(8px) saturate(102%) !important;
-  backdrop-filter: blur(8px) saturate(102%) !important;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.98), 0 2px 8px rgba(25,42,62,.09) !important;
+  text-shadow: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  border: 1px solid rgba(255,255,255,.98) !important;
+  box-shadow: 0 1px 4px rgba(25,42,62,.06) !important;
 }
 body:not([data-scenic-glass="off"]) #planner .task {
-  background: rgba(255,255,255,.96) !important;
+  background: rgba(255,255,255,.97) !important;
   color: #26364d !important;
-  border-color: rgba(255,255,255,.99) !important;
+  text-shadow: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  border-color: rgba(255,255,255,.98) !important;
 }
-body:not([data-scenic-glass="off"]) #sidePanel::after {
-  background: rgba(246, 250, 255, .88) !important;
-  -webkit-backdrop-filter: blur(30px) saturate(108%) !important;
-  backdrop-filter: blur(30px) saturate(108%) !important;
-}
-body.dark:not([data-scenic-glass="off"]) #planner .day { background: rgba(23,35,52,.70) !important; }
-body.dark:not([data-scenic-glass="off"]) #planner .day-title { background: rgba(242,247,255,.96) !important; color:#24364c !important; }
+body.dark:not([data-scenic-glass="off"]) #planner .day { background: rgba(23,35,52,.84) !important; }
+body.dark:not([data-scenic-glass="off"]) #planner .day-title { background: rgba(242,247,255,.97) !important; color:#24364c !important; }
+body.dark:not([data-scenic-glass="off"]) #planner .task { background: rgba(25,37,55,.96) !important; color:#f4f7ff !important; }
