@@ -4850,3 +4850,158 @@ body:not([data-scenic-glass="off"]) #monthScreen .month-task-row {
   background: rgba(255,255,255,.98) !important; color:#24364c !important;
   -webkit-backdrop-filter:none !important; backdrop-filter:none !important;
 }
+
+
+/* MaDenFlow 8.9 — visible backdrop blur on weekly day cards only */
+@supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  body:not([data-scenic-glass="off"]) #planner .day {
+    background: rgba(246, 250, 255, .76) !important;
+    background-color: rgba(246, 250, 255, .76) !important;
+    -webkit-backdrop-filter: blur(var(--day-card-blur, 16px)) saturate(112%) !important;
+    backdrop-filter: blur(var(--day-card-blur, 16px)) saturate(112%) !important;
+    isolation: isolate;
+  }
+  body:not([data-scenic-glass="off"]) #planner .day-title {
+    background: rgba(250, 252, 255, .97) !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+  body:not([data-scenic-glass="off"]) #planner .task {
+    background: rgba(255, 255, 255, .98) !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+}
+body[data-scenic-glass="off"] #planner .day {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+body.dark:not([data-scenic-glass="off"]) #planner .day {
+  background: rgba(23, 35, 52, .78) !important;
+}
+
+
+/* MaDenFlow 9.0 — single authoritative matte-glass treatment for weekly day cards.
+   Keep month calendar styling independent. The blur belongs to the day panel, not its header/text. */
+@supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  body:not([data-scenic-glass="off"]) #planner .day {
+    background: rgba(247, 250, 255, .68) !important;
+    border: 1px solid rgba(255, 255, 255, .76) !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.42), 0 5px 18px rgba(24,38,58,.12) !important;
+    -webkit-backdrop-filter: blur(var(--day-card-blur, 16px)) saturate(112%) !important;
+    backdrop-filter: blur(var(--day-card-blur, 16px)) saturate(112%) !important;
+  }
+  body:not([data-scenic-glass="off"]) #planner .day-title {
+    background: rgba(248, 251, 255, .94) !important;
+    color: #26364d !important;
+    text-shadow: none !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    border: 1px solid rgba(255,255,255,.96) !important;
+  }
+  body:not([data-scenic-glass="off"]) #planner .day-content,
+  body:not([data-scenic-glass="off"]) #planner .tasks { background: transparent !important; }
+  body:not([data-scenic-glass="off"]) #planner .task {
+    background: rgba(250,252,255,.92) !important;
+    color: #26364d !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+}
+body[data-scenic-glass="off"] #planner .day {
+  background: var(--custom-bg, #eef3fb) !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+body.dark:not([data-scenic-glass="off"]) #planner .day {
+  background: rgba(25, 38, 56, .70) !important;
+  border-color: rgba(255,255,255,.24) !important;
+}
+body.dark:not([data-scenic-glass="off"]) #planner .day-title {
+  background: rgba(248,251,255,.94) !important;
+  color: #26364d !important;
+}
+
+
+/* MaDenFlow 9.1 — adjustable matte glass shared by week cards and month surfaces */
+@supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  body:not([data-scenic-glass="off"]) #planner .day {
+    background: rgba(246, 249, 255, var(--glass-matte-alpha, .6025)) !important;
+    background-color: rgba(246, 249, 255, var(--glass-matte-alpha, .6025)) !important;
+    border: 1px solid rgba(255,255,255,.72) !important;
+    -webkit-backdrop-filter: blur(var(--day-card-blur, 12px)) saturate(115%) !important;
+    backdrop-filter: blur(var(--day-card-blur, 12px)) saturate(115%) !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.34), 0 4px 14px rgba(22,34,52,.10) !important;
+  }
+  body:not([data-scenic-glass="off"]) #monthScreen .month-screen-grid,
+  body:not([data-scenic-glass="off"]) #monthScreen .month-selected-tasks {
+    background: rgba(246,249,255,var(--glass-matte-alpha,.6025)) !important;
+    -webkit-backdrop-filter: blur(var(--day-card-blur,12px)) saturate(115%) !important;
+    backdrop-filter: blur(var(--day-card-blur,12px)) saturate(115%) !important;
+  }
+}
+body:not([data-scenic-glass="off"]) #planner .day-title {
+  padding-left: 12px !important;
+  background: rgba(250,252,255,.96) !important;
+  color: #26364d !important;
+  text-shadow: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  border: 1px solid rgba(255,255,255,.92) !important;
+}
+body:not([data-scenic-glass="off"]) #planner .day-title .day-date-side { padding-left: 2px !important; }
+body:not([data-scenic-glass="off"]) #planner .day-title .day-weekday,
+body:not([data-scenic-glass="off"]) #planner .day-title .day-number { color:#26364d !important; font-weight:750 !important; }
+body:not([data-scenic-glass="off"]) #planner .day-title .day-month { color:#1685a1 !important; font-weight:750 !important; }
+body[data-scenic-glass="off"] { --glass-matte-alpha: 0; }
+body.dark:not([data-scenic-glass="off"]) #planner .day { background: rgba(33,45,63,var(--glass-matte-alpha,.6025)) !important; }
+
+/* MaDenFlow 9.2 — stronger matte glass on weekly day cards */
+@supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  body:not([data-scenic-glass="off"]) #planner .day {
+    background: rgba(246, 249, 255, var(--glass-matte-alpha, .55)) !important;
+    background-color: rgba(246, 249, 255, var(--glass-matte-alpha, .55)) !important;
+    -webkit-backdrop-filter: blur(var(--day-card-blur, 20px)) saturate(118%) !important;
+    backdrop-filter: blur(var(--day-card-blur, 20px)) saturate(118%) !important;
+    border: 1px solid rgba(255,255,255,.76) !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.38), 0 5px 18px rgba(22,34,52,.12) !important;
+  }
+}
+body[data-scenic-glass="off"] #planner .day {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+body.dark:not([data-scenic-glass="off"]) #planner .day { background: rgba(33,45,63,var(--glass-matte-alpha,.55)) !important; }
+
+/* MaDenFlow 9.3 — let the weekly canvas show through day cards so backdrop blur can frost it */
+@supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  body:not([data-scenic-glass="off"]) #planner .day {
+    background-image: none !important;
+    background: rgba(246, 249, 255, var(--glass-matte-alpha, .55)) !important;
+    background-color: rgba(246, 249, 255, var(--glass-matte-alpha, .55)) !important;
+    isolation: auto !important;
+    -webkit-backdrop-filter: blur(var(--day-card-blur, 20px)) saturate(118%) !important;
+    backdrop-filter: blur(var(--day-card-blur, 20px)) saturate(118%) !important;
+    border: 1px solid rgba(255,255,255,.76) !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.38), 0 5px 18px rgba(22,34,52,.12) !important;
+  }
+}
+body[data-scenic-glass="off"] #planner .day {
+  background-image: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+body.dark:not([data-scenic-glass="off"]) #planner .day {
+  background: rgba(33,45,63,var(--glass-matte-alpha,.55)) !important;
+}
+
+/* MaDenFlow 9.4 — final matte day card rule */
+@supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  body[data-scenic-glass="on"] #planner .day,
+  body:not([data-scenic-glass="off"]) #planner .day {
+    background-image: none !important;
+    background-color: rgba(235, 241, 249, .48) !important;
+    -webkit-backdrop-filter: blur(var(--day-card-blur, 20px)) saturate(120%) !important;
+    backdrop-filter: blur(var(--day-card-blur, 20px)) saturate(120%) !important;
+  }
+}
