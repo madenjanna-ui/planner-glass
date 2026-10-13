@@ -1592,3 +1592,3189 @@ body.ui-hidden #planner{
 
 }
 
+
+/* MaDenFlow 5.0 — final layout */
+#planner{height:calc(100dvh - var(--header-space) - var(--bottom-space));min-height:0;overflow:hidden}
+.day{flex:1 1 0;min-height:0;overflow:hidden}.day-content{flex:1 1 auto;min-height:0;overflow:hidden}.tasks{flex:1 1 auto;min-height:0;overflow:hidden}
+.tasks.two-columns,.tasks.three-columns{display:grid;align-content:start;grid-auto-rows:minmax(0,1fr)}
+.tasks.two-columns{grid-template-columns:repeat(2,minmax(0,1fr));gap:4px}.tasks.three-columns{grid-template-columns:repeat(3,minmax(0,1fr));gap:4px}
+.task.grid-task{min-width:0;min-height:0;padding:5px 6px;border-radius:12px}.tasks.three-columns .task-text,.week-ultra .task-text{font-size:12px;line-height:1.12}.tasks.two-columns .task-text,.week-compact .task-text{font-size:13px;line-height:1.15}
+.tasks.three-columns .task-check,.tasks.two-columns .task-check{width:17px;height:17px;margin-right:6px}.tasks.three-columns .checkmark,.tasks.two-columns .checkmark{width:17px;height:17px;border-radius:5px}
+.task-text{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.add-task-day{position:relative;z-index:2;flex-shrink:0}
+.top-handle{position:fixed;top:auto;bottom:6px;left:0;width:100%;height:18px;z-index:10000;display:flex;justify-content:center;align-items:center;opacity:0;pointer-events:none;transition:opacity .35s ease}.top-line{width:82px;height:4px;border-radius:20px;background:#8b5cf6;box-shadow:0 0 12px rgba(139,92,246,.45)}.ui-hidden .top-handle{opacity:1;pointer-events:auto}
+.calendar-window{width:min(420px,100%)}.calendar-head{display:grid;grid-template-columns:44px 1fr 44px;align-items:center;gap:10px;margin-bottom:16px}.calendar-head button{width:44px;height:44px;border:0;border-radius:14px;background:#fff;font-size:28px;box-shadow:var(--shadow);cursor:pointer}#calendarTitle{text-align:center;font-size:19px;font-weight:800;text-transform:capitalize}.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}.cal-weekday{text-align:center;font-size:12px;font-weight:800;color:var(--text2);padding:4px 0}.cal-empty{min-height:40px}.cal-day{height:42px;border:0;border-radius:12px;background:#f5f8ff;font-family:inherit;font-weight:800;color:var(--text);cursor:pointer}.cal-day.in-week{box-shadow:inset 0 0 0 2px rgba(79,140,255,.22)}.cal-day.today{background:var(--primary);color:#fff}.wide-btn{width:100%;height:46px;border:0;border-radius:14px;margin-top:12px;font-weight:800}
+.service-month-nav{display:grid;grid-template-columns:44px 1fr 44px;align-items:center;gap:10px;margin-bottom:12px}.service-month-nav button{height:40px;border:0;border-radius:13px;background:#fff;font-size:26px;box-shadow:var(--shadow);cursor:pointer}.service-month-nav span{text-align:center;font-size:18px;font-weight:800;text-transform:capitalize}.service-row{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:#fff;border-radius:16px;box-shadow:0 6px 18px rgba(20,40,80,.08);cursor:pointer;margin-bottom:8px}.service-grand-total{margin-top:10px;background:#f2ebff}
+/* Настройки: окно всегда помещается в экран */
+.settings-window{
+    width:min(500px,100%);
+    max-height:calc(100dvh - 32px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+    overflow-y:auto;
+    overflow-x:hidden;
+    box-sizing:border-box;
+    overscroll-behavior:contain;
+    -webkit-overflow-scrolling:touch;
+}.settings-row{display:flex;justify-content:space-between;align-items:center;padding:15px 0;font-weight:800}.settings-row input{width:22px;height:22px}.settings-section{margin-top:14px;padding:16px;background:#f5f8ff;border-radius:18px}.settings-section strong{font-size:16px}.settings-section p{font-size:13px;color:var(--text2);line-height:1.4;margin:7px 0 12px}.settings-section input[type=email]{width:100%;height:46px;border:0;border-radius:13px;padding:0 14px;background:#fff;margin-bottom:10px}.settings-buttons{display:grid;grid-template-columns:1fr 1fr;gap:10px}.settings-buttons button,.settings-section button{height:44px;border:0;border-radius:13px;background:var(--primary);color:#fff;font-weight:800}.account-status{font-size:12px;color:var(--text2);margin-top:8px}
+body.dark{--bg:#111522;--bg2:#171b2a;--glass:rgba(25,30,45,.82);--weekday:#1d2435;--weekend:#342331;--text:#edf2ff;--text2:#aeb9d0;--border:rgba(255,255,255,.10);background:linear-gradient(180deg,#111522 0%,#171c2b 100%)}body.dark .glass-header{background:rgba(20,25,38,.82);border-color:rgba(255,255,255,.08)}body.dark .week-nav button,body.dark .calendar-head button,body.dark .service-month-nav button,body.dark .task-menu,body.dark .modal-box,body.dark .modal-content{background:rgba(31,38,55,.94);color:var(--text)}body.dark .task,body.dark .service-row,body.dark .cal-day{background:#252d40;color:var(--text)}body.dark .settings-section{background:#20283a}body.dark .settings-section input[type=email],body.dark .modal input{background:#161d2c;color:var(--text)}body.dark .bottom-bar{background:rgba(28,34,49,.88)}
+
+@media(max-width:640px){
+    .settings-window{
+        width:100%;
+        max-height:calc(100dvh - 20px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+        padding:18px;
+        border-radius:20px;
+    }
+
+    .settings-section{
+        margin-top:10px;
+        padding:12px;
+    }
+
+    .settings-row{
+        padding:10px 0;
+    }
+
+    .settings-window h3{
+        margin-bottom:12px;
+        font-size:20px;
+    }
+
+    .settings-section p{
+        margin:5px 0 9px;
+    }
+}
+
+#planner{height:calc(100dvh - var(--header-space) - var(--bottom-space));padding:6px}.day{padding:6px 8px;border-radius:14px}.day-title{margin-bottom:4px}.day-name{font-size:14px}.add-task-day{width:28px;height:28px;font-size:17px}.task{min-height:34px;padding:6px 7px}.tasks{gap:3px}.task-check{width:17px;height:17px;margin-right:6px}.checkmark{width:17px;height:17px}}
+
+
+/* =====================================================
+   MaDenFlow 5.2 — task time / month / entry animation
+===================================================== */
+.day-name{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.day-month{font-size:.78em;font-weight:800;color:var(--text2);text-transform:lowercase}
+.task-text-wrap{min-width:0;flex:1;display:flex;align-items:center;gap:6px}
+.task-time{font-size:12px;font-weight:800;color:var(--primary);flex:0 0 auto;white-space:nowrap}
+.task-text{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.task-preview-time{font-size:13px;font-weight:800;color:var(--primary);margin-bottom:7px}
+.task-time-label{display:block;font-weight:800;margin:4px 0 14px}
+.task-time-label input{margin-top:8px}
+
+/* вход в приложение */
+body.app-enter .glass-header{opacity:0;transform:translateY(-28px)}
+body.app-enter #planner{opacity:0;transform:translateY(22px)}
+body.app-enter .bottom-bar{opacity:0;transform:translateY(30px)}
+body.app-ready .glass-header,body.app-ready #planner,body.app-ready .bottom-bar{opacity:1;transform:none;transition:opacity .55s ease,transform .65s cubic-bezier(.22,1,.36,1)}
+body.app-ready .day{animation:dayEnter .45s both cubic-bezier(.22,1,.36,1)}
+body.app-ready .day:nth-child(1){animation-delay:.04s}.day:nth-child(2){animation-delay:.08s}.day:nth-child(3){animation-delay:.12s}.day:nth-child(4){animation-delay:.16s}.day:nth-child(5){animation-delay:.20s}.day:nth-child(6){animation-delay:.24s}.day:nth-child(7){animation-delay:.28s}
+@keyframes dayEnter{from{opacity:0;transform:translateY(16px) scale(.985)}to{opacity:1;transform:none}}
+
+@media(max-width:640px){.day-month{font-size:11px}.task-time{font-size:10px}.task-text-wrap{gap:4px}.task-time-label input{height:44px}}
+
+
+/* =====================================================
+   MaDenFlow 5.2 — UI hide + weekday colors
+===================================================== */
+
+/* Автоскрытие должно иметь приоритет над стартовой анимацией */
+body.ui-hidden .glass-header{
+    transform:translateY(-110%) !important;
+    opacity:0 !important;
+    pointer-events:none;
+}
+
+body.ui-hidden .bottom-bar{
+    transform:translateY(120%) !important;
+    opacity:0 !important;
+    pointer-events:none;
+}
+
+/* Будни — холодный синий оттенок */
+.day:not(.weekend) .day-weekday{
+    color:#4f7fc9;
+}
+
+/* Выходные — мягкий красный оттенок */
+.day.weekend .day-weekday{
+    color:#d96b7c;
+}
+
+.day-weekday{
+    font-weight:800;
+}
+
+/* =====================================================
+   MaDenFlow 5.3 — настройки шрифта и цветовые темы
+===================================================== */
+
+/* Стандартная тема: будни — синий, выходные — розовый */
+body[data-theme="standard"]{
+    --weekday:#eef6ff;
+    --weekend:#ffe8ee;
+    --day-weekday-text:#4f7fc9;
+    --day-weekend-text:#d96b7c;
+}
+
+/* Чёрная — белая */
+body[data-theme="blackwhite"]{
+    --weekday:#171717;
+    --weekend:#f7f7f7;
+    --day-weekday-text:#111;
+    --day-weekend-text:#555;
+    --primary:#444;
+    --primary-dark:#222;
+    --text:#202020;
+    --text2:#666;
+}
+body[data-theme="blackwhite"] .day:not(.weekend){
+    color:#fff;
+}
+body[data-theme="blackwhite"] .day:not(.weekend) .day-date,
+body[data-theme="blackwhite"] .day:not(.weekend) .day-month,
+body[data-theme="blackwhite"] .day:not(.weekend) .day-status{
+    color:#d8d8d8;
+}
+body[data-theme="blackwhite"] .day:not(.weekend) .day-weekday{color:#fff}
+body[data-theme="blackwhite"] .day.weekend .day-weekday{color:#333}
+
+/* Жёлтая — зелёная */
+body[data-theme="yellowgreen"]{
+    --weekday:#fff5b8;
+    --weekend:#dff2c2;
+    --day-weekday-text:#8a7200;
+    --day-weekend-text:#4d7b32;
+    --primary:#6b9e3d;
+    --primary-dark:#557f2f;
+}
+
+/* Голубая — синяя */
+body[data-theme="skyblue"]{
+    --weekday:#dff5ff;
+    --weekend:#c9d9ff;
+    --day-weekday-text:#2f89ad;
+    --day-weekend-text:#496ac0;
+    --primary:#4f7fe8;
+    --primary-dark:#385fc0;
+}
+
+/* Мятная — фисташковая */
+body[data-theme="mintpistachio"]{
+    --weekday:#d9f5eb;
+    --weekend:#e3f2c8;
+    --day-weekday-text:#398a72;
+    --day-weekend-text:#6f913c;
+    --primary:#52a989;
+    --primary-dark:#418a6e;
+}
+
+.day:not(.weekend){background:var(--weekday)}
+.day.weekend{background:var(--weekend)}
+.day:not(.weekend) .day-weekday{color:var(--day-weekday-text)}
+.day.weekend .day-weekday{color:var(--day-weekend-text)}
+
+/* Размер шрифта — только типографика, без изменения размеров карточек */
+body[data-font-size="small"] .logo{font-size:22px}
+body[data-font-size="small"] #weekTitle{font-size:13px}
+body[data-font-size="small"] .day-name{font-size:13px}
+body[data-font-size="small"] .task-text{font-size:13px}
+body[data-font-size="small"] .task-time{font-size:9px}
+body[data-font-size="small"] .task-menu button{font-size:13px}
+body[data-font-size="small"] .task-preview{font-size:14px}
+
+body[data-font-size="large"] .logo{font-size:30px}
+body[data-font-size="large"] #weekTitle{font-size:18px}
+body[data-font-size="large"] .day-name{font-size:16px}
+body[data-font-size="large"] .task-text{font-size:16px}
+body[data-font-size="large"] .task-time{font-size:13px}
+body[data-font-size="large"] .task-menu button{font-size:16px}
+body[data-font-size="large"] .task-preview{font-size:18px}
+
+body[data-font-size="xlarge"] .logo{font-size:33px}
+body[data-font-size="xlarge"] #weekTitle{font-size:20px}
+body[data-font-size="xlarge"] .day-name{font-size:18px}
+body[data-font-size="xlarge"] .task-text{font-size:18px}
+body[data-font-size="xlarge"] .task-time{font-size:14px}
+body[data-font-size="xlarge"] .task-menu button{font-size:17px}
+body[data-font-size="xlarge"] .task-preview{font-size:20px}
+
+.settings-select{
+    width:100%;
+    height:46px;
+    margin-top:10px;
+    padding:0 12px;
+    border:0;
+    border-radius:13px;
+    background:#fff;
+    color:var(--text);
+    font-family:inherit;
+    font-size:15px;
+    font-weight:700;
+}
+.settings-row-inner{padding:0 0 6px}
+body.dark .settings-select{background:#161d2c;color:var(--text)}
+body.dark[data-theme="blackwhite"]{--primary:#bdbdbd;--primary-dark:#999}
+
+/* Тёмный стиль всегда имеет приоритет над светлыми цветовыми темами */
+body.dark{
+    --weekday:#1d2435;
+    --weekend:#342331;
+    --text:#edf2ff;
+    --text2:#aeb9d0;
+    --primary:#8b5cf6;
+    --primary-dark:#7044d4;
+}
+body.dark .day:not(.weekend){background:var(--weekday);color:var(--text)}
+body.dark .day.weekend{background:var(--weekend);color:var(--text)}
+body.dark .day:not(.weekend) .day-weekday{color:#9ebcff}
+body.dark .day.weekend .day-weekday{color:#ff9faf}
+
+/* =====================================================
+   MaDenFlow 5.3 — исправление отчёта часов
+   Контраст итоговых строк в окне «Служение»
+===================================================== */
+.service-total{
+    color:#24364d !important;
+    background:#edf5ff !important;
+}
+
+.service-total > div:first-child{
+    color:#24364d !important;
+    font-weight:800;
+}
+
+.service-total > div:last-child{
+    color:#5b3db5 !important;
+    font-weight:900;
+}
+
+.service-grand-total{
+    background:#f2ebff !important;
+}
+
+.service-grand-total > div:first-child{
+    color:#3d3158 !important;
+}
+
+.service-grand-total > div:last-child{
+    color:#7046c6 !important;
+}
+
+/* В тёмной теме карточки остаются светлыми, поэтому текст должен быть тёмным */
+body.dark .service-total,
+body.dark .service-grand-total{
+    color:#24364d !important;
+}
+
+body.dark .service-total > div:first-child,
+body.dark .service-grand-total > div:first-child{
+    color:#24364d !important;
+}
+
+body.dark .service-total > div:last-child,
+body.dark .service-grand-total > div:last-child{
+    color:#5b3db5 !important;
+}
+
+/* =====================================================
+   MaDenFlow 5.4 — повторяющиеся цепочки / список задач
+===================================================== */
+.chain-edit-hint{
+    margin:10px 0 12px;
+    padding:10px 12px;
+    border-radius:12px;
+    background:#f2ebff;
+    color:#5b3db5;
+    font-size:13px;
+    font-weight:800;
+    line-height:1.35;
+}
+.task-menu-label{
+    padding:10px 20px 4px;
+    color:var(--text2);
+    font-size:12px;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+}
+.task-color-actions{display:grid;grid-template-columns:1fr;gap:2px}
+.task-color-actions button{padding:11px 20px;font-size:14px}
+
+/* =====================================================
+   Список дел — стабильная высота дней
+   1–2 задачи: одна колонка
+   3+ задач: две колонки
+   много задач: уменьшаем строки, но высота недели не меняется
+===================================================== */
+
+body[data-task-view="list"] .day.list-day{
+    flex:1 1 0 !important;
+    min-height:0;
+}
+
+body[data-task-view="list"] .day.list-day .day-content{
+    min-height:0;
+    overflow:hidden;
+}
+
+body[data-task-view="list"] .day.list-day .tasks{
+    min-height:0;
+    height:100%;
+    overflow:hidden;
+    display:flex !important;
+    flex-direction:column !important;
+    gap:0 !important;
+}
+
+/* 3 и более — две колонки */
+body[data-task-view="list"] .day.list-day.list-two-columns .tasks{
+    display:grid !important;
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    grid-auto-flow:row;
+    grid-auto-rows:minmax(0,1fr);
+    column-gap:8px;
+    row-gap:0;
+    align-content:stretch;
+}
+
+/* 5 и более задач — три колонки */
+body[data-task-view="list"] .day.list-day.list-three-columns .tasks{
+    display:grid !important;
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    grid-auto-flow:row;
+    grid-auto-rows:minmax(0,1fr);
+    column-gap:6px;
+    row-gap:0;
+    align-content:stretch;
+}
+
+/* Сама строка списка */
+body[data-task-view="list"] .task,
+body[data-task-view="list"] .task.grid-task{
+    width:100%;
+    min-width:0;
+    min-height:0;
+    height:100%;
+    padding:2px 5px 2px 7px;
+    border-radius:0;
+    background:transparent;
+    box-shadow:none;
+    border-bottom:1px solid rgba(120,140,170,.18);
+    transform:none;
+    overflow:hidden;
+}
+
+/* Убираем hover-прыжки в списке */
+body[data-task-view="list"] .task:hover{
+    transform:none;
+    box-shadow:none;
+}
+
+/* Цветная полоска остаётся */
+body[data-task-view="list"] .task::before{
+    width:3px;
+    border-radius:3px;
+}
+
+/* Содержимое строки */
+body[data-task-view="list"] .task-text-wrap{
+    min-width:0;
+    display:flex;
+    align-items:center;
+    gap:5px;
+    overflow:hidden;
+}
+
+body[data-task-view="list"] .task-text{
+    min-width:0;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    font-size:13px;
+    line-height:1;
+    font-weight:800;
+}
+
+body[data-task-view="list"] .task-time{
+    flex:0 0 auto;
+    font-size:10px;
+    min-width:36px;
+    line-height:1;
+}
+
+body[data-task-view="list"] .task-check{
+    width:16px;
+    height:16px;
+    margin-right:5px;
+}
+
+body[data-task-view="list"] .checkmark{
+    width:16px;
+    height:16px;
+    border-radius:4px;
+}
+
+/* 5+ задач — компактнее */
+body[data-task-view="list"] .day.list-dense .task{
+    padding-top:1px;
+    padding-bottom:1px;
+}
+
+body[data-task-view="list"] .day.list-dense .task-text{
+    font-size:11px;
+}
+
+body[data-task-view="list"] .day.list-dense .task-time{
+    font-size:9px;
+    min-width:32px;
+}
+
+body[data-task-view="list"] .day.list-dense .task-check,
+body[data-task-view="list"] .day.list-dense .checkmark{
+    width:14px;
+    height:14px;
+}
+
+body[data-task-view="list"] .day.list-dense .task-check{
+    margin-right:4px;
+}
+
+/* 9+ задач — максимально компактный режим */
+body[data-task-view="list"] .day.list-ultra .task{
+    padding-left:5px;
+    padding-right:3px;
+}
+
+body[data-task-view="list"] .day.list-ultra .task-text{
+    font-size:9px;
+}
+
+body[data-task-view="list"] .day.list-ultra .task-time{
+    font-size:8px;
+    min-width:29px;
+}
+
+body[data-task-view="list"] .day.list-ultra .task-check,
+body[data-task-view="list"] .day.list-ultra .checkmark{
+    width:12px;
+    height:12px;
+}
+
+body[data-task-view="list"] .day.list-ultra .task-check{
+    margin-right:3px;
+}
+body[data-task-view="list"] .task.list-green{--list-color:#42a866}
+body[data-task-view="list"] .task.list-red{--list-color:#e34d66}
+body[data-task-view="list"] .task.list-black{--list-color:#222}
+body[data-task-view="list"] .task.list-green::before,
+body[data-task-view="list"] .task.list-red::before,
+body[data-task-view="list"] .task.list-black::before{background:var(--list-color)}
+body[data-task-view="list"] .task.list-green .task-text{color:#2f8f57}
+body[data-task-view="list"] .task.list-red .task-text{color:#d73f5a}
+body[data-task-view="list"] .task.list-black .task-text{color:#222}
+body.dark[data-task-view="list"] .task.list-green .task-text{color:#75d79a}
+body.dark[data-task-view="list"] .task.list-red .task-text{color:#ff8195}
+body.dark[data-task-view="list"] .task.list-black .task-text{color:#f0f0f0}
+body.dark[data-task-view="list"] .task{border-bottom-color:rgba(255,255,255,.12)}
+body.dark .chain-edit-hint{background:#30234b;color:#cdb8ff}
+
+/* Поля времени/даты в окне служения — строго внутри формы */
+.service-add-window{width:min(430px,100%);max-width:100%;overflow:hidden}
+.service-add-window label{width:100%;display:block}
+.service-add-window input[type="date"],
+.service-add-window input[type="number"],
+.service-add-window input[type="time"]{
+    display:block;
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0;
+    height:46px;
+    margin:0 !important;
+    padding:0 12px !important;
+    border:0;
+    border-radius:13px;
+    background:#f5f8ff;
+    color:var(--text);
+    font:700 16px/46px inherit;
+    box-sizing:border-box;
+    -webkit-appearance:none;
+    appearance:none;
+}
+.service-add-window input[type="date"]::-webkit-date-and-time-value{text-align:left}
+.service-add-window input[type="number"]{-moz-appearance:textfield}
+.service-add-window input[type="number"]::-webkit-inner-spin-button,
+.service-add-window input[type="number"]::-webkit-outer-spin-button{margin:0}
+body.dark .service-add-window input{background:#161d2c;color:var(--text)}
+
+/* Время задачи — не выходит за границы модального окна */
+.task-time-label{width:100%;box-sizing:border-box}
+.task-time-label input[type="time"]{
+    display:block;
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0;
+    height:46px;
+    margin:8px 0 0 !important;
+    padding:0 12px !important;
+    box-sizing:border-box;
+    border:0;
+    border-radius:13px;
+    background:#f4f8ff;
+    color:var(--text);
+    font:700 16px/46px inherit;
+    -webkit-appearance:none;
+    appearance:none;
+}
+body.dark .task-time-label input[type="time"]{background:#161d2c;color:var(--text)}
+
+/* Список дел: высота дня адаптируется к количеству задач.
+   Никакого внутреннего скролла и выхода строк за границы дня. */
+body[data-task-view="list"] #planner .day.list-day{
+    overflow:hidden;
+    min-height:0;
+}
+body[data-task-view="list"] #planner .day.list-day .day-content{
+    overflow:hidden;
+    min-height:0;
+}
+body[data-task-view="list"] #planner .day.list-day .tasks{
+    overflow:hidden;
+    min-height:0;
+    flex:1 1 auto;
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:flex-start;
+}
+body[data-task-view="list"] #planner .day.list-day .task{
+    flex:0 1 auto;
+    min-height:0;
+    height:auto;
+    padding:3px 7px 3px 9px;
+    line-height:1.05;
+}
+body[data-task-view="list"] #planner .day.list-day .task-text-wrap{
+    min-width:0;
+    overflow:hidden;
+}
+body[data-task-view="list"] #planner .day.list-day .task-text{
+    min-width:0;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+}
+body[data-task-view="list"] #planner .day.list-day .task-check,
+body[data-task-view="list"] #planner .day.list-day .checkmark{
+    width:16px;
+    height:16px;
+}
+body[data-task-view="list"] #planner .day.list-day .task-check{margin-right:6px}
+@media(max-width:640px){
+    body[data-task-view="list"] #planner .day.list-day .task{
+        padding-top:2px;
+        padding-bottom:2px;
+    }
+    body[data-task-view="list"] #planner .day.list-day .task-text{font-size:12px}
+    body[data-task-view="list"] #planner .day.list-day .task-time{font-size:10px;min-width:36px}
+}
+
+/* MaDenFlow 5.4.3 — список не меняет высоту дней */
+body[data-task-view="list"] #planner{
+    align-items:stretch;
+}
+
+/* MaDenFlow 5.4.4 — компактный режим трёх колонок */
+body[data-task-view="list"] .day.list-three-columns .task-text{font-size:12px;}
+body[data-task-view="list"] .day.list-three-columns .task-time{font-size:9px;min-width:31px;}
+body[data-task-view="list"] .day.list-three-columns .task-check,
+body[data-task-view="list"] .day.list-three-columns .checkmark{width:14px;height:14px;}
+body[data-task-view="list"] .day.list-three-columns .task-check{margin-right:4px;}
+
+/* MaDenFlow 5.4.5 — финальное правило списка: 5+ задач = 3 колонки.
+   Размещено в самом конце CSS, чтобы перекрыть базовый flex-режим списка. */
+body[data-task-view="list"] #planner .day.list-day.list-three-columns .tasks{
+    display:grid !important;
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    grid-template-rows:repeat(3,minmax(0,1fr)) !important;
+    grid-auto-flow:row !important;
+    grid-auto-rows:minmax(0,1fr) !important;
+    column-gap:6px !important;
+    row-gap:0 !important;
+    align-content:stretch !important;
+    justify-content:stretch !important;
+    height:100% !important;
+    overflow:hidden !important;
+}
+
+body[data-task-view="list"] #planner .day.list-day.list-three-columns .task{
+    min-width:0 !important;
+    width:100% !important;
+    height:100% !important;
+    min-height:0 !important;
+    overflow:hidden !important;
+    padding:2px 4px !important;
+}
+
+body[data-task-view="list"] #planner .day.list-day.list-three-columns .task-text{
+    font-size:11px !important;
+}
+
+body[data-task-view="list"] #planner .day.list-day.list-three-columns .task-time{
+    font-size:8px !important;
+    min-width:29px !important;
+}
+
+
+/* =====================================================
+   MaDenFlow 5.4.6
+   Увеличенный шрифт режима «Список дел»
+===================================================== */
+
+/* Обычный список: читаемее */
+body[data-task-view="list"] .day.list-day .task-text{
+    font-size:15px !important;
+    line-height:1.15;
+    font-weight:800;
+}
+
+body[data-task-view="list"] .day.list-day .task-time{
+    font-size:11px !important;
+    min-width:40px;
+}
+
+/* 3–4 задачи: две колонки, немного компактнее */
+body[data-task-view="list"] .day.list-day.list-two-columns .task-text{
+    font-size:14px !important;
+}
+
+body[data-task-view="list"] .day.list-day.list-two-columns .task-time{
+    font-size:10px !important;
+    min-width:36px;
+}
+
+/* 5+ задач: три колонки, но шрифт всё равно заметно крупнее прежнего */
+body[data-task-view="list"] .day.list-day.list-three-columns .task-text{
+    font-size:13px !important;
+    line-height:1.1;
+}
+
+body[data-task-view="list"] .day.list-day.list-three-columns .task-time{
+    font-size:10px !important;
+    min-width:32px;
+}
+
+/* 9+ задач: максимально плотный режим */
+body[data-task-view="list"] .day.list-day.list-ultra .task-text{
+    font-size:12px !important;
+}
+
+body[data-task-view="list"] .day.list-day.list-ultra .task-time{
+    font-size:9px !important;
+    min-width:30px;
+}
+
+/* На маленьком экране чуть уменьшаем, но сохраняем читаемость */
+@media(max-width:640px){
+    body[data-task-view="list"] .day.list-day .task-text{
+        font-size:14px !important;
+    }
+
+    body[data-task-view="list"] .day.list-day.list-three-columns .task-text{
+        font-size:12px !important;
+    }
+}
+
+/* =====================================================
+   MaDenFlow 5.4.7 — Размер шрифта ДЕЛ
+   Настройка в ⚙️ влияет только на текст задач.
+===================================================== */
+body[data-font-size="small"] .task-text{font-size:13px !important}
+body[data-font-size="medium"] .task-text{font-size:15px !important}
+body[data-font-size="large"] .task-text{font-size:17px !important}
+body[data-font-size="xlarge"] .task-text{font-size:19px !important}
+body[data-font-size="large"] .day-name,
+body[data-font-size="xlarge"] .day-name{font-size:18px}
+body[data-font-size="xlarge"] .day-name{font-size:19px}
+
+/* Повторные посещения */
+.visits-window{width:min(560px,100%);max-height:calc(100dvh - 24px);overflow-y:auto}
+.visits-list{display:flex;flex-direction:column;gap:10px;max-height:55vh;overflow-y:auto;margin:4px 0 14px}
+.visit-note{position:relative;padding:14px 44px 14px 16px;border-radius:16px;border-left:6px solid;box-shadow:0 6px 18px rgba(20,40,80,.08);background:#fff}
+.visit-note.green{border-left-color:#4dbb74;background:#effbf3}
+.visit-note.yellow{border-left-color:#e7b83f;background:#fff9df}
+.visit-note.mint{border-left-color:#62cdb1;background:#eafff8}
+.visit-note.red{border-left-color:#ea5c75;background:#fff0f3}
+.visit-note-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:7px}
+.visit-note-head strong{font-size:16px}.visit-note-head span{font-size:12px;color:var(--text2)}
+.visit-note-text{font-size:14px;line-height:1.4;white-space:normal;word-break:break-word}
+.visit-note-actions{position:absolute;right:8px;top:8px;display:flex;flex-direction:column;gap:3px}
+.visit-note-actions button{border:0;background:transparent;width:30px;height:30px;border-radius:9px;cursor:pointer}
+.visit-note-actions button:hover{background:rgba(79,140,255,.1)}
+.visit-editor-window{width:min(500px,100%);max-height:calc(100dvh - 24px);overflow-y:auto}
+.visit-editor-window label{display:block;font-weight:700;margin:10px 0}
+.visit-editor-window input,.visit-editor-window textarea,.visit-editor-window select{width:100%;margin-top:7px;padding:12px 14px;border:0;border-radius:12px;background:#f4f8ff;font:inherit;box-sizing:border-box}
+.visit-editor-window textarea{resize:vertical;min-height:120px}
+.visits-empty{text-align:center;padding:30px 16px;color:var(--text2);font-weight:700}
+@media(max-width:640px){
+ .visits-window,.visit-editor-window{max-height:calc(100dvh - 16px);padding:18px}
+ .visits-list{max-height:52vh}
+ .visit-note-text{font-size:13px}
+}
+
+
+/* =====================================================
+   MaDenFlow 5.4.8 — отдельные шрифты и новые темы
+===================================================== */
+
+/* Ежедневник: только названия/заголовки дней */
+body[data-planner-font-size="small"] .day-name{font-size:13px !important}
+body[data-planner-font-size="medium"] .day-name{font-size:15px !important}
+body[data-planner-font-size="large"] .day-name{font-size:18px !important}
+body[data-planner-font-size="xlarge"] .day-name{font-size:20px !important}
+
+/* Размер текста дел — отдельно от ежедневника */
+body[data-task-font-size="small"]{--task-font:14px;--task-font-list:15px;--task-font-list-2:14px;--task-font-list-3:13px}
+body[data-task-font-size="medium"]{--task-font:16px;--task-font-list:18px;--task-font-list-2:17px;--task-font-list-3:16px}
+body[data-task-font-size="large"]{--task-font:19px;--task-font-list:21px;--task-font-list-2:19px;--task-font-list-3:18px}
+body[data-task-font-size="xlarge"]{--task-font:22px;--task-font-list:24px;--task-font-list-2:22px;--task-font-list-3:20px}
+
+body[data-task-font-size] .task-text{font-size:var(--task-font) !important}
+body[data-task-font-size] .task-time{font-size:calc(var(--task-font) - 3px) !important}
+body[data-task-font-size] .task-menu button{font-size:var(--task-font) !important}
+
+/* Список дел тоже подчиняется настройке шрифта */
+body[data-task-view="list"] .day.list-day .task-text{font-size:var(--task-font-list) !important}
+body[data-task-view="list"] .day.list-day.list-two-columns .task-text{font-size:var(--task-font-list-2) !important}
+body[data-task-view="list"] .day.list-day.list-three-columns .task-text{font-size:var(--task-font-list-3) !important}
+
+/* Новая тема */
+body[data-theme="pinkpurple"]{
+    --weekday:#ffe4f0;
+    --weekend:#eee2ff;
+    --weekday2:#ffc9df;
+    --weekend2:#d8c2ff;
+    --day-weekday-text:#c34f82;
+    --day-weekend-text:#7652b8;
+    --primary:#9a68d5;
+    --primary-dark:#7745b5;
+}
+
+/* Градиент — отдельная настройка, работает с любой темой */
+body[data-gradient="on"] .day:not(.weekend){
+    background:linear-gradient(135deg,var(--weekday),var(--weekday2,var(--weekday))) !important;
+}
+body[data-gradient="on"] .day.weekend{
+    background:linear-gradient(135deg,var(--weekend),var(--weekend2,var(--weekend))) !important;
+}
+
+/* Градиентные пары для всех существующих тем */
+body[data-theme="standard"]{--weekday2:#dbeaff;--weekend2:#ffd0dc}
+body[data-theme="blackwhite"]{--weekday2:#333;--weekend2:#fff}
+body[data-theme="yellowgreen"]{--weekday2:#ffe77a;--weekend2:#c8e7a2}
+body[data-theme="skyblue"]{--weekday2:#bfeeff;--weekend2:#9fb8ff}
+body[data-theme="mintpistachio"]{--weekday2:#bfeee0;--weekend2:#d1e8aa}
+
+@media(max-width:640px){
+    body[data-planner-font-size="large"] .day-name{font-size:17px !important}
+    body[data-planner-font-size="xlarge"] .day-name{font-size:18px !important}
+}
+
+/* =====================================================
+   MaDenFlow 5.4.9 — реальное увеличение шрифта списка
+   Настройка «Размер шрифта дел» применяется и к списку.
+===================================================== */
+body[data-task-view="list"][data-task-font-size="small"] .task-text{font-size:15px !important}
+body[data-task-view="list"][data-task-font-size="medium"] .task-text{font-size:18px !important}
+body[data-task-view="list"][data-task-font-size="large"] .task-text{font-size:21px !important}
+body[data-task-view="list"][data-task-font-size="xlarge"] .task-text{font-size:24px !important}
+
+body[data-task-view="list"][data-task-font-size="small"] .list-two-columns .task-text{font-size:14px !important}
+body[data-task-view="list"][data-task-font-size="medium"] .list-two-columns .task-text{font-size:17px !important}
+body[data-task-view="list"][data-task-font-size="large"] .list-two-columns .task-text{font-size:20px !important}
+body[data-task-view="list"][data-task-font-size="xlarge"] .list-two-columns .task-text{font-size:22px !important}
+
+body[data-task-view="list"][data-task-font-size="small"] .list-three-columns .task-text{font-size:13px !important}
+body[data-task-view="list"][data-task-font-size="medium"] .list-three-columns .task-text{font-size:16px !important}
+body[data-task-view="list"][data-task-font-size="large"] .list-three-columns .task-text{font-size:18px !important}
+body[data-task-view="list"][data-task-font-size="xlarge"] .list-three-columns .task-text{font-size:20px !important}
+
+@media(max-width:640px){
+  body[data-task-view="list"][data-task-font-size="medium"] .task-text{font-size:17px !important}
+  body[data-task-view="list"][data-task-font-size="large"] .task-text{font-size:19px !important}
+  body[data-task-view="list"][data-task-font-size="xlarge"] .task-text{font-size:21px !important}
+  body[data-task-view="list"][data-task-font-size="medium"] .list-three-columns .task-text{font-size:15px !important}
+  body[data-task-view="list"][data-task-font-size="large"] .list-three-columns .task-text{font-size:17px !important}
+  body[data-task-view="list"][data-task-font-size="xlarge"] .list-three-columns .task-text{font-size:19px !important}
+}
+
+/* =====================================================
+   MaDenFlow 5.5.0 — ШРИФТ СПИСКА ДЕЛ ДЕЙСТВИТЕЛЬНО ВИДЕН
+===================================================== */
+
+/* В режиме списка размер текста напрямую зависит
+   от выбранной настройки «Размер шрифта дел». */
+
+/* 1 колонка */
+body[data-task-view="list"][data-task-font-size="small"] .task-text{
+    font-size:15px !important;
+}
+body[data-task-view="list"][data-task-font-size="medium"] .task-text{
+    font-size:19px !important;
+}
+body[data-task-view="list"][data-task-font-size="large"] .task-text{
+    font-size:22px !important;
+}
+body[data-task-view="list"][data-task-font-size="xlarge"] .task-text{
+    font-size:25px !important;
+}
+
+/* 2 колонки */
+body[data-task-view="list"][data-task-font-size="small"] .list-two-columns .task-text{
+    font-size:15px !important;
+}
+body[data-task-view="list"][data-task-font-size="medium"] .list-two-columns .task-text{
+    font-size:18px !important;
+}
+body[data-task-view="list"][data-task-font-size="large"] .list-two-columns .task-text{
+    font-size:21px !important;
+}
+body[data-task-view="list"][data-task-font-size="xlarge"] .list-two-columns .task-text{
+    font-size:24px !important;
+}
+
+/* 3 колонки — больше не уменьшаем текст слишком сильно */
+body[data-task-view="list"][data-task-font-size="small"] .list-three-columns .task-text{
+    font-size:15px !important;
+}
+body[data-task-view="list"][data-task-font-size="medium"] .list-three-columns .task-text{
+    font-size:18px !important;
+}
+body[data-task-view="list"][data-task-font-size="large"] .list-three-columns .task-text{
+    font-size:21px !important;
+}
+body[data-task-view="list"][data-task-font-size="xlarge"] .list-three-columns .task-text{
+    font-size:24px !important;
+}
+
+/* Чтобы увеличенный текст не прижимался к линии задачи */
+body[data-task-view="list"] .task-text{
+    line-height:1.15 !important;
+    font-weight:800 !important;
+}
+
+/* Высота строки адаптируется под крупный шрифт */
+body[data-task-view="list"] .list-three-columns .task{
+    min-height:22px !important;
+}
+
+/* Время остаётся компактным и не забирает место у текста */
+body[data-task-view="list"] .task-time{
+    flex-shrink:0;
+    white-space:nowrap;
+}
+
+/* Телефон */
+@media(max-width:640px){
+    body[data-task-view="list"][data-task-font-size="medium"] .list-three-columns .task-text{
+        font-size:17px !important;
+    }
+    body[data-task-view="list"][data-task-font-size="large"] .list-three-columns .task-text{
+        font-size:20px !important;
+    }
+    body[data-task-view="list"][data-task-font-size="xlarge"] .list-three-columns .task-text{
+        font-size:22px !important;
+    }
+}
+
+/* =====================================================
+   MaDenFlow 5.5.1 — окно дел выбранного дня
+===================================================== */
+.day-popup-overlay{
+    position:fixed;
+    inset:0;
+    z-index:7000;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:rgba(18,27,48,.22);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    animation:dayPopupFade .2s ease;
+}
+
+.day-popup{
+    width:min(620px,100%);
+    max-height:min(78dvh,680px);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    background:rgba(255,255,255,.72);
+    border:1px solid rgba(255,255,255,.62);
+    border-radius:28px;
+    box-shadow:0 25px 70px rgba(20,35,70,.25);
+    backdrop-filter:blur(28px) saturate(1.15);
+    -webkit-backdrop-filter:blur(28px) saturate(1.15);
+    animation:dayPopupShow .24s ease;
+}
+
+.day-popup-head{
+    padding:20px 22px 14px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+}
+
+.day-popup-title{
+    font-size:24px;
+    line-height:1.15;
+    font-weight:800;
+    color:var(--text);
+}
+
+.day-popup-subtitle{
+    margin-top:4px;
+    font-size:13px;
+    font-weight:700;
+    color:var(--text2);
+}
+
+.day-popup-close{
+    width:38px;
+    height:38px;
+    flex:0 0 38px;
+    border:0;
+    border-radius:13px;
+    background:rgba(255,255,255,.55);
+    color:var(--text);
+    font-size:22px;
+    cursor:pointer;
+}
+
+.day-popup-list{
+    padding:4px 20px 22px;
+    overflow:auto;
+    -webkit-overflow-scrolling:touch;
+}
+
+.day-popup-task{
+    position:relative;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    min-height:58px;
+    margin-top:8px;
+    padding:12px 14px 12px 18px;
+    background:rgba(255,255,255,.82);
+    border-radius:17px;
+    box-shadow:0 6px 18px rgba(30,50,90,.08);
+    overflow:hidden;
+}
+
+.day-popup-task::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    bottom:0;
+    width:5px;
+    background:#71c88b;
+}
+
+.day-popup-task.important::before{background:#ffb648}
+.day-popup-task.urgent::before{background:#ea5c75}
+.day-popup-task.done{opacity:.55}
+
+.day-popup-time{
+    flex:0 0 auto;
+    min-width:48px;
+    font-size:13px;
+    font-weight:800;
+    color:var(--primary);
+}
+
+.day-popup-text{
+    min-width:0;
+    flex:1;
+    font-size:19px;
+    line-height:1.25;
+    font-weight:800;
+    color:var(--text);
+    overflow-wrap:anywhere;
+}
+
+.day-popup-empty{
+    padding:34px 12px;
+    text-align:center;
+    font-size:16px;
+    font-weight:700;
+    color:var(--text2);
+}
+
+body.dark .day-popup{
+    background:rgba(29,36,53,.86);
+    border-color:rgba(255,255,255,.12);
+}
+body.dark .day-popup-close{background:rgba(255,255,255,.08)}
+body.dark .day-popup-task{background:rgba(37,45,64,.88)}
+
+@keyframes dayPopupFade{
+    from{opacity:0}
+    to{opacity:1}
+}
+@keyframes dayPopupShow{
+    from{opacity:0;transform:translateY(12px) scale(.97)}
+    to{opacity:1;transform:none}
+}
+
+@media(max-width:640px){
+    .day-popup-overlay{padding:12px}
+    .day-popup{width:100%;max-height:82dvh;border-radius:23px}
+    .day-popup-title{font-size:21px}
+    .day-popup-head{padding:17px 17px 10px}
+    .day-popup-list{padding:2px 12px 16px}
+    .day-popup-task{min-height:54px;padding:10px 11px 10px 15px}
+    .day-popup-text{font-size:18px}
+}
+
+/* =====================================
+   ЭКРАН ВХОДА
+===================================== */
+
+.login-screen{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:10000;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(237,244,255,.92),
+            rgba(255,232,238,.92)
+        );
+
+    backdrop-filter:blur(25px);
+
+    -webkit-backdrop-filter:blur(25px);
+
+}
+
+.login-screen.hidden{
+    display:none !important;
+}
+
+.login-box{
+
+    width:min(380px,100%);
+
+    padding:32px 26px;
+
+    text-align:center;
+
+    border-radius:28px;
+
+    background:rgba(255,255,255,.72);
+
+    backdrop-filter:blur(30px);
+
+    -webkit-backdrop-filter:blur(30px);
+
+    border:1px solid rgba(255,255,255,.6);
+
+    box-shadow:
+        0 25px 70px rgba(30,50,100,.20);
+
+    animation:loginShow .45s ease;
+
+}
+
+.login-logo{
+
+    font-size:46px;
+
+    margin-bottom:6px;
+
+}
+
+.login-box h2{
+
+    margin:0 0 8px;
+
+    font-size:28px;
+
+    font-weight:800;
+
+    color:var(--primary);
+
+}
+
+.login-box p{
+
+    margin-bottom:20px;
+
+    color:var(--text2);
+
+    font-weight:600;
+
+}
+
+#loginPassword{
+
+    width:100%;
+
+    height:52px;
+
+    padding:0 16px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:rgba(244,248,255,.9);
+
+    font-family:inherit;
+
+    font-size:18px;
+
+    text-align:center;
+
+    outline:none;
+
+}
+
+#loginPassword:focus{
+
+    box-shadow:
+        0 0 0 3px rgba(79,140,255,.20);
+
+}
+
+#loginBtn{
+
+    width:100%;
+
+    height:52px;
+
+    margin-top:14px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:var(--primary);
+
+    color:white;
+
+    font-family:inherit;
+
+    font-size:17px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+}
+
+.login-error{
+
+    display:none;
+
+    margin-top:12px;
+
+    color:var(--danger);
+
+    font-weight:700;
+
+}
+
+.login-error.show{
+    display:block;
+}
+
+@keyframes loginShow{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateY(20px)
+            scale(.94);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+/* =====================================
+   MaDenFlow — блокировка до ввода пароля
+===================================== */
+html.madenflow-locked body > *:not(#loginScreen){
+    visibility:hidden !important;
+    pointer-events:none !important;
+}
+html.madenflow-locked,
+body.madenflow-locked{
+    overflow:hidden !important;
+}
+#loginScreen{z-index:100000 !important;}
+
+
+/* =====================================================
+   MaDenFlow 5.2 — чистый экран недели и боковая навигация
+   Нижняя панель удалена. Служебная навигация выезжает слева.
+===================================================== */
+
+/* Старую ручку/полоску и нижнюю панель больше не показываем */
+.top-handle,
+.bottom-bar{
+    display:none !important;
+}
+
+/* Неделя занимает освободившееся место */
+#planner{
+    padding-bottom:14px !important;
+}
+
+/* Крупнее основной текст планера */
+.day-name{
+    font-size:18px !important;
+    line-height:1.15 !important;
+    font-weight:800 !important;
+}
+.task-text{
+    font-size:18px !important;
+    line-height:1.2 !important;
+}
+.task-time{
+    font-size:13px !important;
+}
+
+/* Небольшая аккуратная стрелка в левом нижнем углу */
+.side-toggle{
+    position:fixed;
+    left:8px;
+    bottom:12px;
+    z-index:8500;
+    width:38px;
+    height:38px;
+    padding:0;
+    border:0;
+    background:transparent;
+    color:var(--text);
+    font:300 30px/38px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    cursor:pointer;
+    opacity:.78;
+    -webkit-tap-highlight-color:transparent;
+    transition:left .28s ease,transform .2s ease,opacity .2s ease;
+}
+.side-toggle:active{transform:scale(.9);opacity:1}
+.side-toggle.panel-open{left:264px}
+
+/* Панель лежит поверх недели и ничего в ней не перекраивает */
+.side-panel{
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+    width:min(258px,82vw);
+    z-index:8400;
+    transform:translateX(-105%);
+    transition:transform .30s cubic-bezier(.22,.8,.25,1);
+    pointer-events:none;
+}
+.side-panel.open{
+    transform:translateX(0);
+    pointer-events:auto;
+}
+.side-panel::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(235,242,251,.54);
+    box-shadow:12px 0 36px rgba(30,50,80,.18);
+    backdrop-filter:blur(26px) saturate(1.25);
+    -webkit-backdrop-filter:blur(26px) saturate(1.25);
+    border-right:1px solid rgba(255,255,255,.65);
+    z-index:-1;
+}
+.side-panel-inner{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    padding:calc(env(safe-area-inset-top) + 76px) 14px calc(env(safe-area-inset-bottom) + 22px);
+    height:100%;
+    box-sizing:border-box;
+}
+.side-nav-btn{
+    width:100%;
+    min-height:58px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:10px 14px;
+    border:0;
+    border-radius:17px;
+    background:rgba(255,255,255,.62);
+    color:var(--text);
+    font:700 17px/1.15 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    text-align:left;
+    cursor:pointer;
+    box-shadow:0 5px 15px rgba(30,50,80,.06);
+    -webkit-tap-highlight-color:transparent;
+}
+.side-nav-btn:active{transform:scale(.98)}
+.side-icon{
+    width:34px;
+    flex:0 0 34px;
+    text-align:center;
+    font-size:25px;
+}
+
+/* Месячный экран — первый экран после входа */
+.month-screen{
+    position:fixed;
+    inset:0;
+    z-index:8200;
+    overflow:auto;
+    padding:calc(env(safe-area-inset-top) + 18px) 16px calc(env(safe-area-inset-bottom) + 24px);
+    box-sizing:border-box;
+    background:var(--bg,#f5f8fc);
+}
+.month-screen.hidden{display:none !important}
+.month-screen-head{
+    width:min(620px,100%);
+    margin:0 auto;
+    text-align:center;
+}
+.month-screen-head .logo{
+    font-size:21px;
+    font-weight:800;
+}
+.month-screen-title{
+    margin-top:12px;
+    font-size:28px;
+    line-height:1.15;
+    font-weight:850;
+    text-transform:capitalize;
+    color:var(--primary);
+}
+.month-screen-nav{
+    width:min(620px,100%);
+    margin:16px auto 12px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+}
+.month-screen-nav button{
+    border:0;
+    border-radius:14px;
+    min-width:48px;
+    min-height:44px;
+    padding:8px 14px;
+    background:rgba(255,255,255,.72);
+    color:var(--text);
+    font:700 16px/1 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    box-shadow:0 5px 16px rgba(30,50,80,.07);
+}
+.month-screen-nav button:first-child,
+.month-screen-nav button:last-child{
+    font-size:30px;
+    font-weight:300;
+    padding:2px 15px;
+}
+.month-screen-grid{
+    width:min(620px,100%);
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:repeat(7,minmax(0,1fr));
+    gap:7px;
+    padding:14px;
+    box-sizing:border-box;
+    border-radius:26px;
+    background:rgba(255,255,255,.68);
+    box-shadow:0 12px 35px rgba(30,50,80,.10);
+}
+.month-weekday{
+    text-align:center;
+    font-size:13px;
+    font-weight:800;
+    color:var(--text2);
+    padding:4px 0 7px;
+}
+.month-empty{min-height:54px}
+.month-day{
+    position:relative;
+    min-height:54px;
+    border:0;
+    border-radius:15px;
+    background:rgba(240,246,252,.8);
+    color:var(--text);
+    font:800 18px/1 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    cursor:pointer;
+    -webkit-tap-highlight-color:transparent;
+}
+.month-day:active{transform:scale(.95)}
+.month-day.today{
+    box-shadow:inset 0 0 0 2px var(--primary);
+}
+.month-day.selected{
+    background:var(--primary);
+    color:#fff;
+}
+.month-day.has-tasks::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    bottom:6px;
+    width:5px;
+    height:5px;
+    margin-left:-2.5px;
+    border-radius:50%;
+    background:var(--primary);
+}
+.month-day.selected.has-tasks::after{background:#fff}
+
+body.dark .side-panel::after{
+    background:rgba(25,32,48,.90);
+    border-right-color:rgba(255,255,255,.08);
+}
+body.dark .side-nav-btn,
+body.dark .month-screen-nav button{
+    background:rgba(255,255,255,.07);
+}
+body.dark .month-screen{
+    background:#171d2a;
+}
+body.dark .month-screen-grid{
+    background:rgba(30,37,53,.88);
+}
+body.dark .month-day{
+    background:rgba(255,255,255,.07);
+}
+
+@media(max-width:640px){
+    .day-name{font-size:17px !important}
+    .task-text{font-size:17px !important}
+    .task-time{font-size:12px !important}
+    .side-nav-btn{min-height:56px;font-size:17px}
+    .month-screen-title{font-size:26px}
+    .month-screen-grid{gap:5px;padding:10px;border-radius:22px}
+    .month-day{min-height:50px;font-size:17px;border-radius:13px}
+    .month-empty{min-height:50px}
+}
+
+
+/* =========================================================
+   MaDenFlow — стабильный экран недели для iPhone 6"+ 
+   Финальная коррекция: без прыжков и старых резервных отступов
+========================================================= */
+
+body{
+    --header-space:58px !important;
+    --bottom-space:0px !important;
+    padding-top:var(--header-space) !important;
+    padding-bottom:0 !important;
+    min-height:100dvh;
+    overflow:hidden;
+}
+
+/* Вверху оставляем только диапазон недели — название приложения убираем */
+.glass-header{
+    display:block !important;
+    height:58px;
+    box-sizing:border-box;
+    padding:
+        max(env(safe-area-inset-top),8px)
+        12px
+        8px !important;
+    transform:none !important;
+    opacity:1 !important;
+    transition:none !important;
+}
+.glass-header .logo{
+    display:none !important;
+}
+#weekTitle{
+    margin:0 !important;
+    padding:0 !important;
+    font-size:18px !important;
+    line-height:1.2 !important;
+    font-weight:800 !important;
+}
+
+/* Неделя всегда занимает одну и ту же область экрана */
+#planner{
+    width:100%;
+    max-width:700px;
+    height:calc(100dvh - var(--header-space)) !important;
+    min-height:0 !important;
+    margin:0 auto !important;
+    padding:8px 10px 8px !important;
+    box-sizing:border-box !important;
+    gap:8px !important;
+    overflow:hidden !important;
+    transform:none !important;
+    transition:none !important;
+}
+
+/* Все семь дней делят доступную высоту одинаково */
+#planner .day{
+    flex:1 1 0 !important;
+    min-height:0 !important;
+    overflow:hidden !important;
+    padding:10px 12px !important;
+    box-sizing:border-box !important;
+}
+
+/* Читаемый размер для экрана 6"+ */
+#planner .day-name{
+    font-size:21px !important;
+    line-height:1.15 !important;
+    font-weight:850 !important;
+    gap:6px !important;
+}
+#planner .day-month{
+    font-size:14px !important;
+    font-weight:800 !important;
+}
+#planner .day-status{
+    font-size:22px !important;
+}
+#planner .add-task-day{
+    width:40px !important;
+    height:40px !important;
+    font-size:24px !important;
+    border-radius:13px !important;
+}
+#planner .task{
+    min-height:40px !important;
+    padding:7px 9px !important;
+}
+#planner .task-text{
+    font-size:19px !important;
+    line-height:1.18 !important;
+}
+#planner .task-time{
+    font-size:15px !important;
+}
+
+/* При входе и перерисовке неделя не должна физически сдвигаться */
+body.app-enter #planner,
+body.app-ready #planner{
+    transform:none !important;
+}
+body.app-enter .glass-header,
+body.app-ready .glass-header{
+    transform:none !important;
+}
+body.app-ready .day{
+    animation:none !important;
+}
+
+/* Старые скрытые элементы больше не участвуют в расчёте */
+.top-handle,
+.bottom-bar{
+    display:none !important;
+}
+
+/* Нижний уголок */
+.side-toggle{
+    left:8px !important;
+    bottom:max(10px, env(safe-area-inset-bottom)) !important;
+}
+
+/* На iPhone не добавляем старые 95px снизу */
+@supports(padding:max(0px)){
+    body{
+        padding-bottom:0 !important;
+    }
+}
+
+@media(max-width:640px){
+    #weekTitle{font-size:17px !important}
+    #planner .day-name{font-size:20px !important}
+    #planner .task-text{font-size:18px !important}
+    #planner .task-time{font-size:14px !important}
+}
+
+
+/* MaDenFlow — финальная настройка экрана недели */
+body{--header-space:40px !important;--bottom-space:0px !important;padding-top:var(--header-space) !important;padding-bottom:0 !important;min-height:100dvh !important;overflow:hidden !important}
+.glass-header{height:40px !important;padding:3px 12px 2px !important;box-sizing:border-box !important;display:flex !important;align-items:center !important;justify-content:center !important;background:transparent !important;border:0 !important;box-shadow:none !important}
+.glass-header .logo{display:none !important}
+#weekTitle{font-size:14px !important;line-height:1 !important;font-weight:700 !important;letter-spacing:.1px !important;opacity:.72 !important;white-space:nowrap !important}
+#planner{height:calc(100dvh - var(--header-space)) !important;min-height:0 !important;margin:0 !important;padding:4px 9px 7px !important;gap:6px !important;overflow:hidden !important;box-sizing:border-box !important;transform:none !important;transition:none !important}
+#planner .day{flex:1 1 0 !important;min-height:0 !important;padding:9px 12px !important;box-sizing:border-box !important}
+#planner .day-name,#planner .day-name .day-weekday{font-size:23px !important;line-height:1.12 !important;font-weight:850 !important}
+#planner .day-month{font-size:14px !important;font-weight:800 !important}
+#planner .day-status{font-size:23px !important}
+#planner .add-task-day{width:42px !important;height:42px !important;font-size:26px !important}
+#planner .task{min-height:42px !important;padding:7px 9px !important}
+#planner .task-text{font-size:21px !important;line-height:1.18 !important}
+#planner .task-time{font-size:16px !important}
+.side-toggle{position:fixed !important;left:7px !important;bottom:max(9px,env(safe-area-inset-bottom)) !important;z-index:8500 !important;width:54px !important;height:54px !important;padding:0 !important;display:flex !important;align-items:center !important;justify-content:center !important;border:1px solid rgba(255,255,255,.48) !important;border-radius:17px !important;background:rgba(255,255,255,.24) !important;color:var(--text) !important;font:300 48px/46px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif !important;text-shadow:0 1px 3px rgba(0,0,0,.16) !important;box-shadow:0 7px 20px rgba(30,50,80,.16),inset 0 0 14px rgba(255,255,255,.16) !important;backdrop-filter:blur(12px) saturate(1.18) !important;-webkit-backdrop-filter:blur(12px) saturate(1.18) !important;opacity:.92 !important}
+.side-toggle.panel-open{left:268px !important}.side-toggle:active{transform:scale(.92) !important;opacity:1 !important}.side-toggle::first-letter{font-weight:500 !important}
+body.dark .side-toggle{background:rgba(255,255,255,.11) !important;border-color:rgba(255,255,255,.20) !important}
+@media(max-width:640px){#weekTitle{font-size:14px !important}#planner .day-name,#planner .day-name .day-weekday{font-size:22px !important}#planner .task-text{font-size:20px !important}#planner .task-time{font-size:15px !important}}
+
+/* =========================================================
+   MaDenFlow 5.3.1 — задачи не обрезаются + крупнее посещения
+========================================================= */
+
+/* Каждый день сохраняет своё место, но список дел внутри него можно прокрутить. */
+#planner .day-content{
+    min-height:0 !important;
+    overflow-y:auto !important;
+    overflow-x:hidden !important;
+    -webkit-overflow-scrolling:touch !important;
+    scrollbar-width:none !important;
+}
+#planner .day-content::-webkit-scrollbar{display:none !important}
+
+#planner .tasks{
+    min-height:0 !important;
+    overflow:visible !important;
+}
+
+/* Не ужимаем задачи до крошечных строк в режиме списка. */
+body[data-task-view="list"] #planner .day.list-day .tasks{
+    overflow:visible !important;
+    height:auto !important;
+    flex:none !important;
+}
+body[data-task-view="list"] #planner .day.list-day .day-content{
+    overflow-y:auto !important;
+}
+
+/* Три колонки: строки имеют нормальную высоту и при необходимости
+   прокручиваются внутри конкретного дня, а не обрезаются снизу. */
+body[data-task-view="list"] #planner .day.list-day.list-three-columns .tasks{
+    grid-template-rows:none !important;
+    grid-auto-rows:minmax(43px,auto) !important;
+    height:auto !important;
+    max-height:none !important;
+    overflow:visible !important;
+    align-content:start !important;
+}
+body[data-task-view="list"] #planner .day.list-day.list-three-columns .task{
+    height:auto !important;
+    min-height:43px !important;
+    overflow:hidden !important;
+    padding:6px 6px !important;
+}
+body[data-task-view="list"] #planner .day.list-day.list-three-columns .task-text{
+    font-size:14px !important;
+    line-height:1.15 !important;
+}
+body[data-task-view="list"] #planner .day.list-day.list-three-columns .task-time{
+    font-size:11px !important;
+    min-width:34px !important;
+}
+body[data-task-view="list"] #planner .day.list-day.list-three-columns .task-check,
+body[data-task-view="list"] #planner .day.list-day.list-three-columns .checkmark{
+    width:18px !important;
+    height:18px !important;
+}
+
+/* Крупнее и удобнее окно «Повторные посещения». */
+.visits-window h3{
+    font-size:26px !important;
+    line-height:1.18 !important;
+    margin:4px 0 20px !important;
+}
+.visits-empty{
+    font-size:19px !important;
+    line-height:1.45 !important;
+    padding:38px 18px !important;
+}
+.visits-window .wide-btn{
+    min-height:54px !important;
+    height:54px !important;
+    font-size:17px !important;
+}
+.visit-note-head strong{font-size:19px !important}
+.visit-note-head span{font-size:14px !important}
+.visit-note-text{font-size:17px !important;line-height:1.45 !important}
+.visit-note-actions button{width:34px !important;height:34px !important;font-size:20px !important}
+
+@media(max-width:640px){
+    .visits-window h3{font-size:24px !important}
+    .visits-empty{font-size:18px !important}
+    .visits-window .wide-btn{font-size:17px !important}
+}
+
+/* =========================================================
+   MaDenFlow 6.0 — final interface corrections
+   ========================================================= */
+
+/* Compact week header */
+.glass-header{padding:10px 16px 10px !important;}
+.glass-header .logo{font-size:0 !important;height:4px !important;margin:0 !important;}
+#weekTitle{font-size:16px !important;font-weight:800 !important;margin:0 !important;line-height:1.2 !important;}
+body{--header-space:78px !important;}
+#planner{height:calc(100dvh - var(--header-space) - var(--bottom-space)) !important;padding:8px 10px !important;gap:7px !important;}
+
+/* Day card: all useful space is for tasks; day label remains on the right */
+.day{position:relative !important;padding:8px 12px !important;}
+.day-title{justify-content:flex-end !important;margin:0 2px 5px 0 !important;min-height:28px !important;}
+.day-name{margin-left:auto !important;text-align:right !important;font-size:22px !important;line-height:1 !important;}
+.day-weekday{font-size:22px !important;}
+.day-month{font-size:.62em !important;color:var(--text2) !important;}
+.day-status,.add-task-day{display:none !important;}
+.day-content{min-height:0 !important;}
+.tasks{padding-bottom:2px !important;}
+
+/* Clearly distinguish days that are already in the past */
+.day.past-day{filter:saturate(.72) brightness(.94) !important;opacity:.76 !important;}
+.day.past-day .day-name{opacity:.72 !important;}
+.day.today{opacity:1 !important;filter:none !important;}
+
+/* Larger, clearer tasks */
+#planner .task{min-height:46px !important;padding:8px 10px !important;}
+#planner .task-text{font-size:19px !important;line-height:1.18 !important;}
+#planner .task-time{font-size:15px !important;}
+
+/* Bigger, more expressive bottom navigation corner */
+.side-toggle{width:58px !important;height:58px !important;left:8px !important;bottom:max(9px,env(safe-area-inset-bottom)) !important;border-radius:19px !important;font-size:50px !important;font-weight:400 !important;background:rgba(255,255,255,.30) !important;border:1px solid rgba(255,255,255,.62) !important;box-shadow:0 10px 28px rgba(30,50,90,.20),inset 0 0 16px rgba(255,255,255,.20) !important;backdrop-filter:blur(16px) saturate(1.2) !important;-webkit-backdrop-filter:blur(16px) saturate(1.2) !important;}
+
+/* Day popup — one coherent glass window */
+.day-popup-overlay{background:rgba(24,35,58,.22) !important;backdrop-filter:blur(14px) saturate(1.08) !important;-webkit-backdrop-filter:blur(14px) saturate(1.08) !important;padding:18px !important;}
+.day-popup{width:min(640px,100%) !important;max-height:min(82dvh,720px) !important;border-radius:30px !important;background:rgba(245,248,253,.88) !important;border:1px solid rgba(255,255,255,.82) !important;box-shadow:0 28px 80px rgba(18,31,55,.28) !important;padding-bottom:14px !important;}
+.day-popup-head{padding:20px 20px 12px !important;}
+.day-popup-title{font-size:25px !important;}
+.day-popup-subtitle{font-size:15px !important;}
+.day-popup-close{width:48px !important;height:48px !important;flex-basis:48px !important;border-radius:16px !important;background:rgba(255,255,255,.65) !important;font-size:30px !important;}
+.day-popup-list{padding:6px 18px 12px !important;}
+.day-popup-task{width:100% !important;min-height:58px !important;border:0 !important;margin-bottom:8px !important;padding:9px 12px !important;background:rgba(255,255,255,.76) !important;text-align:left !important;font:inherit !important;color:var(--text) !important;cursor:pointer !important;}
+.day-popup-text{font-size:18px !important;font-weight:750 !important;flex:1 !important;min-width:0 !important;}
+.day-popup-time{font-size:16px !important;font-weight:800 !important;color:var(--primary) !important;}
+.day-popup-edit{font-size:13px !important;font-weight:800 !important;color:var(--primary) !important;opacity:.9 !important;white-space:nowrap !important;}
+.day-popup-add{display:block;width:calc(100% - 36px) !important;height:58px !important;margin:8px 18px 2px !important;border:0 !important;border-radius:18px !important;background:var(--primary) !important;color:#fff !important;font:800 18px/1 'Nunito',sans-serif !important;box-shadow:0 10px 24px rgba(79,140,255,.24) !important;}
+.day-popup-empty{padding:34px 18px !important;font-size:18px !important;font-weight:700 !important;text-align:center !important;color:var(--text2) !important;}
+
+/* Task editor: comfortable iPhone controls */
+#taskModal .modal-box{width:min(520px,100%) !important;border-radius:28px !important;padding:24px 20px !important;}
+#taskModal h3{font-size:25px !important;}
+#taskModal input,#taskModal select{min-height:52px !important;font-size:18px !important;border-radius:16px !important;}
+#taskModal .modal-buttons{gap:10px !important;}
+#taskModal .modal-buttons button{height:56px !important;font-size:18px !important;border-radius:16px !important;}
+
+/* All modal buttons are easy to hit */
+.modal .wide-btn,.modal-content>button{min-height:56px !important;font-size:17px !important;border-radius:17px !important;}
+.visits-window .wide-btn{height:60px !important;font-size:18px !important;}
+.visits-window h3{font-size:25px !important;}
+.side-nav-btn{min-height:58px !important;font-size:17px !important;}
+
+/* Outside tap closes modal, but content taps do not */
+.modal{touch-action:manipulation;}
+
+@media(max-width:640px){
+  #weekTitle{font-size:15px !important;}
+  .day-name,.day-weekday{font-size:21px !important;}
+  #planner .task-text{font-size:18px !important;}
+  .day-popup-title{font-size:23px !important;}
+}
+
+/* Fix 1: гарантированное оформление кнопки закрытия окна дня */
+body > .day-popup-overlay .day-popup-head{display:flex !important;flex-direction:row !important;align-items:center !important;justify-content:space-between !important;}
+body > .day-popup-overlay .day-popup-close{display:flex !important;align-items:center !important;justify-content:center !important;width:48px !important;min-width:48px !important;max-width:48px !important;height:48px !important;min-height:48px !important;max-height:48px !important;flex:0 0 48px !important;padding:0 !important;margin:0 !important;border-radius:16px !important;line-height:1 !important;}
+body > .day-popup-overlay{pointer-events:auto !important;}
+body > .day-popup-overlay .day-popup{pointer-events:auto !important;}
+
+
+/* FIX 4: форма задачи всегда выше всплывающих окон */
+#taskModal.modal{z-index:12000 !important; position:fixed !important;}
+#calendarModal.modal, #settingsModal.modal{z-index:11000 !important;}
+.day-popup-overlay{z-index:7000 !important;}
+
+
+/* MaDenFlow 6.1 — серо-голубой интерфейс, 8 дел на день и обновление */
+:root{
+  --bg:#e8edf4;
+  --bg2:#f2f5f9;
+}
+body{
+  background:linear-gradient(180deg,#f4f6f9 0%,#e6ebf2 52%,#dce4ee 100%) !important;
+  --header-space:48px !important;
+  --bottom-space:46px !important;
+  padding-top:var(--header-space) !important;
+  padding-bottom:var(--bottom-space) !important;
+}
+.glass-header{
+  position:fixed !important;top:0 !important;left:0 !important;right:0 !important;
+  height:48px !important;padding:env(safe-area-inset-top,0px) 12px 0 !important;
+  display:flex !important;align-items:center !important;justify-content:center !important;
+  background:rgba(239,243,248,.78) !important;border-bottom:1px solid rgba(255,255,255,.75) !important;
+  box-shadow:0 4px 18px rgba(53,70,94,.06) !important;z-index:900 !important;
+}
+.glass-header .logo{display:block !important;font-size:20px !important;line-height:1 !important;margin:0 !important;color:#536b86 !important}
+#weekTitle{
+  position:fixed !important;left:0 !important;right:0 !important;bottom:calc(env(safe-area-inset-bottom,0px) + 2px) !important;
+  z-index:880 !important;margin:0 !important;padding:8px 12px !important;
+  font-size:14px !important;font-weight:800 !important;line-height:1.2 !important;text-align:center !important;
+  color:#66778c !important;background:rgba(239,243,248,.82) !important;
+  border-top:1px solid rgba(255,255,255,.7) !important;backdrop-filter:blur(12px) !important;
+  -webkit-backdrop-filter:blur(12px) !important;white-space:nowrap !important;
+}
+#planner{
+  height:calc(100dvh - var(--header-space) - var(--bottom-space)) !important;
+  min-height:0 !important;padding:8px 10px 7px !important;gap:7px !important;overflow:hidden !important;
+}
+#planner .day{background:rgba(248,250,253,.78) !important;border:1px solid rgba(255,255,255,.8) !important;box-shadow:0 5px 18px rgba(51,69,94,.07) !important}
+#planner .day.weekend{background:rgba(225,233,243,.86) !important}
+#planner .day.today{background:rgba(255,255,255,.94) !important;border:2px solid #7597bd !important}
+.side-panel{background:rgba(224,232,242,.97) !important;border-right:1px solid rgba(255,255,255,.8) !important;box-shadow:12px 0 38px rgba(43,59,81,.16) !important}
+.side-panel-inner{background:transparent !important}
+.side-nav-btn{background:rgba(255,255,255,.58) !important;color:#354961 !important;border:1px solid rgba(255,255,255,.75) !important}
+.side-toggle{background:rgba(224,232,242,.82) !important;color:#354961 !important;border-color:rgba(255,255,255,.86) !important}
+
+/* В режиме «Список дел» помещаем первые восемь задач в три ряда: 2 + 3 + 3. */
+body[data-task-view="list"] #planner .day.list-day .day-content{overflow:hidden !important;min-height:0 !important}
+body[data-task-view="list"] #planner .day.list-day .tasks{
+  display:grid !important;grid-template-columns:repeat(6,minmax(0,1fr)) !important;
+  grid-template-rows:repeat(3,minmax(0,1fr)) !important;gap:4px !important;
+  align-content:stretch !important;height:100% !important;max-height:100% !important;
+  overflow:hidden !important;min-height:0 !important;
+}
+body[data-task-view="list"] #planner .day.list-day .tasks>.task{
+  grid-column:span 2 !important;min-width:0 !important;min-height:0 !important;height:100% !important;
+  max-height:none !important;padding:4px 5px !important;gap:4px !important;
+  display:flex !important;align-items:center !important;overflow:hidden !important;
+}
+body[data-task-view="list"] #planner .day.list-day .tasks>.task:nth-child(1),
+body[data-task-view="list"] #planner .day.list-day .tasks>.task:nth-child(2){grid-column:span 3 !important}
+body[data-task-view="list"] #planner .day.list-day .tasks>.task:nth-child(n+9){display:none !important}
+body[data-task-view="list"] #planner .day.list-day .task-text{
+  color:var(--list-task-text,#25364b) !important;font-size:clamp(10px,2.8vw,15px) !important;
+  line-height:1.08 !important;font-weight:800 !important;overflow:hidden !important;
+  display:-webkit-box !important;-webkit-line-clamp:2 !important;-webkit-box-orient:vertical !important;
+}
+body[data-task-view="list"] #planner .day.list-day .task-time{font-size:clamp(9px,2.4vw,12px) !important;white-space:nowrap !important}
+body[data-task-view="list"] #planner .day.list-day .task-check,
+body[data-task-view="list"] #planner .day.list-day .checkmark{width:15px !important;height:15px !important;min-width:15px !important;flex:0 0 15px !important}
+/* Цвет текста задач одинаково работает в режимах «Список дел» и «Карточки». */
+body[data-list-text-color="navy"]{--list-task-text:#25364b}
+body[data-list-text-color="black"]{--list-task-text:#111827}
+body[data-list-text-color="slate"]{--list-task-text:#65758a}
+body[data-list-text-color="green"]{--list-task-text:#356b50}
+#planner .task-text{color:var(--list-task-text,#25364b) !important}
+#appUpdateBtn{min-height:54px !important;font-weight:800 !important;background:#dfe8f4 !important;color:#354961 !important;border:1px solid rgba(255,255,255,.9) !important}
+#appUpdateBtn:disabled{opacity:.6 !important}
+#appUpdateStatus{font-size:14px !important;line-height:1.4 !important;color:var(--text2) !important}
+@media(max-height:760px){
+  #planner .day{padding:5px 8px !important}
+  .day-title{min-height:23px !important;margin-bottom:3px !important}
+  .day-name,.day-weekday{font-size:18px !important}
+  body[data-task-view="list"] #planner .day.list-day .tasks{gap:3px !important}
+}
+
+body[data-sidebar-color="bluegray"] .side-panel{background:rgba(224,232,242,.97) !important;color:#354961 !important}
+body[data-sidebar-color="light"] .side-panel{background:rgba(248,250,253,.97) !important;color:#354961 !important}
+body[data-sidebar-color="dark"] .side-panel{background:rgba(35,45,61,.97) !important;color:#f4f7fb !important}
+body[data-sidebar-color="dark"] .side-nav-btn{background:rgba(255,255,255,.10) !important;color:#f4f7fb !important;border-color:rgba(255,255,255,.14) !important}
+body[data-sidebar-color="dark"] .side-toggle{background:rgba(35,45,61,.85) !important;color:#f4f7fb !important;border-color:rgba(255,255,255,.18) !important}
+
+
+/* MaDenFlow 6.2 — финальная раскладка недели и 8 задач */
+:root{--header-space:42px !important;--bottom-space:48px !important;}
+.glass-header{height:40px !important;min-height:40px !important;padding:env(safe-area-inset-top,0px) 12px 0 !important;background:rgba(239,243,248,.72) !important;}
+.glass-header .logo{display:none !important;}
+#weekTitle{
+  position:fixed !important;left:0 !important;right:0 !important;top:auto !important;bottom:calc(env(safe-area-inset-bottom,0px) + 2px) !important;
+  display:flex !important;align-items:center !important;justify-content:center !important;
+  min-height:42px !important;box-sizing:border-box !important;margin:0 !important;padding:8px 12px !important;
+  z-index:880 !important;background:rgba(230,236,245,.94) !important;border-top:1px solid rgba(255,255,255,.95) !important;
+  color:#61748d !important;font-size:14px !important;font-weight:800 !important;line-height:1.2 !important;
+  text-align:center !important;white-space:nowrap !important;backdrop-filter:blur(14px) !important;-webkit-backdrop-filter:blur(14px) !important;
+}
+#planner{height:calc(100dvh - var(--header-space) - var(--bottom-space) - env(safe-area-inset-top,0px)) !important;min-height:0 !important;padding:6px 10px !important;gap:6px !important;overflow:hidden !important;box-sizing:border-box !important;}
+#planner .day{display:flex !important;flex-direction:column !important;flex:1 1 0 !important;min-height:0 !important;overflow:hidden !important;padding:5px 8px !important;}
+#planner .day-title{flex:0 0 auto !important;min-height:22px !important;margin:0 2px 3px 0 !important;padding:0 !important;}
+#planner .day-content{display:flex !important;flex:1 1 auto !important;min-height:0 !important;height:auto !important;overflow:hidden !important;}
+#planner .tasks{min-height:0 !important;}
+body[data-task-view="list"] #planner .day.list-day .tasks{
+  display:grid !important;grid-template-columns:repeat(6,minmax(0,1fr)) !important;grid-template-rows:repeat(3,minmax(0,1fr)) !important;
+  grid-auto-flow:row !important;align-content:stretch !important;align-items:stretch !important;justify-items:stretch !important;
+  gap:3px !important;height:100% !important;max-height:100% !important;min-height:0 !important;overflow:hidden !important;
+}
+body[data-task-view="list"] #planner .day.list-day .tasks>.task{
+  min-width:0 !important;min-height:0 !important;height:100% !important;max-height:100% !important;
+  margin:0 !important;padding:3px 4px !important;gap:3px !important;overflow:hidden !important;box-sizing:border-box !important;
+}
+body[data-task-view="list"] #planner .day.list-day .tasks>.task:nth-child(1),
+body[data-task-view="list"] #planner .day.list-day .tasks>.task:nth-child(2){grid-column:span 3 !important;}
+body[data-task-view="list"] #planner .day.list-day .tasks>.task:nth-child(n+9){display:none !important;}
+body[data-task-view="list"] #planner .day.list-day .task-text{font-size:clamp(9px,2.6vw,14px) !important;line-height:1.05 !important;-webkit-line-clamp:2 !important;overflow:hidden !important;}
+body[data-task-view="list"] #planner .day.list-day .task-time{font-size:clamp(8px,2.2vw,11px) !important;min-width:0 !important;white-space:nowrap !important;}
+@media(max-width:640px){#weekTitle{font-size:13px !important;min-height:40px !important;}#planner .day-name,#planner .day-weekday{font-size:18px !important;}#planner .day-month{font-size:11px !important;}}
+
+
+/* MaDenFlow 6.3 — исправление свободного места, карточек, тем и контраста */
+:root{--header-space:0px !important;--bottom-space:0px !important;}
+html,body{min-height:100%;}
+body{
+  margin:0 !important;
+  padding:0 !important;
+  overflow:hidden !important;
+  background:#e7edf5 !important;
+  box-sizing:border-box !important;
+}
+body *{box-sizing:border-box;}
+/* Шапка учитывает вырез/status bar, но не оставляет лишнюю пустую полосу. */
+.glass-header{
+  position:fixed !important;top:0 !important;left:0 !important;right:0 !important;
+  height:calc(42px + env(safe-area-inset-top,0px)) !important;
+  min-height:calc(42px + env(safe-area-inset-top,0px)) !important;
+  padding:env(safe-area-inset-top,0px) 12px 0 !important;
+  box-sizing:border-box !important;z-index:900 !important;
+  background:rgba(239,243,248,.94) !important;
+}
+.glass-header .logo{display:none !important;}
+/* Planner fills precisely the area between top bar and bottom week label. */
+#planner{
+  position:fixed !important;left:0 !important;right:0 !important;
+  top:calc(42px + env(safe-area-inset-top,0px)) !important;
+  bottom:calc(43px + env(safe-area-inset-bottom,0px)) !important;
+  width:100% !important;max-width:none !important;height:auto !important;
+  min-height:0 !important;margin:0 !important;padding:7px 10px !important;
+  display:flex !important;flex-direction:column !important;gap:6px !important;
+  overflow:hidden !important;box-sizing:border-box !important;
+}
+#planner .day{
+  display:flex !important;flex:1 1 0 !important;min-height:0 !important;min-width:0 !important;
+  flex-direction:column !important;overflow:hidden !important;padding:5px 8px !important;
+  border-radius:18px !important;box-sizing:border-box !important;
+}
+#planner .day-title{flex:0 0 auto !important;min-height:23px !important;margin:0 2px 3px 0 !important;padding:0 !important;}
+#planner .day-content{display:flex !important;flex:1 1 0 !important;min-height:0 !important;height:auto !important;overflow:hidden !important;}
+#planner .tasks{flex:1 1 0 !important;min-height:0 !important;min-width:0 !important;overflow:hidden !important;}
+#weekTitle{
+  position:fixed !important;left:0 !important;right:0 !important;top:auto !important;
+  bottom:0 !important;height:calc(43px + env(safe-area-inset-bottom,0px)) !important;
+  min-height:calc(43px + env(safe-area-inset-bottom,0px)) !important;
+  display:flex !important;align-items:center !important;justify-content:center !important;
+  padding:0 12px env(safe-area-inset-bottom,0px) !important;margin:0 !important;
+  z-index:880 !important;box-sizing:border-box !important;text-align:center !important;
+  font-size:14px !important;line-height:1.2 !important;white-space:nowrap !important;
+  background:rgba(230,236,245,.97) !important;color:#61748d !important;
+  border-top:1px solid rgba(255,255,255,.95) !important;
+  backdrop-filter:blur(14px) !important;-webkit-backdrop-filter:blur(14px) !important;
+}
+/* 8 tasks: 2 in row one, then 3 + 3. Grid items must not each be 100% tall. */
+body[data-task-view="list"] #planner .day.list-day .day-content{display:flex !important;flex:1 1 0 !important;min-height:0 !important;overflow:hidden !important;}
+body[data-task-view="list"] #planner .day.list-day .tasks{
+  display:grid !important;grid-template-columns:repeat(6,minmax(0,1fr)) !important;
+  grid-template-rows:repeat(3,minmax(0,1fr)) !important;grid-auto-flow:row !important;
+  grid-auto-rows:minmax(0,1fr) !important;align-content:stretch !important;align-items:stretch !important;
+  gap:3px !important;height:100% !important;max-height:100% !important;min-height:0 !important;overflow:hidden !important;
+}
+body[data-task-view="list"] #planner .day.list-day .tasks>.task{
+  grid-column:span 2 !important;display:flex !important;align-self:stretch !important;
+  width:100% !important;height:auto !important;min-height:0 !important;max-height:none !important;
+  margin:0 !important;padding:3px 4px !important;gap:4px !important;overflow:hidden !important;
+  border-radius:10px !important;background:rgba(255,255,255,.9) !important;
+  box-shadow:0 1px 4px rgba(40,55,80,.08) !important;box-sizing:border-box !important;
+}
+body[data-task-view="list"] #planner .day.list-day .tasks>.task:nth-child(1),
+body[data-task-view="list"] #planner .day.list-day .tasks>.task:nth-child(2){grid-column:span 3 !important;}
+body[data-task-view="list"] #planner .day.list-day .tasks>.task:nth-child(n+9){display:none !important;}
+#planner .task-text{color:var(--list-task-text,#25364b) !important;}
+body[data-task-view="list"] #planner .day.list-day .task-text{
+  color:var(--list-task-text,#25364b) !important;font-size:clamp(10px,2.7vw,14px) !important;
+  line-height:1.08 !important;font-weight:800 !important;min-width:0 !important;overflow:hidden !important;
+  display:-webkit-box !important;-webkit-line-clamp:2 !important;-webkit-box-orient:vertical !important;
+}
+body[data-task-view="list"] #planner .day.list-day .task-time{font-size:clamp(9px,2.25vw,12px) !important;white-space:nowrap !important;}
+body[data-task-view="list"] #planner .day.list-day .task-check,
+body[data-task-view="list"] #planner .day.list-day .checkmark{width:15px !important;height:15px !important;min-width:15px !important;flex:0 0 15px !important;}
+/* Themes are applied to the actual cards and app background (not just data attributes). */
+body[data-theme="standard"]{--weekday:#e8f1ff;--weekend:#ffe8ee;--day-weekday-text:#3f6da9;--day-weekend-text:#b85c75;--primary:#4f8cff;--primary-dark:#326fe0;background:linear-gradient(180deg,#f5f7fb,#dfe8f5) !important;}
+body[data-theme="blackwhite"]{--weekday:#282d36;--weekend:#f7f8fa;--day-weekday-text:#f6f7fa;--day-weekend-text:#4b5563;--primary:#404854;--primary-dark:#252b34;background:linear-gradient(180deg,#f6f7f8,#dfe2e6) !important;--list-task-text:#202938;}
+body[data-theme="yellowgreen"]{--weekday:#fff0a6;--weekend:#d7efb8;--day-weekday-text:#826900;--day-weekend-text:#47733a;--primary:#699a37;--primary-dark:#4d7626;background:linear-gradient(180deg,#fffbea,#e4efce) !important;}
+body[data-theme="skyblue"]{--weekday:#d8f2ff;--weekend:#cbd9ff;--day-weekday-text:#267b9f;--day-weekend-text:#4a62b1;--primary:#4388df;--primary-dark:#2b64b3;background:linear-gradient(180deg,#f2fbff,#d9e7fb) !important;}
+body[data-theme="mintpistachio"]{--weekday:#d5f0e5;--weekend:#e0efc5;--day-weekday-text:#317b66;--day-weekend-text:#638436;--primary:#459a7b;--primary-dark:#31785e;background:linear-gradient(180deg,#f1fbf6,#dcebd4) !important;}
+body[data-theme="pinkpurple"]{--weekday:#ffe1ed;--weekend:#eadfff;--day-weekday-text:#b7477a;--day-weekend-text:#7750ad;--primary:#9461cb;--primary-dark:#7044a7;background:linear-gradient(180deg,#fff7fb,#e9e0f5) !important;}
+#planner .day:not(.weekend){background:var(--weekday) !important;color:var(--text,#26364d) !important;}
+#planner .day.weekend{background:var(--weekend) !important;color:var(--text,#26364d) !important;}
+#planner .day:not(.weekend) .day-weekday{color:var(--day-weekday-text) !important;}
+#planner .day.weekend .day-weekday{color:var(--day-weekend-text) !important;}
+#planner .day .day-name{color:var(--text,#26364d) !important;}
+body[data-theme="blackwhite"] #planner .day:not(.weekend) .day-name{color:#f6f7fa !important;}
+body[data-theme="blackwhite"] #planner .day:not(.weekend) .day-month{color:#d1d5db !important;}
+/* Settings theme colors and readable navigation text */
+body[data-sidebar-color="bluegray"] .side-panel{background:rgba(220,230,242,.98) !important;color:#27384d !important;}
+body[data-sidebar-color="light"] .side-panel{background:rgba(250,252,255,.98) !important;color:#27384d !important;}
+body[data-sidebar-color="dark"] .side-panel{background:rgba(36,46,62,.98) !important;color:#fff !important;}
+.side-panel .side-nav-btn{font-weight:750 !important;line-height:1.25 !important;}
+body[data-sidebar-color="dark"] .side-nav-btn{background:rgba(255,255,255,.12) !important;color:#fff !important;border:1px solid rgba(255,255,255,.25) !important;text-shadow:0 1px 1px rgba(0,0,0,.25) !important;}
+body[data-sidebar-color="bluegray"] .side-nav-btn,body[data-sidebar-color="light"] .side-nav-btn{background:rgba(255,255,255,.72) !important;color:#26364d !important;border:1px solid rgba(90,110,140,.18) !important;}
+/* Reposition floating navigation so it does not cover bottom week label. */
+.side-toggle{bottom:calc(50px + env(safe-area-inset-bottom,0px)) !important;z-index:950 !important;}
+@media(max-height:760px){
+  #planner{padding:5px 8px !important;gap:4px !important;}
+  #planner .day{padding:3px 6px !important;}
+  #planner .day-title{min-height:20px !important;margin-bottom:2px !important;}
+  #planner .day-name,#planner .day-weekday{font-size:17px !important;}
+  body[data-task-view="list"] #planner .day.list-day .tasks{gap:2px !important;}
+}
+
+
+/* MaDenFlow 6.4 — remove the empty top band and fit all task rows */
+.glass-header{display:none !important;height:0 !important;min-height:0 !important;padding:0 !important;border:0 !important;}
+#planner{
+  top:0 !important;
+  bottom:calc(43px + env(safe-area-inset-bottom,0px)) !important;
+  height:auto !important;
+  padding:5px 9px !important;
+  gap:5px !important;
+}
+#planner .day{
+  flex:1 1 0 !important;
+  min-height:0 !important;
+  padding:4px 7px !important;
+  border-width:1px !important;
+}
+#planner .day-title{
+  min-height:22px !important;
+  height:22px !important;
+  margin:0 0 2px !important;
+  overflow:hidden !important;
+}
+#planner .day-name{font-size:19px !important;line-height:1 !important;}
+#planner .day-month{font-size:10px !important;line-height:1 !important;}
+#planner .day-content{flex:1 1 0 !important;height:0 !important;min-height:0 !important;overflow:hidden !important;}
+#planner .tasks{width:100% !important;min-height:0 !important;min-width:0 !important;}
+body[data-task-view="list"] #planner .day.list-day .day-content{display:flex !important;flex:1 1 0 !important;height:0 !important;min-height:0 !important;overflow:hidden !important;}
+body[data-task-view="list"] #planner .day.list-day .tasks{
+  flex:1 1 0 !important;width:100% !important;height:100% !important;min-height:0 !important;max-height:100% !important;
+  display:grid !important;grid-template-columns:repeat(6,minmax(0,1fr)) !important;
+  grid-template-rows:repeat(3,minmax(0,1fr)) !important;grid-auto-rows:minmax(0,1fr) !important;
+  grid-auto-flow:row !important;align-content:stretch !important;align-items:stretch !important;
+  gap:2px !important;overflow:hidden !important;
+}
+body[data-task-view="list"] #planner .day.list-day .tasks>.task{
+  grid-column:span 2 !important;display:flex !important;align-self:stretch !important;
+  width:100% !important;height:100% !important;min-height:0 !important;max-height:100% !important;
+  margin:0 !important;padding:2px 3px !important;gap:3px !important;overflow:hidden !important;
+  border-radius:8px !important;box-sizing:border-box !important;
+}
+body[data-task-view="list"] #planner .day.list-day .tasks>.task:nth-child(1),
+body[data-task-view="list"] #planner .day.list-day .tasks>.task:nth-child(2){grid-column:span 3 !important;}
+body[data-task-view="list"] #planner .day.list-day .tasks>.task:nth-child(n+9){display:none !important;}
+body[data-task-view="list"] #planner .day.list-day .task-text{font-size:clamp(9px,2.5vw,13px) !important;line-height:1.02 !important;-webkit-line-clamp:2 !important;}
+body[data-task-view="list"] #planner .day.list-day .task-time{font-size:clamp(8px,2.1vw,11px) !important;}
+/* Explicit theme paint: settings' data-theme always changes the real background and day cards. */
+body[data-theme="standard"]{background:linear-gradient(180deg,#f5f8fc,#dfe8f5) !important;}
+body[data-theme="standard"] #planner .day:not(.weekend){background:var(--weekday,#eef6ff) !important;}
+body[data-theme="standard"] #planner .day.weekend{background:var(--weekend,#ffe8ee) !important;}
+body[data-theme="blackwhite"]{background:linear-gradient(180deg,#f6f7f8,#dfe2e6) !important;}
+body[data-theme="blackwhite"] #planner .day:not(.weekend){background:#282d36 !important;color:#f6f7fa !important;}
+body[data-theme="blackwhite"] #planner .day.weekend{background:#f7f8fa !important;color:#26364d !important;}
+body[data-theme="yellowgreen"]{background:linear-gradient(180deg,#fffbea,#e4efce) !important;}
+body[data-theme="yellowgreen"] #planner .day:not(.weekend){background:#fff0a6 !important;}
+body[data-theme="yellowgreen"] #planner .day.weekend{background:#d7efb8 !important;}
+body[data-theme="skyblue"]{background:linear-gradient(180deg,#f2fbff,#d9e7fb) !important;}
+body[data-theme="skyblue"] #planner .day:not(.weekend){background:#d8f2ff !important;}
+body[data-theme="skyblue"] #planner .day.weekend{background:#cbd9ff !important;}
+body[data-theme="mintpistachio"]{background:linear-gradient(180deg,#f1fbf6,#dcebd4) !important;}
+body[data-theme="mintpistachio"] #planner .day:not(.weekend){background:#d5f0e5 !important;}
+body[data-theme="mintpistachio"] #planner .day.weekend{background:#e0efc5 !important;}
+body[data-theme="pinkpurple"]{background:linear-gradient(180deg,#fff7fb,#e9e0f5) !important;}
+body[data-theme="pinkpurple"] #planner .day:not(.weekend){background:#ffe1ed !important;}
+body[data-theme="pinkpurple"] #planner .day.weekend{background:#eadfff !important;}
+@media(max-height:760px){
+  #planner{padding:3px 7px !important;gap:3px !important;}
+  #planner .day{padding:3px 5px !important;}
+  #planner .day-title{height:19px !important;min-height:19px !important;}
+  #planner .day-name{font-size:17px !important;}
+}
+
+
+/* MaDenFlow 6.5 — day date rail on the right, nine task cards on the left */
+:root{--week-range-height:30px;}
+html,body{height:100%;min-height:100%;}
+body{overflow:hidden !important;}
+.glass-header{display:none !important;height:0 !important;min-height:0 !important;padding:0 !important;margin:0 !important;border:0 !important;}
+#planner{
+  position:fixed !important;left:0 !important;right:0 !important;
+  top:calc(env(safe-area-inset-top,0px) + 2px) !important;
+  bottom:calc(var(--week-range-height) + env(safe-area-inset-bottom,0px) + 2px) !important;
+  width:100% !important;height:auto !important;max-width:none !important;
+  display:flex !important;flex-direction:column !important;
+  padding:3px 7px !important;gap:4px !important;overflow:hidden !important;
+  box-sizing:border-box !important;margin:0 !important;
+}
+#planner .day{
+  display:grid !important;grid-template-columns:minmax(0,1fr) 54px !important;
+  grid-template-rows:minmax(0,1fr) !important;grid-template-areas:"tasks date" !important;
+  flex:1 1 0 !important;min-height:0 !important;min-width:0 !important;
+  width:100% !important;padding:4px !important;margin:0 !important;
+  gap:0 !important;overflow:hidden !important;box-sizing:border-box !important;
+  border-radius:15px !important;
+}
+#planner .day-content{grid-area:tasks !important;display:flex !important;min-width:0 !important;min-height:0 !important;width:100% !important;height:100% !important;overflow:hidden !important;padding:0 !important;margin:0 !important;}
+#planner .day-title{
+  grid-area:date !important;display:flex !important;align-items:stretch !important;justify-content:center !important;
+  min-width:0 !important;min-height:0 !important;height:100% !important;width:100% !important;
+  margin:0 !important;padding:0 0 0 4px !important;overflow:hidden !important;
+  border-left:1px solid rgba(90,110,140,.20) !important;box-sizing:border-box !important;
+}
+#planner .day-date-side{display:flex !important;flex-direction:column !important;align-items:center !important;justify-content:center !important;gap:3px !important;width:100% !important;min-width:0 !important;line-height:1 !important;}
+#planner .day-weekday{font-size:clamp(13px,3.8vw,18px) !important;font-weight:850 !important;white-space:nowrap !important;}
+#planner .day-number{font-size:clamp(19px,5.5vw,27px) !important;line-height:1 !important;font-weight:900 !important;color:var(--text,#26364d) !important;}
+#planner .day-month{font-size:clamp(9px,2.7vw,12px) !important;line-height:1 !important;font-weight:750 !important;color:var(--text2,#718096) !important;text-transform:lowercase !important;}
+#planner .day-star{font-size:12px !important;line-height:1 !important;}
+#planner .tasks{
+  display:grid !important;grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  grid-template-rows:repeat(3,minmax(0,1fr)) !important;grid-auto-rows:minmax(0,1fr) !important;
+  grid-auto-flow:row !important;align-content:stretch !important;align-items:stretch !important;
+  gap:3px !important;width:100% !important;height:100% !important;max-height:100% !important;
+  min-width:0 !important;min-height:0 !important;overflow:hidden !important;box-sizing:border-box !important;
+}
+#planner .tasks>.task{
+  display:flex !important;grid-column:span 1 !important;align-self:stretch !important;
+  width:100% !important;height:100% !important;min-width:0 !important;min-height:0 !important;max-height:100% !important;
+  margin:0 !important;padding:2px 3px !important;gap:3px !important;border-radius:9px !important;
+  overflow:hidden !important;box-sizing:border-box !important;align-items:center !important;
+}
+#planner .tasks>.task:nth-child(n+10){display:none !important;}
+#planner .task-time{font-size:clamp(8px,2.2vw,11px) !important;line-height:1 !important;white-space:nowrap !important;flex:0 0 auto !important;}
+#planner .task-text{font-size:clamp(9px,2.45vw,13px) !important;line-height:1.05 !important;min-width:0 !important;overflow:hidden !important;display:-webkit-box !important;-webkit-box-orient:vertical !important;-webkit-line-clamp:2 !important;color:var(--list-task-text,#25364b) !important;}
+#planner .task-check,#planner .checkmark{width:clamp(12px,3.7vw,17px) !important;height:clamp(12px,3.7vw,17px) !important;min-width:clamp(12px,3.7vw,17px) !important;flex:0 0 clamp(12px,3.7vw,17px) !important;margin:0 2px 0 0 !important;}
+/* Apply the same nine-cell grid in both task display modes. */
+body[data-task-view="list"] #planner .day.list-day .tasks,
+body[data-task-view="cards"] #planner .day .tasks{grid-template-columns:repeat(3,minmax(0,1fr)) !important;grid-template-rows:repeat(3,minmax(0,1fr)) !important;}
+body[data-task-view="list"] #planner .day.list-day .tasks>.task:nth-child(1),
+body[data-task-view="list"] #planner .day.list-day .tasks>.task:nth-child(2){grid-column:span 1 !important;}
+#weekTitle{
+  position:fixed !important;left:0 !important;right:0 !important;bottom:0 !important;
+  z-index:880 !important;height:calc(var(--week-range-height) + env(safe-area-inset-bottom,0px)) !important;
+  min-height:0 !important;margin:0 !important;padding:5px 8px calc(5px + env(safe-area-inset-bottom,0px)) !important;
+  display:flex !important;align-items:center !important;justify-content:center !important;
+  box-sizing:border-box !important;font-size:clamp(10px,3vw,13px) !important;line-height:1 !important;
+  font-weight:800 !important;color:#66778c !important;background:rgba(230,236,244,.90) !important;
+  border-top:1px solid rgba(255,255,255,.75) !important;backdrop-filter:blur(12px) !important;
+  -webkit-backdrop-filter:blur(12px) !important;white-space:nowrap !important;
+}
+.side-toggle{bottom:calc(var(--week-range-height) + env(safe-area-inset-bottom,0px) + 5px) !important;z-index:950 !important;width:48px !important;height:48px !important;min-width:48px !important;min-height:48px !important;}
+@media(max-height:700px){
+  #planner{padding:2px 5px !important;gap:3px !important;}
+  #planner .day{grid-template-columns:minmax(0,1fr) 48px !important;padding:3px !important;border-radius:12px !important;}
+  #planner .tasks{gap:2px !important;}
+  #planner .tasks>.task{padding:1px 2px !important;gap:2px !important;border-radius:7px !important;}
+  #planner .day-title{padding-left:3px !important;}
+}
+
+
+/* MaDenFlow 6.6 — действия задачи и управляемый размер текста */
+.day-popup-task-row{
+  display:flex !important;align-items:stretch !important;gap:7px !important;
+  width:100% !important;min-width:0 !important;margin:0 0 8px !important;
+}
+.day-popup-task-row .day-popup-task{
+  display:flex !important;align-items:center !important;gap:10px !important;
+  flex:1 1 auto !important;width:auto !important;min-width:0 !important;
+  margin:0 !important;
+}
+.day-popup-actions{
+  display:flex !important;align-items:center !important;gap:5px !important;flex:0 0 auto !important;
+}
+.day-popup-action{
+  display:flex !important;align-items:center !important;justify-content:center !important;
+  width:42px !important;min-width:42px !important;height:42px !important;
+  padding:0 !important;border:1px solid rgba(100,120,145,.16) !important;
+  border-radius:13px !important;background:rgba(255,255,255,.78) !important;
+  font-size:19px !important;line-height:1 !important;box-shadow:0 3px 10px rgba(30,50,80,.07) !important;
+}
+.day-popup-edit{color:inherit !important;opacity:1 !important;white-space:normal !important}
+.day-popup-delete{color:#d9465f !important}
+.day-popup-text{min-width:0 !important;overflow:hidden !important;text-overflow:ellipsis !important;white-space:nowrap !important}
+
+/* Font size setting applies to task cards in both cards and list views. */
+body[data-task-font-size="small"] #planner .task-text{font-size:clamp(9px,2.25vw,11px) !important;line-height:1.04 !important}
+body[data-task-font-size="small"] #planner .task-time{font-size:clamp(8px,1.9vw,10px) !important}
+body[data-task-font-size="medium"] #planner .task-text{font-size:clamp(10px,2.65vw,13px) !important;line-height:1.05 !important}
+body[data-task-font-size="medium"] #planner .task-time{font-size:clamp(9px,2.25vw,11px) !important}
+body[data-task-font-size="large"] #planner .task-text{font-size:clamp(11px,3.05vw,15px) !important;line-height:1.06 !important}
+body[data-task-font-size="large"] #planner .task-time{font-size:clamp(9px,2.5vw,12px) !important}
+body[data-task-font-size="xlarge"] #planner .task-text{font-size:clamp(12px,3.45vw,17px) !important;line-height:1.06 !important}
+body[data-task-font-size="xlarge"] #planner .task-time{font-size:clamp(10px,2.8vw,13px) !important}
+
+/* Compact task action menu: task title is distinct from smaller actions. */
+.task-menu{width:min(440px,calc(100vw - 32px)) !important;min-width:0 !important;max-width:calc(100vw - 32px) !important;border-radius:22px !important}
+.task-preview{padding:13px 17px !important;font-size:clamp(15px,4vw,19px) !important;line-height:1.3 !important;font-weight:800 !important;border-bottom:1px solid rgba(105,125,150,.30) !important;max-height:100px !important}
+.task-menu button{padding:10px 17px !important;font-size:clamp(13px,3.5vw,16px) !important;line-height:1.2 !important;font-weight:650 !important}
+.task-menu hr{margin:5px 0 !important;border-top:1px solid rgba(105,125,150,.30) !important}
+.task-menu-label{padding:7px 17px 2px !important;font-size:10px !important}
+@media(max-width:420px){
+  .day-popup-task-row{gap:5px !important}
+  .day-popup-action{width:36px !important;min-width:36px !important;height:38px !important;border-radius:11px !important;font-size:17px !important}
+  .day-popup-task-row .day-popup-task{gap:7px !important;padding:8px 9px !important}
+}
+
+
+/* MaDenFlow Appearance Editor — live custom theme */
+body[data-custom-appearance="on"]{background:var(--custom-bg,#eef3fb)!important;color:var(--custom-text,#26364d)!important;}
+body[data-custom-appearance="on"] #planner .day:not(.weekend){background:var(--custom-weekday,#dce7fa)!important;color:var(--custom-text,#26364d)!important;}
+body[data-custom-appearance="on"] #planner .day.weekend{background:var(--custom-weekend,#f5dce9)!important;color:var(--custom-text,#26364d)!important;}
+body[data-custom-appearance="on"] #planner .day .day-weekday,body[data-custom-appearance="on"] #planner .day .day-number,body[data-custom-appearance="on"] #planner .day .day-month{color:var(--custom-text,#26364d)!important;}
+body[data-custom-appearance="on"] #planner .task{background:var(--custom-card,#fff)!important;background-color:color-mix(in srgb,var(--custom-card,#fff) var(--custom-card-alpha,100%),transparent)!important;border-radius:var(--custom-card-radius,14px)!important;}
+body[data-custom-appearance="on"] #planner .task .task-text{color:var(--custom-text,#26364d)!important;font-size:var(--custom-task-font,15px)!important;}
+body[data-custom-appearance="on"] .side-panel{background:var(--custom-sidebar,#e0e8f2)!important;color:var(--custom-text,#26364d)!important;}
+body[data-custom-appearance="on"] .side-nav-btn{color:var(--custom-text,#26364d)!important;}
+.appearance-window{max-height:min(88dvh,900px)!important;overflow-y:auto!important;padding:18px!important;gap:13px!important;}
+.appearance-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;}
+.appearance-head h3{margin:0 0 4px;font-size:22px;}
+.appearance-head p{margin:0;color:var(--text2,#718096);font-size:13px;}
+.appearance-x{width:34px;height:34px;border:0;border-radius:50%;font-size:24px;line-height:1;background:rgba(120,130,150,.12);color:inherit;flex-shrink:0;}
+.appearance-swatches{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:10px;}
+.appearance-swatch{display:grid;grid-template-columns:22px 22px 1fr;align-items:center;gap:5px;padding:9px 7px;border:1px solid rgba(120,130,150,.22);border-radius:12px;background:rgba(255,255,255,.5);color:inherit;text-align:left;font-size:12px;font-weight:700;}
+.appearance-swatch i{height:22px;border-radius:6px;display:block;border:1px solid rgba(0,0,0,.08);}
+.appearance-preview-wrap{padding:12px;border:1px solid rgba(120,130,150,.2);border-radius:16px;background:rgba(130,145,165,.06);}
+.appearance-preview-title{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:9px;font-size:13px;}
+.appearance-preview-title span{font-size:11px;color:#64748b;}
+.appearance-preview{padding:8px;border-radius:12px;transition:background .15s,color .15s;}
+.appearance-preview-day{display:grid;grid-template-columns:45px minmax(0,1fr);gap:8px;padding:8px;border-radius:10px;}
+.appearance-preview-date{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border-right:1px solid rgba(90,110,140,.2);padding-right:6px;}
+.appearance-preview-date b{font-size:10px;}.appearance-preview-date strong{font-size:23px;line-height:1.1}.appearance-preview-date small{font-size:10px;}
+.appearance-preview-tasks{display:grid;gap:6px;align-content:center;min-width:0;}
+.appearance-preview-tasks>div{padding:8px 9px;box-shadow:0 2px 6px rgba(20,40,80,.08);overflow:hidden;white-space:nowrap;text-overflow:ellipsis;transition:all .15s;}
+.appearance-details{border:1px solid rgba(120,130,150,.18);border-radius:14px;padding:12px;}
+.appearance-details summary{font-weight:800;cursor:pointer;padding:2px 0 10px;}
+.appearance-controls-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;}
+.appearance-color-row{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 10px;border-radius:10px;background:rgba(130,145,165,.08);font-size:13px;font-weight:650;}
+.appearance-color-row input[type=color]{width:38px;height:32px;padding:2px;border:0;border-radius:8px;background:transparent;flex-shrink:0;}
+.appearance-range-row{display:grid;gap:7px;margin-top:14px;font-size:13px;font-weight:650;}
+.appearance-range-row span{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.appearance-range-row b{font-variant-numeric:tabular-nums;color:var(--text2,#64748b);}
+.appearance-range-row input{width:100%;accent-color:#6d80ce;}
+.appearance-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.appearance-actions button{min-height:44px;border-radius:12px;font-weight:800;}
+@media(max-width:420px){.appearance-window{padding:14px!important}.appearance-controls-grid{gap:7px}.appearance-color-row{padding:8px;font-size:12px}.appearance-swatches{gap:6px}.appearance-swatch{font-size:11px;grid-template-columns:18px 18px 1fr;padding:8px 5px}}
+
+
+/* MaDenFlow appearance menu visibility fix */
+#sidePanel { overflow-y:auto !important; -webkit-overflow-scrolling:touch !important; }
+#sidePanel .side-panel-inner { height:auto !important; min-height:100% !important; max-height:none !important; overflow:visible !important; padding-bottom:calc(18px + env(safe-area-inset-bottom,0px)) !important; box-sizing:border-box !important; }
+#sidePanel #appearanceBtn { display:flex !important; visibility:visible !important; opacity:1 !important; position:relative !important; order:5 !important; flex-shrink:0 !important; min-height:58px !important; width:100% !important; }
+#sidePanel #settingsBtn { order:6 !important; flex-shrink:0 !important; }
+#sidePanel #todayBtn,#sidePanel #calendarBtn,#sidePanel #serviceBtn,#sidePanel #visitsBtn { flex-shrink:0 !important; }
+
+
+/* MaDenFlow: week range visibility + configurable task-time color */
+:root{--task-time-color:#26364d;--week-range-bg:rgba(230,236,244,.96);--week-range-text:#34465c;}
+#weekTitle{display:flex !important;visibility:visible !important;opacity:1 !important;z-index:990 !important;color:var(--week-range-text) !important;background:var(--week-range-bg) !important;min-height:34px !important;height:calc(34px + env(safe-area-inset-bottom,0px)) !important;font-size:13px !important;font-weight:800 !important;}
+#planner{bottom:calc(34px + env(safe-area-inset-bottom,0px) + 3px) !important;}
+#planner .task-time{color:var(--task-time-color) !important;font-weight:800 !important;text-shadow:none !important;}
+#planner .task-time *{color:inherit !important;}
+
+
+/* MaDenFlow appearance v2: date sizing, system text and task-time colors */
+.appearance-subtitle{font-weight:800;font-size:14px;margin-top:8px;padding-top:10px;border-top:1px solid rgba(120,130,150,.18)}
+.appearance-select-row{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:42px;font-size:13px}
+.appearance-select-row select{max-width:58%;min-width:0;border:1px solid rgba(120,130,150,.28);border-radius:10px;padding:8px;background:rgba(255,255,255,.7);color:#26364d}
+#appearanceWeekTextColorRow,#appearanceTimeColorRow{display:none}
+body[data-custom-appearance="on"] #planner .day .day-weekday{font-size:var(--custom-weekday-size,20px)!important}
+body[data-custom-appearance="on"] #planner .day .day-number{font-size:var(--custom-date-size,30px)!important}
+body[data-custom-appearance="on"] #planner .day .day-month{font-size:var(--custom-month-size,14px)!important}
+body[data-custom-appearance="on"][data-week-text-mode="custom"] #planner .day .day-weekday,
+body[data-custom-appearance="on"][data-week-text-mode="custom"] #planner .day .day-number,
+body[data-custom-appearance="on"][data-week-text-mode="custom"] #planner .day .day-month{color:var(--custom-week-text-color,#26364d)!important}
+body[data-custom-appearance="on"][data-time-text-mode="custom"] #planner .task-time{color:var(--custom-time-color,#26364d)!important}
+body[data-custom-appearance="on"][data-time-text-mode="system"] #planner .task-time{color:var(--custom-text,#26364d)!important}
+body[data-custom-appearance="on"][data-time-text-mode="auto"] #planner .task-time{color:#26364d!important}
+#weekRange,#weekRangeLabel,.week-range,.week-range-label,#weekDateRange{
+  display:flex;visibility:visible;opacity:1;
+}
+
+
+/* MaDenFlow fix: week range, task time color and compact task editor */
+.glass-header{display:none!important}
+#weekTitle{position:fixed!important;left:0!important;right:0!important;bottom:0!important;display:flex!important;visibility:visible!important;opacity:1!important;z-index:990!important;height:calc(32px + env(safe-area-inset-bottom,0px))!important;min-height:32px!important;margin:0!important;padding:5px 8px calc(5px + env(safe-area-inset-bottom,0px))!important;align-items:center!important;justify-content:center!important;box-sizing:border-box!important;font-size:13px!important;line-height:1.1!important;font-weight:800!important;color:var(--week-range-text,#34465c)!important;background:var(--week-range-bg,rgba(230,236,244,.96))!important;border-top:1px solid rgba(255,255,255,.75)!important;white-space:nowrap!important}
+#planner .task-time,#planner .day-popup-time,.day-modal-task-time{color:var(--task-time-color,#26364d)!important;font-weight:800!important}
+body[data-custom-appearance="on"][data-time-text-mode="custom"] #planner .task-time,body[data-custom-appearance="on"][data-time-text-mode="custom"] #planner .day-popup-time,body[data-custom-appearance="on"][data-time-text-mode="custom"] .day-modal-task-time{color:var(--custom-time-color,#26364d)!important}
+body[data-custom-appearance="on"][data-time-text-mode="system"] #planner .task-time,body[data-custom-appearance="on"][data-time-text-mode="system"] #planner .day-popup-time,body[data-custom-appearance="on"][data-time-text-mode="system"] .day-modal-task-time{color:var(--custom-text,#26364d)!important}
+body[data-custom-appearance="on"][data-week-text-mode="custom"] #planner .day-weekday,body[data-custom-appearance="on"][data-week-text-mode="custom"] #planner .day-name,body[data-custom-appearance="on"][data-week-text-mode="custom"] #planner .day-month{color:var(--custom-week-text-color,#26364d)!important}
+body[data-custom-appearance="on"] #planner .day .day-weekday{font-size:var(--custom-weekday-size,20px)!important}
+body[data-custom-appearance="on"] #planner .day .day-name{font-size:var(--custom-date-size,30px)!important}
+body[data-custom-appearance="on"] #planner .day .day-month{font-size:var(--custom-month-size,14px)!important}
+#taskModal .modal-box{max-height:calc(100dvh - 24px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px))!important;overflow-y:auto!important;padding:15px!important}
+#taskModal h3{margin:0 0 9px!important;font-size:19px!important}#taskModal label{margin-bottom:7px!important}
+#taskModal .modal-actions,#taskModal .task-actions,#taskModal .task-edit-actions{display:flex!important;flex-wrap:wrap!important;gap:6px!important;margin-top:8px!important}
+#taskModal button{min-height:36px!important;padding:7px 10px!important}
+@media(max-width:640px){#taskModal .modal-box{padding:13px!important;border-radius:18px!important}#taskModal button{font-size:13px!important}}
+
+/* Calendar task list and custom weekday recurrence */
+.month-selected-tasks{width:min(620px,100%);margin:14px auto 0;padding:14px;border-radius:20px;background:rgba(255,255,255,.72);box-shadow:0 8px 25px rgba(30,50,80,.07);box-sizing:border-box}
+.month-selected-tasks h3{margin:0 0 10px;font-size:17px;text-transform:capitalize;color:var(--text)}
+.month-selected-task-list{display:grid;gap:7px}
+.month-task-row{display:flex;align-items:center;gap:8px;min-height:36px;padding:7px 10px;border-radius:10px;background:rgba(240,246,252,.85);border:1px solid rgba(100,130,170,.16);color:var(--text)}
+.month-task-row.urgent{border-color:#d85b61}.month-task-row.important{border-color:#e5a23c}.month-task-row.normal{border-color:#63a982}
+.month-task-row time{font-size:12px;font-weight:750;white-space:nowrap}
+.month-tasks-empty{font-size:14px;color:var(--text2);padding:8px 0}
+.month-priority-dots{display:flex;justify-content:center;align-items:center;gap:3px;margin-top:3px;min-height:5px}
+.priority-dot{display:inline-block;flex:0 0 5px;width:5px;height:5px;border-radius:50%;background:#63a982}
+.priority-dot.urgent{background:#d85b61}.priority-dot.important{background:#e5a23c}.priority-dot.normal{background:#63a982}
+.month-day{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.month-day-number{line-height:1.1}
+#openSelectedWeek{margin-top:12px;width:100%;border:0;border-radius:12px;padding:11px;background:var(--primary);color:white;font-weight:750}
+.repeat-weekdays{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:8px 0}
+.repeat-weekdays label{display:flex;align-items:center;gap:5px;padding:7px;border-radius:9px;background:rgba(120,140,170,.1);font-size:13px}
+@media(max-width:640px){.month-selected-tasks{margin-top:10px;padding:12px}.month-screen{overflow-y:auto}.month-day{min-height:46px}.repeat-weekdays{grid-template-columns:repeat(4,minmax(0,1fr))}}
+
+/* MaDenFlow: плотность дел, управляется настройкой 4/6/9 */
+#planner.tasks-per-day-4 .task { min-height: 42px; padding-top: 9px; padding-bottom: 9px; }
+#planner.tasks-per-day-6 .task { min-height: 34px; padding-top: 6px; padding-bottom: 6px; }
+#planner.tasks-per-day-9 .task { min-height: 27px; padding-top: 3px; padding-bottom: 3px; font-size: .92em; }
+.task-capacity-control { margin-top: 12px; }
+.task-capacity-control p { margin: 5px 0 9px; font-size: .9em; opacity: .75; }
+#loginScreen { display:none !important; }
+
+/* Fixes: pinned appearance preview, recurrence controls, visible task density */
+.appearance-window{overflow-y:auto!important;overscroll-behavior:contain!important;position:relative!important;}
+.appearance-head{position:sticky;top:-18px;z-index:30;background:var(--glass,rgba(245,248,252,.97));padding:5px 0 10px;}
+.appearance-preview-wrap{position:sticky;top:48px;z-index:29;background:var(--glass,rgba(245,248,252,.97))!important;box-shadow:0 6px 16px rgba(25,40,70,.08);}
+.repeat-type-label{display:grid;gap:6px;margin-top:8px;font-size:13px;font-weight:700}
+.repeat-type-label select{width:100%;min-height:40px;border-radius:10px;padding:8px}
+#repeatOptions{padding:8px 0 2px}
+#repeatOptions label:not(.repeat-type-label){display:flex;align-items:center;justify-content:space-between;gap:8px;margin:8px 0}
+#repeatUntil{max-width:58%;min-height:38px;border-radius:9px;padding:6px}
+.task-menu button[data-action="edit"],.task-menu button[data-action="edit-chain"],.task-menu button[data-action="delete"],.task-menu button[data-action="delete-chain"]{display:flex;align-items:center;gap:9px}
+#planner.tasks-per-day-4 .tasks{gap:9px!important} #planner.tasks-per-day-4 .task{min-height:42px!important;font-size:1em!important;padding:9px 10px!important}
+#planner.tasks-per-day-6 .tasks{gap:5px!important} #planner.tasks-per-day-6 .task{min-height:32px!important;font-size:.95em!important;padding:5px 8px!important}
+#planner.tasks-per-day-9 .tasks{gap:2px!important} #planner.tasks-per-day-9 .task{min-height:24px!important;font-size:.84em!important;padding:2px 6px!important;line-height:1.05!important}
+@media(max-width:640px){.appearance-head{top:-14px}.appearance-preview-wrap{top:48px}.appearance-window{max-height:88dvh!important}}
+
+/* MaDenFlow: task capacity is a grid count per day, not merely card size. */
+#planner.tasks-per-day-4 .tasks {grid-template-columns:repeat(2,minmax(0,1fr)) !important;grid-template-rows:repeat(2,minmax(0,1fr)) !important;}
+#planner.tasks-per-day-4 .tasks>.task:nth-child(n+5){display:none!important;}
+#planner.tasks-per-day-6 .tasks {grid-template-columns:repeat(2,minmax(0,1fr)) !important;grid-template-rows:repeat(3,minmax(0,1fr)) !important;}
+#planner.tasks-per-day-6 .tasks>.task:nth-child(n+7){display:none!important;}
+#planner.tasks-per-day-9 .tasks {grid-template-columns:repeat(3,minmax(0,1fr)) !important;grid-template-rows:repeat(3,minmax(0,1fr)) !important;}
+#planner.tasks-per-day-9 .tasks>.task:nth-child(n+10){display:none!important;}
+
+
+/* Verified override: selected 4/6/9 capacity must win over older task-view rules. */
+body #planner.tasks-per-day-4 .day .day-content .tasks,
+body[data-task-view="cards"] #planner.tasks-per-day-4 .day .day-content .tasks,
+body[data-task-view="list"] #planner.tasks-per-day-4 .day .day-content .tasks {
+  display:grid!important; grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  grid-template-rows:repeat(2,minmax(0,1fr))!important; grid-auto-flow:row!important;
+  align-content:stretch!important; align-items:stretch!important; gap:4px!important;
+}
+body #planner.tasks-per-day-6 .day .day-content .tasks,
+body[data-task-view="cards"] #planner.tasks-per-day-6 .day .day-content .tasks,
+body[data-task-view="list"] #planner.tasks-per-day-6 .day .day-content .tasks {
+  display:grid!important; grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  grid-template-rows:repeat(3,minmax(0,1fr))!important; grid-auto-flow:row!important;
+  align-content:stretch!important; align-items:stretch!important; gap:3px!important;
+}
+body #planner.tasks-per-day-9 .day .day-content .tasks,
+body[data-task-view="cards"] #planner.tasks-per-day-9 .day .day-content .tasks,
+body[data-task-view="list"] #planner.tasks-per-day-9 .day .day-content .tasks {
+  display:grid!important; grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  grid-template-rows:repeat(3,minmax(0,1fr))!important; grid-auto-flow:row!important;
+  align-content:stretch!important; align-items:stretch!important; gap:2px!important;
+}
+body #planner.tasks-per-day-4 .day .tasks>.task:nth-child(n+5),
+body #planner.tasks-per-day-6 .day .tasks>.task:nth-child(n+7),
+body #planner.tasks-per-day-9 .day .tasks>.task:nth-child(n+10) {display:none!important;}
+/* Priority is shown on each task itself: matching outline and left stripe. */
+body #planner .day .tasks>.task {border:1.5px solid var(--task-priority-color,#63a982)!important; border-left:5px solid var(--task-priority-color,#63a982)!important; box-sizing:border-box!important;}
+body #planner .day .tasks>.task.normal {--task-priority-color:#63a982!important; border-color:#63a982!important; border-left-color:#63a982!important;}
+body #planner .day .tasks>.task.important {--task-priority-color:#e5a23c!important; border-color:#e5a23c!important; border-left-color:#e5a23c!important;}
+body #planner .day .tasks>.task.urgent {--task-priority-color:#d85b61!important; border-color:#d85b61!important; border-left-color:#d85b61!important;}
+body #planner .day .tasks>.task.done {opacity:.62;}
+
+
+/* Animated startup splash: task-writing sequence */
+.startup-splash{position:fixed;inset:0;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:linear-gradient(145deg,#edf3fb 0%,#e1eaf6 52%,#f5f7fb 100%);color:#414956;opacity:1;transition:opacity .38s ease,visibility .38s ease;overflow:hidden}
+.startup-splash.splash-leaving{opacity:0;visibility:hidden;pointer-events:none}
+.splash-cloud{font-size:48px;animation:splashFloat 1.3s ease-in-out infinite alternate;filter:drop-shadow(0 7px 10px #aab8cb66)}
+.splash-brand{font-size:28px;font-weight:800;letter-spacing:.2px;animation:splashBrand .7s ease both}
+.splash-paper{position:relative;width:150px;height:100px;border-radius:18px;background:#fff;box-shadow:0 12px 30px #64748b2e;padding:22px 18px;box-sizing:border-box;display:flex;flex-direction:column;gap:10px;animation:splashPaper .8s .1s ease both}
+.splash-line{height:6px;width:100%;border-radius:8px;background:#dbe5f2;transform-origin:left;animation:splashWrite .65s .3s ease both}
+.splash-line:nth-child(2){animation-delay:.55s;width:84%}.splash-line.short{width:58%;animation-delay:.8s}
+.splash-check{position:absolute;right:12px;bottom:9px;color:#6a9e37;font-size:22px;font-weight:900;animation:splashCheck .4s 1.15s both}
+.splash-caption{font-size:14px;font-weight:600;color:#718096;animation:splashPulse 1s ease-in-out infinite alternate}
+.splash-progress{width:145px;height:4px;border-radius:5px;background:#d7e0ed;overflow:hidden;margin-top:3px}.splash-progress span{display:block;width:40%;height:100%;border-radius:5px;background:#6a9e37;animation:splashProgress 1.7s ease-in-out infinite}
+@keyframes splashFloat{to{transform:translateY(-7px) rotate(-3deg)}}@keyframes splashBrand{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}@keyframes splashPaper{from{opacity:0;transform:translateY(12px) scale(.94)}to{opacity:1;transform:translateY(0) scale(1)}}@keyframes splashWrite{from{transform:scaleX(0);opacity:.4}to{transform:scaleX(1);opacity:1}}@keyframes splashCheck{from{opacity:0;transform:scale(.3) rotate(-30deg)}to{opacity:1;transform:scale(1) rotate(0)}}@keyframes splashPulse{to{opacity:.55}}@keyframes splashProgress{from{transform:translateX(-110%)}to{transform:translateX(360%)}}
+@media(prefers-reduced-motion:reduce){.startup-splash *{animation-duration:.01ms!important;animation-iteration-count:1!important}}
+
+
+/* MaDenFlow: optional two-column week view. Days stack vertically; up to six task cards remain in one column. */
+#planner.week-columns{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+  grid-template-rows:repeat(4,minmax(0,1fr))!important;
+  grid-auto-flow:row!important;
+  align-items:stretch!important;
+  gap:8px!important;
+  max-width:none!important;
+  height:calc(100dvh - var(--header-space) - var(--bottom-space))!important;
+  overflow-y:auto!important;
+  padding:8px!important;
+}
+#planner.week-columns .day.week-column-day{
+  display:flex!important; flex-direction:column!important;
+  min-width:0!important; min-height:0!important; height:auto!important;
+  flex:none!important; overflow:hidden!important; padding:7px!important;
+  border:1px solid rgba(90,110,140,.32)!important;
+  border-radius:12px!important; gap:4px!important;
+}
+#planner.week-columns .day-content{flex:1 1 auto!important;min-height:0!important;overflow:hidden!important}
+#planner.week-columns .tasks{display:flex!important;flex-direction:column!important;flex-wrap:nowrap!important;gap:3px!important;min-height:0!important;overflow:hidden!important}
+#planner.week-columns .task{flex:0 0 auto!important;min-height:0!important;height:auto!important;padding:4px 6px!important;border-radius:7px!important;font-size:clamp(10px,1.1vw,13px)!important;line-height:1.15!important;overflow:hidden!important}
+#planner.week-columns .task:nth-child(n+7){display:none!important}
+#planner.week-columns .day-title{flex:0 0 auto!important;margin:0!important;padding:3px 0!important;border-bottom:1px solid rgba(90,110,140,.35)!important}
+#planner.week-columns .day-date-side{display:flex!important;flex-direction:row!important;align-items:baseline!important;gap:4px!important;white-space:nowrap!important}
+#planner.week-columns .day-weekday{font-size:12px!important}
+#planner.week-columns .day-number{font-size:15px!important}
+#planner.week-columns .day-month{font-size:10px!important}
+@media(max-width:520px){
+  #planner.week-columns{gap:5px!important;padding:5px!important}
+  #planner.week-columns .day.week-column-day{padding:5px!important}
+  #planner.week-columns .task{padding:4px!important;font-size:10px!important}
+  #planner.week-columns .day-weekday{font-size:11px!important}
+}
+
+
+/* MaDenFlow 6.0 — responsive two-column week, 6–12 tasks and soft task colors */
+#planner.week-columns{
+  display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+  grid-template-rows:minmax(0,1fr)!important;grid-auto-flow:column!important;
+  align-items:stretch!important;gap:8px!important;height:calc(100dvh - var(--header-space,120px) - var(--bottom-space,55px))!important;
+  min-height:0!important;overflow:hidden!important;padding:8px!important;box-sizing:border-box!important;
+}
+#planner.week-columns .week-column-stack{display:flex!important;flex-direction:column!important;gap:8px!important;min-width:0!important;min-height:0!important;overflow:hidden!important}
+#planner.week-columns .week-column-left>.day{flex:1 1 0!important;min-height:0!important}
+#planner.week-columns .week-column-right>.day{flex:1 1 0!important;min-height:0!important}
+#planner.week-columns .week-column-right>.day:nth-child(4){flex:.72 1 0!important}
+#planner.week-columns .day.week-column-day{display:flex!important;flex-direction:column!important;min-width:0!important;height:auto!important;flex-basis:0!important;overflow:hidden!important;padding:7px!important;border:1px solid rgba(90,110,140,.32)!important;border-radius:12px!important;gap:4px!important}
+#planner.week-columns .day-content{flex:1 1 auto!important;min-height:0!important;overflow:hidden!important}
+#planner.week-columns .tasks{display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:repeat(var(--day-task-limit,6),minmax(0,1fr))!important;gap:3px!important;min-height:0!important;height:100%!important;overflow:hidden!important}
+#planner.week-columns .task{display:flex!important;min-width:0!important;width:100%!important;min-height:0!important;height:100%!important;max-height:none!important;padding:3px 5px!important;margin:0!important;border-radius:8px!important;line-height:1.05!important;overflow:hidden!important;box-sizing:border-box!important;border:1px solid var(--task-tint,#dce6f7)!important;background:var(--task-tint,#f4f7fc)!important;position:relative!important}
+#planner.week-columns .task::before{content:""!important;position:absolute!important;left:0!important;top:0!important;bottom:0!important;width:4px!important;background:var(--task-accent,#71c88b)!important;border-radius:8px 0 0 8px!important}
+#planner.week-columns .task-text-wrap{min-width:0!important;overflow:hidden!important;gap:4px!important}
+#planner.week-columns .task-text{font-size:clamp(9px,1.05vw,13px)!important;line-height:1.1!important;white-space:nowrap!important;text-overflow:ellipsis!important;overflow:hidden!important}
+#planner.week-columns .task-time{font-size:clamp(8px,.85vw,11px)!important;min-width:0!important}
+#planner.week-columns .task-check,#planner.week-columns .checkmark{width:14px!important;height:14px!important;flex:0 0 14px!important;margin-right:4px!important}
+#planner.week-columns .task:nth-child(n+13){display:none!important}
+#planner.week-columns .day-title{flex:0 0 auto!important;margin:0!important;padding:3px 0 6px!important;border-bottom:1px solid rgba(90,110,140,.4)!important}
+#planner.week-columns .day-date-side{display:flex!important;flex-direction:row!important;align-items:baseline!important;gap:4px!important;white-space:nowrap!important}
+#planner.week-columns .day-weekday{font-size:clamp(10px,1vw,13px)!important}
+#planner.week-columns .day-number{font-size:clamp(14px,1.3vw,18px)!important}
+#planner.week-columns .day-month{font-size:10px!important;text-transform:lowercase!important}
+@media(max-width:520px){
+ #planner.week-columns{gap:5px!important;padding:5px!important}
+ #planner.week-columns .week-column-stack{gap:5px!important}
+ #planner.week-columns .day.week-column-day{padding:4px!important}
+ #planner.week-columns .task{padding:2px 3px 2px 5px!important}
+ #planner.week-columns .task-text{font-size:clamp(8px,2.1vw,11px)!important}
+ #planner.week-columns .task-time{font-size:8px!important}
+ #planner.week-columns .task-check,#planner.week-columns .checkmark{width:11px!important;height:11px!important;flex-basis:11px!important;margin-right:2px!important}
+}
+/* Six soft background colors for task cards */
+.task.color-soft-blue{--task-accent:#5795ee;--task-tint:#e5efff}
+.task.color-soft-green{--task-accent:#44ad78;--task-tint:#e2f5e9}
+.task.color-soft-orange{--task-accent:#e99a37;--task-tint:#fff0dc}
+.task.color-soft-pink{--task-accent:#e96d91;--task-tint:#fde6ee}
+.task.color-soft-purple{--task-accent:#9272e8;--task-tint:#eee8ff}
+.task.color-soft-teal{--task-accent:#38a9a5;--task-tint:#e0f6f4}
+
+/* Apply the six pastel task colors in all planner views, not only the two-column view */
+.task.color-soft-blue{background:#e5efff!important;border:1px solid #5795ee!important;--task-accent:#5795ee;--task-tint:#e5efff}
+.task.color-soft-green{background:#e2f5e9!important;border:1px solid #44ad78!important;--task-accent:#44ad78;--task-tint:#e2f5e9}
+.task.color-soft-orange{background:#fff0dc!important;border:1px solid #e99a37!important;--task-accent:#e99a37;--task-tint:#fff0dc}
+.task.color-soft-pink{background:#fde6ee!important;border:1px solid #e96d91!important;--task-accent:#e96d91;--task-tint:#fde6ee}
+.task.color-soft-purple{background:#eee8ff!important;border:1px solid #9272e8!important;--task-accent:#9272e8;--task-tint:#eee8ff}
+.task.color-soft-teal{background:#e0f6f4!important;border:1px solid #38a9a5!important;--task-accent:#38a9a5;--task-tint:#e0f6f4}
+.task.color-soft-blue::before,.task.color-soft-green::before,.task.color-soft-orange::before,.task.color-soft-pink::before,.task.color-soft-purple::before,.task.color-soft-teal::before{background:var(--task-accent)!important}
+
+
+/* MaDenFlow fix: keep task cards visible in List and Two-column week modes. */
+body[data-task-view="list"] #planner .day.list-day .day-content,
+#planner.week-columns .day-content{display:flex!important;flex:1 1 auto!important;flex-direction:column!important;min-height:0!important;visibility:visible!important;opacity:1!important;}
+body[data-task-view="list"] #planner .day.list-day .tasks{display:grid!important;flex:1 1 auto!important;visibility:visible!important;opacity:1!important;min-height:0!important;height:100%!important;max-height:100%!important;overflow:hidden!important;}
+body[data-task-view="list"] #planner .day.list-day .tasks>.task,
+#planner.week-columns .tasks>.task{visibility:visible!important;opacity:1!important;min-width:0!important;}
+#planner.week-columns .day-content{display:flex!important;flex-direction:column!important;flex:1 1 auto!important;height:auto!important;min-height:0!important;overflow:hidden!important;}
+#planner.week-columns .tasks{display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:repeat(var(--day-task-limit,6),minmax(0,1fr))!important;flex:1 1 auto!important;height:auto!important;min-height:0!important;overflow:hidden!important;}
+#planner.week-columns .tasks>.task{display:flex!important;visibility:visible!important;opacity:1!important;min-height:0!important;height:auto!important;align-self:stretch!important;}
+
+
+/* Compact six-color picker inside the task create/edit modal */
+#taskCardColorPicker{display:flex;align-items:center;gap:12px;margin:8px 0 10px;padding:8px 10px;border-radius:12px;background:rgba(130,145,165,.08)}
+#taskCardColorPicker .task-card-color-title{font-size:12px;font-weight:750;white-space:nowrap;color:var(--text,#26364d)}
+#taskCardColorPicker .task-card-color-options{display:flex;align-items:center;justify-content:space-between;gap:8px;flex:1;min-width:0}
+#taskCardColorPicker .task-card-color{width:28px;height:28px;min-height:28px!important;flex:0 0 28px;padding:3px!important;border:2px solid transparent!important;border-radius:50%!important;background:transparent!important;display:grid;place-items:center;box-shadow:none!important}
+#taskCardColorPicker .task-card-color i{display:block;width:18px;height:18px;border-radius:50%;background:var(--swatch);box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}
+#taskCardColorPicker .task-card-color.is-selected{border-color:var(--text,#26364d)!important;box-shadow:0 0 0 2px rgba(100,120,150,.16)!important}
+@media(max-width:420px){#taskCardColorPicker{gap:6px;padding:7px 8px}#taskCardColorPicker .task-card-color-options{gap:3px}#taskCardColorPicker .task-card-color{width:26px;height:26px;flex-basis:26px}#taskCardColorPicker .task-card-color i{width:17px;height:17px}}
+
+/* MaDenFlow: final fix for week-columns task visibility */
+#planner.week-columns .week-column-stack .day-content{display:flex!important;flex:1 1 auto!important;min-height:0!important;height:auto!important;visibility:visible!important;opacity:1!important;overflow:hidden!important}
+#planner.week-columns .week-column-stack .tasks{display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:repeat(var(--day-task-limit,6),minmax(22px,1fr))!important;flex:1 1 auto!important;min-height:0!important;height:auto!important;visibility:visible!important;opacity:1!important;overflow:hidden!important}
+#planner.week-columns .week-column-stack .tasks>.task{display:flex!important;visibility:visible!important;opacity:1!important;min-height:22px!important;height:auto!important;align-self:stretch!important}
+
+
+/* Final two-column week layout: fill available height up to the week-range footer. */
+#planner.week-columns{
+  height:calc(100dvh - var(--header-space,120px) - var(--bottom-space,55px))!important;
+  min-height:0!important; align-items:stretch!important;
+  grid-template-rows:minmax(0,1fr)!important; overflow:hidden!important;
+}
+#planner.week-columns>.week-column-stack{height:100%!important;min-height:0!important;align-self:stretch!important;justify-content:stretch!important;overflow:hidden!important}
+#planner.week-columns .week-column-stack>.day{flex:1 1 0!important;min-height:0!important;height:auto!important}
+#planner.week-columns .week-column-right>.day:nth-child(4){flex:.58 1 0!important}
+#planner.week-columns .day.week-column-day{display:flex!important;flex-direction:column!important;min-height:0!important}
+#planner.week-columns .day-title{order:0!important;flex:0 0 auto!important;border-bottom:2px solid rgba(75,95,125,.45)!important;padding:3px 0 7px!important;margin-bottom:3px!important}
+#planner.week-columns .day-content{order:1!important;display:flex!important;flex:1 1 0!important;min-height:0!important;height:auto!important;overflow:hidden!important;visibility:visible!important;opacity:1!important}
+#planner.week-columns .tasks{display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:repeat(var(--day-task-limit,6),minmax(22px,1fr))!important;grid-auto-flow:row!important;flex:1 1 auto!important;width:100%!important;height:auto!important;min-height:0!important;align-content:stretch!important;overflow:hidden!important;visibility:visible!important;opacity:1!important}
+#planner.week-columns .tasks>.task{display:flex!important;visibility:visible!important;opacity:1!important;width:100%!important;min-width:0!important;min-height:22px!important;height:auto!important;max-height:none!important;align-self:stretch!important;position:relative!important}
+#planner.week-columns .tasks>.task:nth-child(n+13){display:none!important}
+@media(max-width:520px){#planner.week-columns{height:calc(100dvh - var(--header-space,145px) - var(--bottom-space,60px))!important}}
+
+/* MaDenFlow 6.7 — definitive fix for weekColumns layout.
+   Earlier legacy rules gave .day-title height:100%, pushing its divider to the bottom
+   and leaving the task area with no usable height. Scope overrides to this view only. */
+#planner.week-columns .week-column-stack>.day.week-column-day{
+  display:flex!important;flex-direction:column!important;position:relative!important;
+  height:auto!important;min-height:0!important;min-width:0!important;
+  grid-template-columns:none!important;grid-template-rows:none!important;grid-template-areas:none!important;
+  padding:5px 7px!important;gap:3px!important;overflow:hidden!important;box-sizing:border-box!important;
+}
+#planner.week-columns .week-column-stack>.day.week-column-day>.day-title{
+  order:0!important;display:flex!important;position:relative!important;flex:0 0 auto!important;
+  grid-area:auto!important;width:100%!important;height:auto!important;min-height:22px!important;
+  align-items:center!important;justify-content:center!important;margin:0 0 2px!important;
+  padding:2px 0 5px!important;border-left:0!important;border-bottom:1px solid rgba(90,110,140,.32)!important;
+  overflow:visible!important;box-sizing:border-box!important;
+}
+#planner.week-columns .week-column-stack>.day.week-column-day>.day-title .day-date-side{
+  display:flex!important;flex-direction:row!important;align-items:baseline!important;justify-content:center!important;
+  gap:5px!important;width:auto!important;height:auto!important;white-space:nowrap!important;
+}
+#planner.week-columns .week-column-stack>.day.week-column-day>.day-content{
+  order:1!important;grid-area:auto!important;position:relative!important;display:flex!important;
+  flex:1 1 0!important;width:100%!important;height:auto!important;min-height:0!important;max-height:none!important;
+  padding:0!important;margin:0!important;overflow:hidden!important;box-sizing:border-box!important;
+}
+#planner.week-columns .week-column-stack>.day.week-column-day .tasks{
+  display:grid!important;grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:repeat(var(--day-task-limit,6),minmax(0,1fr))!important;grid-auto-flow:row!important;
+  flex:1 1 0!important;width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;
+  max-height:100%!important;gap:3px!important;overflow:hidden!important;visibility:visible!important;opacity:1!important;
+}
+#planner.week-columns .week-column-stack>.day.week-column-day .tasks>.task{
+  display:flex!important;visibility:visible!important;opacity:1!important;position:relative!important;
+  width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;max-height:100%!important;
+  align-self:stretch!important;overflow:hidden!important;box-sizing:border-box!important;
+}
+
+
+/* MaDenFlow 6.8 — uniform task cards, no completion circles in week view */
+#planner.week-columns .week-column-stack>.day.week-column-day .tasks{
+  display:flex!important;flex-direction:column!important;flex-wrap:nowrap!important;
+  justify-content:flex-start!important;align-items:stretch!important;gap:5px!important;
+  height:100%!important;min-height:0!important;overflow:hidden!important;
+}
+#planner.week-columns .week-column-stack>.day.week-column-day .tasks>.task{
+  display:flex!important;flex:0 0 38px!important;height:38px!important;min-height:38px!important;max-height:38px!important;
+  width:100%!important;box-sizing:border-box!important;align-items:center!important;
+  padding:0 8px!important;gap:0!important;overflow:hidden!important;border-radius:13px!important;
+}
+#planner.week-columns .week-column-stack>.day.week-column-day .task-check,
+#planner.week-columns .week-column-stack>.day.week-column-day .task-check input,
+#planner.week-columns .week-column-stack>.day.week-column-day .task-check .checkmark{
+  display:none!important;width:0!important;height:0!important;min-width:0!important;min-height:0!important;
+  margin:0!important;padding:0!important;border:0!important;overflow:hidden!important;
+}
+#planner.week-columns .week-column-stack>.day.week-column-day .task-text-wrap{
+  display:flex!important;align-items:center!important;gap:7px!important;width:100%!important;min-width:0!important;
+  overflow:hidden!important;white-space:nowrap!important;
+}
+#planner.week-columns .week-column-stack>.day.week-column-day .task-time{
+  flex:0 0 auto!important;font:inherit!important;font-size:clamp(11px,1.1vw,14px)!important;
+  font-weight:650!important;line-height:1!important;white-space:nowrap!important;
+}
+#planner.week-columns .week-column-stack>.day.week-column-day .task-text{
+  flex:1 1 auto!important;min-width:0!important;font-size:clamp(13px,1.25vw,16px)!important;
+  font-weight:650!important;line-height:1.1!important;white-space:nowrap!important;text-overflow:ellipsis!important;overflow:hidden!important;
+}
+@media(max-width:420px){
+ #planner.week-columns .week-column-stack>.day.week-column-day .tasks{gap:4px!important}
+ #planner.week-columns .week-column-stack>.day.week-column-day .tasks>.task{flex-basis:36px!important;height:36px!important;min-height:36px!important;max-height:36px!important;padding:0 7px!important}
+ #planner.week-columns .week-column-stack>.day.week-column-day .task-time{font-size:12px!important}
+ #planner.week-columns .week-column-stack>.day.week-column-day .task-text{font-size:15px!important}
+}
+
+
+/* MaDenFlow 6.9 — use the full day-card height and make task capacity setting effective. */
+#planner.week-columns .week-column-stack>.day.week-column-day>.day-content{
+  display:flex!important;flex:1 1 0!important;min-height:0!important;height:auto!important;overflow:hidden!important;
+}
+#planner.week-columns .week-column-stack>.day.week-column-day .tasks{
+  display:grid!important;grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:repeat(var(--day-task-count,1),minmax(0,1fr))!important;
+  grid-auto-rows:0!important;grid-auto-flow:row!important;
+  flex:1 1 0!important;align-content:stretch!important;justify-content:stretch!important;
+  gap:4px!important;width:100%!important;height:100%!important;min-height:0!important;max-height:100%!important;
+  overflow:hidden!important;box-sizing:border-box!important;
+}
+#planner.week-columns .week-column-stack>.day.week-column-day .tasks>.task{
+  display:flex!important;flex:initial!important;align-self:stretch!important;
+  width:100%!important;height:100%!important;min-height:0!important;max-height:100%!important;
+  box-sizing:border-box!important;align-items:center!important;overflow:hidden!important;
+  padding:0 8px!important;border-radius:12px!important;
+}
+#planner.week-columns .week-column-stack>.day.week-column-day .task-check,
+#planner.week-columns .week-column-stack>.day.week-column-day .task-check input,
+#planner.week-columns .week-column-stack>.day.week-column-day .task-check .checkmark{
+  display:none!important;width:0!important;height:0!important;min-width:0!important;min-height:0!important;
+  margin:0!important;padding:0!important;border:0!important;overflow:hidden!important;
+}
+#planner.week-columns .week-column-stack>.day.week-column-day .task-text-wrap{
+  display:flex!important;align-items:center!important;gap:6px!important;width:100%!important;min-width:0!important;
+  margin:0!important;padding:0!important;overflow:hidden!important;white-space:nowrap!important;
+}
+#planner.week-columns .week-column-stack>.day.week-column-day .task-time{
+  flex:0 0 auto!important;font-family:inherit!important;font-size:clamp(11px,1.1vw,14px)!important;
+  font-weight:650!important;line-height:1.1!important;white-space:nowrap!important;
+}
+#planner.week-columns .week-column-stack>.day.week-column-day .task-text{
+  flex:1 1 auto!important;min-width:0!important;font-family:inherit!important;
+  font-size:clamp(13px,1.25vw,16px)!important;font-weight:650!important;line-height:1.1!important;
+  white-space:nowrap!important;text-overflow:ellipsis!important;overflow:hidden!important;
+}
+@media(max-width:520px){
+  #planner.week-columns .week-column-stack>.day.week-column-day .tasks{gap:4px!important}
+  #planner.week-columns .week-column-stack>.day.week-column-day .task-text{font-size:15px!important}
+  #planner.week-columns .week-column-stack>.day.week-column-day .task-time{font-size:12px!important}
+}
+
+
+/* MaDenFlow 7.0 — muted selected task colors, tighter cards, full weekly work area. */
+#planner.week-columns{
+  height:calc(100dvh - var(--header-space,40px) - 34px - env(safe-area-inset-bottom,0px))!important;
+  min-height:0!important;box-sizing:border-box!important;align-content:stretch!important;
+}
+#planner.week-columns>.week-column-stack{
+  height:100%!important;min-height:0!important;justify-content:stretch!important;align-content:stretch!important;
+}
+#planner.week-columns .week-column-right>.day:nth-child(4){flex:1 1 0!important}
+#planner.week-columns .week-column-stack>.day.week-column-day>.day-content{
+  flex:1 1 0!important;min-height:0!important;height:auto!important;padding:0!important;margin:0!important;
+}
+#planner.week-columns .week-column-stack>.day.week-column-day .tasks{
+  display:grid!important;grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:repeat(var(--day-task-count,1),minmax(0,1fr))!important;
+  gap:2px!important;padding:0!important;margin:0!important;
+  flex:1 1 0!important;width:100%!important;height:100%!important;min-height:0!important;
+  align-content:stretch!important;overflow:hidden!important;
+}
+#planner.week-columns .week-column-stack>.day.week-column-day .tasks>.task{
+  min-height:0!important;height:100%!important;max-height:100%!important;
+  padding:0 4px!important;margin:0!important;gap:0!important;border-radius:9px!important;
+  border:1.5px solid #63a982!important;border-left:5px solid #63a982!important;
+  box-sizing:border-box!important;overflow:hidden!important;
+}
+#planner.week-columns .week-column-stack>.day.week-column-day .task-text-wrap{
+  gap:4px!important;margin:0!important;padding:0!important;min-width:0!important;
+}
+#planner.week-columns .week-column-stack>.day.week-column-day .task-text{
+  font-size:clamp(12px,3.5vw,15px)!important;line-height:1.05!important;font-weight:650!important;
+}
+#planner.week-columns .week-column-stack>.day.week-column-day .task-time{
+  font-size:clamp(11px,3vw,13px)!important;line-height:1.05!important;font-weight:650!important;
+}
+/* Keep the green priority edge and show the selected card color as a soft fill + inner stripe. */
+#planner.week-columns .week-column-stack>.day.week-column-day .tasks>.task.color-soft-blue{background:#e5efff!important;--task-tint:#e5efff;--task-accent:#5795ee;}
+#planner.week-columns .week-column-stack>.day.week-column-day .tasks>.task.color-soft-green{background:#e2f5e9!important;--task-tint:#e2f5e9;--task-accent:#44ad78;}
+#planner.week-columns .week-column-stack>.day.week-column-day .tasks>.task.color-soft-orange{background:#fff0dc!important;--task-tint:#fff0dc;--task-accent:#e99a37;}
+#planner.week-columns .week-column-stack>.day.week-column-day .tasks>.task.color-soft-pink{background:#fde6ee!important;--task-tint:#fde6ee;--task-accent:#e96d91;}
+#planner.week-columns .week-column-stack>.day.week-column-day .tasks>.task.color-soft-purple{background:#eee8ff!important;--task-tint:#eee8ff;--task-accent:#9272e8;}
+#planner.week-columns .week-column-stack>.day.week-column-day .tasks>.task.color-soft-teal{background:#e0f6f4!important;--task-tint:#e0f6f4;--task-accent:#38a9a5;}
+#planner.week-columns .week-column-stack>.day.week-column-day .tasks>.task::before{
+  content:""!important;position:absolute!important;left:0!important;top:0!important;bottom:0!important;
+  width:4px!important;background:var(--task-accent,#5795ee)!important;border-radius:8px 0 0 8px!important;
+}
+#planner.week-columns .week-column-stack>.day.week-column-day .task-check,
+#planner.week-columns .week-column-stack>.day.week-column-day .task-check input,
+#planner.week-columns .week-column-stack>.day.week-column-day .task-check .checkmark{display:none!important}
+@media(max-width:520px){
+  #planner.week-columns .week-column-stack>.day.week-column-day .tasks{gap:2px!important}
+  #planner.week-columns .week-column-stack>.day.week-column-day .tasks>.task{padding:0 4px!important}
+}
+
+
+/* MaDenFlow 7.1 — task rows stay compact; only day cards stretch to fill the week. */
+#planner.week-columns .week-column-stack>.day.week-column-day .tasks{
+  display:flex!important;flex-direction:column!important;flex-wrap:nowrap!important;
+  align-items:stretch!important;justify-content:flex-start!important;align-content:flex-start!important;
+  gap:4px!important;padding:0!important;margin:0!important;
+  flex:1 1 auto!important;width:100%!important;height:100%!important;min-height:0!important;
+  max-height:100%!important;overflow:hidden!important;box-sizing:border-box!important;
+}
+#planner.week-columns .week-column-stack>.day.week-column-day .tasks>.task{
+  display:flex!important;flex:0 0 36px!important;flex-shrink:0!important;
+  width:100%!important;height:36px!important;min-height:36px!important;max-height:36px!important;
+  align-self:stretch!important;box-sizing:border-box!important;margin:0!important;
+  padding:0 7px!important;overflow:hidden!important;align-items:center!important;
+}
+@media(max-width:520px){
+  #planner.week-columns .week-column-stack>.day.week-column-day .tasks{gap:4px!important}
+  #planner.week-columns .week-column-stack>.day.week-column-day .tasks>.task{
+    flex-basis:36px!important;height:36px!important;min-height:36px!important;max-height:36px!important;
+  }
+}
+
+/* MaDenFlow 7.2 — responsive one/two-column task density and typography. */
+body[data-custom-appearance="on"] #planner .task-text{
+  font-size:var(--custom-task-font,15px)!important;
+}
+body[data-custom-appearance="on"] #planner .task-time{
+  font-size:var(--week-task-time-font,12px)!important;
+}
+#planner.week-columns .week-column-stack>.day.week-column-day .tasks{
+  display:flex!important;flex-direction:column!important;flex-wrap:nowrap!important;
+  justify-content:flex-start!important;align-items:stretch!important;align-content:flex-start!important;
+  gap:var(--week-task-gap,2px)!important;padding:0!important;margin:0!important;
+  min-height:0!important;overflow:hidden!important;box-sizing:border-box!important;
+}
+#planner.week-columns .week-column-stack>.day.week-column-day .tasks>.task{
+  display:flex!important;flex:0 0 var(--week-task-row-height,30px)!important;flex-shrink:0!important;
+  height:var(--week-task-row-height,30px)!important;min-height:var(--week-task-row-height,30px)!important;
+  max-height:var(--week-task-row-height,30px)!important;width:100%!important;min-width:0!important;
+  margin:0!important;padding:0 5px!important;gap:0!important;align-items:center!important;
+  box-sizing:border-box!important;overflow:hidden!important;border-radius:10px!important;
+}
+#planner.week-columns .week-column-stack>.day.week-column-day .task-text-wrap{
+  display:flex!important;align-items:center!important;gap:4px!important;width:100%!important;min-width:0!important;
+  margin:0!important;padding:0!important;line-height:1!important;overflow:hidden!important;
+}
+#planner.week-columns .week-column-stack>.day.week-column-day .task-text{
+  font-family:inherit!important;font-size:var(--week-task-font,15px)!important;font-weight:650!important;
+  line-height:1!important;min-width:0!important;white-space:nowrap!important;text-overflow:ellipsis!important;overflow:hidden!important;
+}
+#planner.week-columns .week-column-stack>.day.week-column-day .task-time{
+  flex:0 0 auto!important;font-family:inherit!important;font-size:var(--week-task-time-font,12px)!important;
+  font-weight:650!important;line-height:1!important;white-space:nowrap!important;
+}
+#planner.week-columns .week-column-stack>.day.week-column-day .task-check,
+#planner.week-columns .week-column-stack>.day.week-column-day .task-check input,
+#planner.week-columns .week-column-stack>.day.week-column-day .task-check .checkmark{
+  display:none!important;width:0!important;height:0!important;min-width:0!important;min-height:0!important;
+  margin:0!important;padding:0!important;border:0!important;overflow:hidden!important;
+}
+
+/* Sunday is intentionally shorter; Thursday–Saturday remain equal height. */
+#planner.week-columns .week-column-right>.day:nth-child(1),
+#planner.week-columns .week-column-right>.day:nth-child(2),
+#planner.week-columns .week-column-right>.day:nth-child(3){flex:1 1 0!important}
+#planner.week-columns .week-column-right>.day:nth-child(4){flex:.58 1 0!important}
+
+/* MaDenFlow 7.4 — keep one-column date header untouched; adjust headers only in two-column mode. */
+#planner.week-columns .week-column-stack>.day.week-column-day>.day-title .day-date-side{
+  display:flex!important;flex-direction:row!important;align-items:baseline!important;justify-content:flex-start!important;
+  width:100%!important;min-width:0!important;gap:0!important;white-space:nowrap!important;line-height:1!important;
+}
+#planner.week-columns .week-column-stack>.day.week-column-day>.day-title .day-weekday{
+  order:0!important;flex:0 0 auto!important;margin:0 14px 0 0!important;
+  font-size:var(--custom-weekday-size,20px)!important;font-weight:800!important;line-height:1.05!important;
+  color:var(--custom-date-color,#26364d)!important;
+}
+#planner.week-columns .week-column-stack>.day.week-column-day>.day-title .day-date-main{
+  order:1!important;display:flex!important;flex:0 0 auto!important;align-items:baseline!important;justify-content:flex-start!important;
+  gap:6px!important;margin:0!important;white-space:nowrap!important;
+}
+#planner.week-columns .week-column-stack>.day.week-column-day>.day-title .day-number{
+  font-size:var(--custom-weekday-size,20px)!important;font-weight:800!important;line-height:1.05!important;
+  color:var(--custom-date-color,#26364d)!important;
+}
+#planner.week-columns .week-column-stack>.day.week-column-day>.day-title .day-month{
+  display:inline-block!important;order:1!important;margin:0!important;padding:0!important;
+  font-size:var(--custom-month-size,14px)!important;font-weight:750!important;line-height:1!important;
+  color:var(--month-season-color,#7397c9)!important;
+}
+#planner.week-columns .week-column-stack>.day.week-column-day>.day-title .day-star{
+  order:2!important;margin-left:auto!important;flex:0 0 auto!important;font-size:.8em!important;
+}
+/* Radius control applies to both day cards and task cards in two-column view. */
+#planner.week-columns .week-column-stack>.day.week-column-day{
+  border-radius:var(--custom-card-radius,14px)!important;overflow:hidden!important;
+}
+#planner.week-columns .week-column-stack>.day.week-column-day .tasks>.task{
+  border-radius:var(--custom-card-radius,14px)!important;
+  border:1.5px solid var(--task-accent,#5795ee)!important;
+  border-left:5px solid var(--task-accent,#5795ee)!important;
+}
+#planner.week-columns .week-column-stack>.day.week-column-day .tasks>.task::before{display:none!important;content:none!important}
+
+
+/* MaDenFlow 7.5 — action to delete an entire recurring event chain in the day popup */
+.day-popup-delete-chain{font-size:16px!important;min-width:38px}
+.day-popup-delete-chain:active{transform:scale(.96)}
+
+/* MaDenFlow seasonal month palette (v7.6). Custom task colors always take precedence. */
+#planner .day-title{background:var(--season-tint,transparent);border-radius:10px 10px 5px 5px;}
+#planner .day-weekday{ text-decoration-color:var(--season-color,currentColor); }
+#planner .day-month{color:var(--season-color,var(--text2,#718096))!important;}
+#planner .day.today .day-title{box-shadow:inset 0 -2px 0 var(--season-color,transparent);}
+#planner .task.seasonal-task-default,
+#planner.week-columns .week-column-stack .task.seasonal-task-default{
+  background:var(--season-task-tint,rgba(100,130,160,.10))!important;
+  border-color:color-mix(in srgb,var(--season-task-accent,#789) 52%,transparent)!important;
+  --task-accent:var(--season-task-accent,#789);
+  --task-tint:var(--season-task-tint,rgba(100,130,160,.10));
+}
+#planner .task.seasonal-task-default::before{background:var(--season-task-accent,#789)!important;}
+.month-screen-title{transition:background .2s ease,color .2s ease;}
+.month-screen-grid .month-weekday{color:var(--season-color,var(--text2));background:var(--season-tint,transparent);border-radius:8px 8px 4px 4px;}
+.month-screen-grid .month-day{background:var(--season-tint,rgba(240,246,252,.8));}
+.month-screen-grid .month-day.today{box-shadow:inset 0 0 0 2px var(--season-color,var(--primary));}
+.month-screen-grid .month-day.selected{background:var(--season-color,var(--primary));color:#fff;}
+.month-screen-grid .month-day.has-tasks::after{background:var(--season-color,var(--primary));}
+
+/* MaDenFlow 7.7 — seasonal landscapes with frosted-glass surfaces */
+#planner .day{
+  position:relative;
+  isolation:isolate;
+  background-image:linear-gradient(145deg,rgba(18,32,52,.16),rgba(20,30,48,.30)),var(--month-landscape);
+  background-size:cover;
+  background-position:center;
+  border:1px solid rgba(255,255,255,.30);
+  box-shadow:0 8px 28px rgba(20,35,55,.16);
+}
+#planner .day-title,
+#planner .day-content{
+  position:relative;
+  z-index:1;
+}
+#planner .day-title{
+  background:rgba(255,255,255,.36);
+  -webkit-backdrop-filter:blur(14px) saturate(135%);
+  backdrop-filter:blur(14px) saturate(135%);
+  border:1px solid rgba(255,255,255,.32);
+  color:#15263a;
+}
+#planner .day-weekday,#planner .day-number{color:#fff;text-shadow:0 1px 5px rgba(0,0,0,.38)}
+#planner .day-month{color:#fff!important;text-shadow:0 1px 5px rgba(0,0,0,.42)}
+#planner .task,
+#planner .task.seasonal-task-default,
+#planner.week-columns .week-column-stack .task.seasonal-task-default{
+  background:rgba(255,255,255,.78)!important;
+  -webkit-backdrop-filter:blur(18px) saturate(145%);
+  backdrop-filter:blur(18px) saturate(145%);
+  border-color:rgba(255,255,255,.58)!important;
+  box-shadow:0 3px 12px rgba(15,30,50,.12);
+}
+#planner .task.seasonal-task-default{background:color-mix(in srgb,var(--season-task-tint) 42%,rgba(255,255,255,.78))!important;}
+#monthScreen{
+  background-image:linear-gradient(145deg,rgba(13,28,48,.32),rgba(20,30,48,.48)),var(--month-landscape);
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
+}
+#monthScreen .month-screen-head .logo{color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.45)}
+#monthScreen .month-screen-title{color:#fff!important;background:rgba(255,255,255,.18)!important;border:1px solid rgba(255,255,255,.28);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);text-shadow:0 1px 8px rgba(0,0,0,.28)}
+#monthScreen .month-screen-nav button,
+#monthScreen .month-screen-grid,
+#monthScreen .month-selected-tasks{
+  background:rgba(245,249,255,.30);
+  border:1px solid rgba(255,255,255,.34);
+  -webkit-backdrop-filter:blur(22px) saturate(145%);
+  backdrop-filter:blur(22px) saturate(145%);
+  box-shadow:0 12px 36px rgba(8,22,40,.18);
+}
+#monthScreen .month-weekday{color:#fff;text-shadow:0 1px 5px rgba(0,0,0,.4)}
+#monthScreen .month-day{background:rgba(255,255,255,.40);border:1px solid rgba(255,255,255,.24);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);color:#17263b}
+#monthScreen .month-day.selected{background:var(--season-color,#2878a5);color:#fff}
+#monthScreen .month-selected-tasks{border-radius:22px;padding:14px;color:#fff}
+#monthScreen .month-selected-tasks h3{color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.35)}
+#monthScreen .month-task-row{background:rgba(255,255,255,.74);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);color:#17263b;border:1px solid rgba(255,255,255,.45)}
+#monthScreen #openSelectedWeek{background:rgba(255,255,255,.82);color:#17263b}
+body.dark #planner .day-title{background:rgba(20,28,43,.40);color:#fff}
+body.dark #planner .task{background:rgba(25,34,51,.76)!important;color:#f4f7ff}
+body.dark #monthScreen .month-day{color:#fff;background:rgba(20,30,45,.42)}
+@media(prefers-reduced-transparency:reduce){#planner .task,#planner .day-title,#monthScreen .month-screen-grid,#monthScreen .month-day{backdrop-filter:none;-webkit-backdrop-filter:none;background-color:rgba(245,248,252,.92)}}
+
+
+/* MaDenFlow 7.8 — landscape stays visible across the full week; blur only glass surfaces. */
+#planner{
+  background-image:linear-gradient(145deg,rgba(15,30,48,.10),rgba(15,30,48,.18)),var(--week-landscape);
+  background-size:cover; background-position:center; background-repeat:no-repeat;
+  background-attachment:local; border-radius:18px;
+}
+#planner .day,
+#planner .day.weekend,
+#planner .day.today,
+#planner .day:not(.weekend),
+body[data-custom-appearance="on"] #planner .day:not(.weekend),
+body[data-custom-appearance="on"] #planner .day.weekend{
+  background-color:rgba(255,255,255,.035)!important;
+  background-image:none!important;
+  border-color:rgba(255,255,255,.28)!important;
+  box-shadow:0 4px 18px rgba(12,25,42,.08)!important;
+}
+#planner .day-title{
+  background:rgba(255,255,255,.22)!important;
+  -webkit-backdrop-filter:blur(12px) saturate(135%);
+  backdrop-filter:blur(12px) saturate(135%);
+  border:1px solid rgba(255,255,255,.30)!important;
+}
+#planner .day-content{background:transparent!important;}
+#planner .task,
+#planner .task.seasonal-task-default,
+#planner.week-columns .week-column-stack .task.seasonal-task-default{
+  background:rgba(245,250,255,.70)!important;
+  -webkit-backdrop-filter:blur(16px) saturate(145%);
+  backdrop-filter:blur(16px) saturate(145%);
+  border-color:rgba(255,255,255,.48)!important;
+}
+#planner .task.seasonal-task-default{
+  background:color-mix(in srgb,var(--season-task-tint,rgba(180,200,220,.2)) 35%,rgba(245,250,255,.68))!important;
+}
+body.dark #planner .day, body.dark #planner .day.weekend, body.dark #planner .day.today{background-color:rgba(10,20,35,.10)!important;}
+body.dark #planner .task{background:rgba(20,32,50,.64)!important;}
+
+/* MaDenFlow 7.9 — final glass layering fix: crisp scenery on the canvas, blur only windows. */
+#planner{
+  position:relative!important;
+  isolation:isolate!important;
+  background-color:transparent!important;
+  background-image:var(--week-landscape)!important;
+  background-size:cover!important;
+  background-position:center center!important;
+  background-repeat:no-repeat!important;
+  background-attachment:scroll!important;
+}
+#planner.week-columns{background-image:var(--week-landscape)!important;}
+#planner>.week-column-stack{background:transparent!important;}
+#planner .day,
+#planner .day.weekend,
+#planner .day.today,
+body[data-custom-appearance="on"] #planner .day:not(.weekend),
+body[data-custom-appearance="on"] #planner .day.weekend{
+  background-color:rgba(230,240,250,.055)!important;
+  background-image:none!important;
+  -webkit-backdrop-filter:none!important;
+  backdrop-filter:none!important;
+  border:1px solid rgba(255,255,255,.25)!important;
+  box-shadow:0 3px 14px rgba(15,30,50,.07)!important;
+}
+#planner .day-title{
+  background:rgba(235,244,255,.19)!important;
+  -webkit-backdrop-filter:blur(9px) saturate(125%)!important;
+  backdrop-filter:blur(9px) saturate(125%)!important;
+  border:1px solid rgba(255,255,255,.27)!important;
+  color:#fff!important;
+  text-shadow:0 1px 4px rgba(0,0,0,.32)!important;
+}
+#planner .day-content,#planner .tasks{background:transparent!important;}
+#planner .task,
+#planner .task.seasonal-task-default,
+#planner.week-columns .week-column-stack .task.seasonal-task-default{
+  background:rgba(245,250,255,.64)!important;
+  -webkit-backdrop-filter:blur(12px) saturate(130%)!important;
+  backdrop-filter:blur(12px) saturate(130%)!important;
+  border-color:rgba(255,255,255,.48)!important;
+  box-shadow:0 2px 9px rgba(15,30,50,.09)!important;
+}
+#monthScreen{
+  background-color:transparent!important;
+  background-image:var(--month-landscape)!important;
+  background-size:cover!important;background-position:center center!important;
+  -webkit-backdrop-filter:none!important;backdrop-filter:none!important;
+}
+#monthScreen::before,#monthScreen::after{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;}
+#monthScreen .month-screen-grid,
+#monthScreen .month-selected-tasks{
+  background:rgba(245,249,255,.20)!important;
+  -webkit-backdrop-filter:blur(14px) saturate(130%)!important;
+  backdrop-filter:blur(14px) saturate(130%)!important;
+}
+#monthScreen .month-day{background:rgba(245,249,255,.30)!important;}
+#monthScreen .month-task-row{background:rgba(245,249,255,.62)!important;}
+
+
+/* MaDenFlow 8.0 — crisp seasonal landscape assets; blur only glass panels. */
+#planner, #monthScreen {
+  filter:none!important;
+  -webkit-filter:none!important;
+}
+#planner { background-color:transparent!important; }
+#planner .day-title { background:rgba(235,244,255,.20)!important; }
+#planner .task { background:rgba(245,250,255,.76)!important; color:#17263b!important; text-shadow:none!important; }
+#planner .task * { color:inherit; }
+#monthScreen .month-day { background:rgba(245,249,255,.43)!important; }
+#monthScreen .month-task-row { background:rgba(245,249,255,.78)!important; }
+
+
+/* MaDenFlow 8.1 — optional scenic glass effect */
+.appearance-toggle-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 14px;margin:10px 0;border:1px solid var(--line,rgba(120,140,170,.25));border-radius:12px;background:rgba(130,150,180,.08)}
+.appearance-toggle-row span{display:flex;flex-direction:column;gap:4px}.appearance-toggle-row strong{font-size:14px}.appearance-toggle-row small{font-size:12px;opacity:.72}.appearance-toggle-row input{width:20px;height:20px;accent-color:#1687a7;flex-shrink:0}
+body[data-scenic-glass="off"] #planner,body[data-scenic-glass="off"] #monthScreen{background-image:none!important}
+body[data-scenic-glass="off"] #planner .day-title,body[data-scenic-glass="off"] #planner .task,body[data-scenic-glass="off"] #monthScreen .month-screen-grid,body[data-scenic-glass="off"] #monthScreen .month-selected-tasks,body[data-scenic-glass="off"] #monthScreen .month-day,body[data-scenic-glass="off"] #monthScreen .month-task-row{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+body[data-scenic-glass="off"] #planner .day-title{background:var(--custom-weekday,#dce7fa)!important;color:var(--custom-text,#26364d)!important;text-shadow:none!important}
+body[data-scenic-glass="off"] #planner .task{background:var(--custom-card,#fff)!important}
+body[data-scenic-glass="off"] #monthScreen .month-screen-grid,body[data-scenic-glass="off"] #monthScreen .month-selected-tasks{background:var(--custom-bg,#eef3fb)!important}
+body[data-scenic-glass="off"] #monthScreen .month-day{background:var(--custom-weekday,#dce7fa)!important}
+body[data-scenic-glass="off"] #monthScreen .month-task-row{background:var(--custom-card,#fff)!important}
+
+/* MaDenFlow 8.2 — stronger matte day panels, crisp landscape remains visible between them */
+body[data-scenic-glass="on"] #planner .day,
+body:not([data-scenic-glass="off"]) #planner .day {
+  background: rgba(224, 234, 246, .22) !important;
+  border: 1px solid rgba(255,255,255,.34) !important;
+  -webkit-backdrop-filter: blur(var(--day-card-blur, 12px)) saturate(112%) !important;
+  backdrop-filter: blur(var(--day-card-blur, 12px)) saturate(112%) !important;
+}
+body[data-scenic-glass="on"] #planner .day-title,
+body:not([data-scenic-glass="off"]) #planner .day-title {
+  background: rgba(226, 235, 248, .46) !important;
+  border: 1px solid rgba(255,255,255,.48) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(125%) !important;
+  backdrop-filter: blur(28px) saturate(125%) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.28), 0 3px 12px rgba(18,32,52,.10) !important;
+}
+body[data-scenic-glass="on"] #planner .task,
+body:not([data-scenic-glass="off"]) #planner .task {
+  background: rgba(235, 242, 251, .78) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(120%) !important;
+  backdrop-filter: blur(16px) saturate(120%) !important;
+  border-color: rgba(255,255,255,.64) !important;
+  box-shadow: 0 3px 10px rgba(15,30,50,.10) !important;
+}
+body[data-scenic-glass="on"] #planner .task.seasonal-task-default,
+body:not([data-scenic-glass="off"]) #planner .task.seasonal-task-default {
+  background: color-mix(in srgb, var(--season-task-tint, #c7d9ec) 28%, rgba(235,242,251,.80)) !important;
+}
+body.dark[data-scenic-glass="on"] #planner .day { background:rgba(22,32,48,.28)!important; }
+body.dark[data-scenic-glass="on"] #planner .day-title { background:rgba(22,32,48,.58)!important; }
+body.dark[data-scenic-glass="on"] #planner .task { background:rgba(22,32,48,.78)!important;color:#f4f7ff!important; }
+
+/* MaDenFlow 8.3: live blur slider and frosted side navigation */
+body[data-scenic-glass="on"] #planner .day { -webkit-backdrop-filter: blur(var(--day-card-blur,12px)) saturate(112%) !important; backdrop-filter: blur(var(--day-card-blur,12px)) saturate(112%) !important; }
+body[data-scenic-glass="on"] .side-panel::after { background:rgba(230,239,250,.48) !important; -webkit-backdrop-filter:blur(26px) saturate(1.25) !important; backdrop-filter:blur(26px) saturate(1.25) !important; border-right:1px solid rgba(255,255,255,.62) !important; }
+body[data-scenic-glass="off"] .side-panel::after { -webkit-backdrop-filter:none !important; backdrop-filter:none !important; background:var(--custom-sidebar,#e0e8f2) !important; }
+
+
+/* MaDenFlow 8.4 — visible glass panels and menu. Keep the scenery crisp outside surfaces. */
+body[data-scenic-glass="on"] #planner .day,
+body:not([data-scenic-glass="off"]) #planner .day {
+  background: rgba(222, 233, 247, .20) !important;
+  -webkit-backdrop-filter: blur(var(--day-card-blur, 12px)) saturate(118%) !important;
+  backdrop-filter: blur(var(--day-card-blur, 12px)) saturate(118%) !important;
+  border: 1px solid rgba(255,255,255,.48) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.28), 0 5px 18px rgba(20,35,55,.12) !important;
+}
+body[data-scenic-glass="on"] #planner .day-title,
+body:not([data-scenic-glass="off"]) #planner .day-title {
+  background: rgba(226, 237, 250, .34) !important;
+  -webkit-backdrop-filter: blur(var(--day-card-blur, 12px)) saturate(120%) !important;
+  backdrop-filter: blur(var(--day-card-blur, 12px)) saturate(120%) !important;
+  border: 1px solid rgba(255,255,255,.58) !important;
+}
+body[data-scenic-glass="on"] #sidePanel,
+body:not([data-scenic-glass="off"]) #sidePanel {
+  background: rgba(228, 237, 249, .18) !important;
+  isolation: isolate;
+}
+body[data-scenic-glass="on"] #sidePanel::after,
+body:not([data-scenic-glass="off"]) #sidePanel::after {
+  background: rgba(222, 234, 249, .30) !important;
+  -webkit-backdrop-filter: blur(30px) saturate(135%) !important;
+  backdrop-filter: blur(30px) saturate(135%) !important;
+  border-right: 1px solid rgba(255,255,255,.72) !important;
+  box-shadow: 12px 0 36px rgba(22,38,62,.20) !important;
+}
+body[data-scenic-glass="on"] #sidePanel .side-nav-btn,
+body:not([data-scenic-glass="off"]) #sidePanel .side-nav-btn {
+  background: rgba(255,255,255,.48) !important;
+  border: 1px solid rgba(255,255,255,.56) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  backdrop-filter: blur(10px) !important;
+  box-shadow: 0 3px 12px rgba(24,42,66,.08) !important;
+}
+body[data-scenic-glass="off"] #planner .day,
+body[data-scenic-glass="off"] #planner .day-title {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+body.dark[data-scenic-glass="on"] #planner .day { background: rgba(20,31,48,.34) !important; }
+body.dark[data-scenic-glass="on"] #planner .day-title { background: rgba(20,31,48,.50) !important; }
+body.dark[data-scenic-glass="on"] #sidePanel::after { background: rgba(19,29,45,.54) !important; }
+body.dark[data-scenic-glass="on"] #sidePanel .side-nav-btn { background: rgba(34,47,66,.72) !important; color: #f4f7ff !important; }
+
+
+/* MaDenFlow 8.5 — white frosted week cards with a readable month/date header */
+body:not([data-scenic-glass="off"]) #planner .day {
+  background: rgba(248, 251, 255, .48) !important;
+  border: 1px solid rgba(255, 255, 255, .78) !important;
+  -webkit-backdrop-filter: blur(var(--day-card-blur, 12px)) saturate(108%) !important;
+  backdrop-filter: blur(var(--day-card-blur, 12px)) saturate(108%) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.58), 0 5px 18px rgba(28,43,63,.10) !important;
+}
+body:not([data-scenic-glass="off"]) #planner .day-title {
+  background: rgba(250, 252, 255, .84) !important;
+  color: #24364c !important;
+  text-shadow: none !important;
+  border: 1px solid rgba(255,255,255,.94) !important;
+  -webkit-backdrop-filter: blur(var(--day-card-blur, 12px)) saturate(105%) !important;
+  backdrop-filter: blur(var(--day-card-blur, 12px)) saturate(105%) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.92), 0 2px 8px rgba(25,42,62,.08) !important;
+}
+body:not([data-scenic-glass="off"]) #planner .day-title :is(span, strong, small, time, .month, .weekday, .day-number) {
+  color: #24364c !important;
+  text-shadow: none !important;
+}
+body:not([data-scenic-glass="off"]) #planner .task {
+  background: rgba(255,255,255,.91) !important;
+  color: #26364d !important;
+  border-color: rgba(255,255,255,.96) !important;
+}
+body:not([data-scenic-glass="off"]) #sidePanel {
+  background: transparent !important;
+  isolation: isolate;
+}
+body:not([data-scenic-glass="off"]) #sidePanel::after {
+  background: rgba(246, 250, 255, .78) !important;
+  -webkit-backdrop-filter: blur(30px) saturate(112%) !important;
+  backdrop-filter: blur(30px) saturate(112%) !important;
+  border-right: 1px solid rgba(255,255,255,.92) !important;
+  box-shadow: 12px 0 36px rgba(22,38,62,.14) !important;
+}
+body:not([data-scenic-glass="off"]) #sidePanel .side-panel-inner { position:relative; z-index:1; }
+body:not([data-scenic-glass="off"]) #sidePanel .side-nav-btn {
+  background: rgba(255,255,255,.72) !important;
+  color: #26364d !important;
+  border: 1px solid rgba(255,255,255,.94) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.92), 0 3px 10px rgba(22,38,62,.07) !important;
+}
+body.dark:not([data-scenic-glass="off"]) #planner .day { background:rgba(23,35,52,.48)!important; }
+body.dark:not([data-scenic-glass="off"]) #planner .day-title { background:rgba(242,247,255,.90)!important;color:#24364c!important; }
+body.dark:not([data-scenic-glass="off"]) #planner .task { background:rgba(25,37,55,.91)!important;color:#f4f7ff!important; }
+body.dark:not([data-scenic-glass="off"]) #sidePanel::after { background:rgba(25,37,55,.84)!important; }
+body.dark:not([data-scenic-glass="off"]) #sidePanel .side-nav-btn { background:rgba(42,56,76,.84)!important;color:#f4f7ff!important; }

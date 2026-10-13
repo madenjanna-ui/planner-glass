@@ -1,386 +1,107 @@
-// =====================================
-// MaDenFlow Tasks 3.2
-// =====================================
-
-// Загрузка задач дня
-function loadTasks(date, container) {
-
-    container.innerHTML = "";
-
-    const list = getTasks(date);
-
-container.className = "tasks";
-
-if (list.length === 1) {
-
-    // одна колонка
-
+// MaDenFlow Tasks 5.4
+function escapeHtml(text){return String(text??"").replace(/[&<>\'\"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
+function loadTasks(date,container){
+  container.innerHTML="";
+  const list=getTasks(date);
+  container.className="tasks";
+  if(list.length===2)container.classList.add("two-columns");
+  if(list.length>=3)container.classList.add("three-columns");
+  if(list.length>=7)container.classList.add("compact");
+  list.forEach((taskData,index)=>{
+    const task=document.createElement("div");
+    task.className="task";
+    if(taskData.done)task.classList.add("done");
+    task.classList.add(taskData.priority||"normal");
+    if(taskData.cardColor && ["soft-blue","soft-green","soft-orange","soft-pink","soft-purple","soft-teal"].includes(taskData.cardColor)) task.classList.add("color-"+taskData.cardColor);
+    if(list.length>=2)task.classList.add("grid-task");
+    const view=(appData.settings||{}).taskView||"cards";
+    if(view==="weekColumns") container.style.setProperty("--day-task-limit",String(Math.max(6,Math.min(12,Number(appData.settings.maxDayTasks)||6))));
+    const listColor=taskData.listColor||"green";
+    task.classList.add("list-"+listColor);
+    const time=taskData.time||"";
+    task.innerHTML=`<label class="task-check"><input type="checkbox" ${taskData.done?"checked":""}><span class="checkmark"></span></label><div class="task-text-wrap">${time?`<span class="task-time">${escapeHtml(time)}</span>`:""}<div class="task-text" title="${escapeHtml(taskData.text)}">${escapeHtml(taskData.text)}</div></div>`;
+    const checkbox=task.querySelector("input");
+    checkbox.addEventListener("change",()=>{toggleTask(date,index,checkbox.checked);renderWeek()});
+    task.addEventListener("click",e=>{if(e.target.tagName==="INPUT"||e.target.classList.contains("checkmark"))return;if(typeof openDayPopup==="function")openDayPopup(date);else showTaskMenu(task,date,index)});
+    container.appendChild(task);
+  });
 }
-else if (list.length === 2) {
-
-    container.classList.add("two-columns");
-
-}
-else if (list.length >= 3) {
-
-    container.classList.add("three-columns");
-
-}
-
-if (list.length >= 7) {
-
-    container.classList.add("compact");
-
-}
-
-
-    
-    list.forEach((taskData, index) => {
-
-        const task =
-        document.createElement("div");
-
-        task.className = "task";
-
-        if (taskData.done) {
-            task.classList.add("done");
-        }
-
-        switch (taskData.priority) {
-
-            case "important":
-                task.classList.add("important");
-                break;
-
-            case "urgent":
-                task.classList.add("urgent");
-                break;
-
-            default:
-                task.classList.add("normal");
-
-        }
-      if (
-
-    container.classList.contains("two-columns") ||
-
-    container.classList.contains("three-columns")
-
-){
-
-    task.classList.add("grid-task");
-
-}
-
-        task.innerHTML = `
-
-            <label class="task-check">
-
-                <input
-                    type="checkbox"
-                    ${taskData.done ? "checked" : ""}
-                >
-
-                <span class="checkmark"></span>
-
-            </label>
-
-            <div class="task-text">
-                ${taskData.text}
-            </div>
-
-        `;
-
-        const checkbox =
-        task.querySelector("input");
-
-        checkbox.addEventListener(
-            "change",
-            function () {
-
-                toggleTask(
-                    date,
-                    index,
-                    checkbox.checked
-                );
-
-                renderWeek();
-
-            }
-        );
-
-        task.addEventListener(
-            "click",
-            function (e) {
-
-                if (
-                    e.target.tagName === "INPUT" ||
-                    e.target.classList.contains("checkmark")
-                ) {
-                    return;
-                }
-
-                showTaskMenu(
-                    task,
-                    date,
-                    index
-                );
-
-            }
-        );
-
-        container.appendChild(task);
-
-    });
-
-}
-// =====================================
-// Контекстное меню задачи
-// =====================================
-
-function showTaskMenu(task, date, index) {
-
-    closeTaskMenu();
-
-const menu = document.createElement("div");
-menu.className = "task-menu";
-
-const taskData = getTasks(date)[index];
-
-menu.innerHTML = `
-
-<div class="task-preview">
-    ${taskData.text}
-</div>
-
-<button data-action="important">
-    Важное
-</button>
-
-<button data-action="urgent">
-    Срочное
-</button>
-
-<button data-action="normal">
-    Обычное
-</button>
-
-<div class="task-menu-line"></div>
-
-<button data-action="edit">
-    Редактировать
-</button>
-
-<button data-action="delete">
-    Удалить
-</button>
-
-`;
-
-document.body.appendChild(menu);
-
-    const rect = task.getBoundingClientRect();
-
-    let left = rect.left;
-    let top = rect.bottom + 6;
-
-    if (left + 220 > window.innerWidth) {
-        left = window.innerWidth - 225;
+function showTaskMenu(task,date,index){
+  closeTaskMenu();
+  const taskData=getTasks(date)[index];
+  if(!taskData)return;
+  const recurring=!!taskData.recurrenceId;
+  const listMode=(appData.settings||{}).taskView==="list";
+  const menu=document.createElement("div");
+  menu.className="task-menu";
+  menu.innerHTML=`
+    <div class="task-preview">${taskData.time?`<div class="task-preview-time">🕒 ${escapeHtml(taskData.time)}</div>`:""}${escapeHtml(taskData.text)}</div>
+    <button data-action="important">🟠 Важное</button>
+    <button data-action="urgent">🔴 Срочное</button>
+    <button data-action="normal">🟢 Обычное</button>
+    <div class="task-menu-line"></div><div class="task-menu-label">Цвет карточки</div>
+    <div class="task-color-actions">
+      <button data-action="color-soft-blue" aria-label="Голубой">🔵 Голубой</button>
+      <button data-action="color-soft-green" aria-label="Зелёный">🟢 Зелёный</button>
+      <button data-action="color-soft-orange" aria-label="Оранжевый">🟠 Оранжевый</button>
+      <button data-action="color-soft-pink" aria-label="Розовый">🌸 Розовый</button>
+      <button data-action="color-soft-purple" aria-label="Фиолетовый">🟣 Фиолетовый</button>
+      <button data-action="color-soft-teal" aria-label="Бирюзовый">🩵 Бирюзовый</button>
+    </div>
+    ${listMode?`<div class="task-menu-line"></div><div class="task-menu-label">Цвет строки</div><div class="task-color-actions"><button data-action="list-green">🟢 Зелёная</button><button data-action="list-red">🔴 Красная</button><button data-action="list-black">⚫ Чёрная</button></div>`:""}
+    <div class="task-menu-line"></div>
+    <button data-action="edit">✏️ Редактировать</button>
+    ${recurring?`<button data-action="edit-chain">✏️ Редактировать всю цепочку</button>`:""}
+    <button data-action="delete">🗑 Удалить это дело</button>
+    ${recurring?`<button data-action="delete-chain">🗑 Удалить всю цепочку</button>`:""}
+  `;
+  document.body.appendChild(menu);
+  const rect=task.getBoundingClientRect();
+  let left=Math.min(rect.left,window.innerWidth-310),top=rect.bottom+6;
+  if(top+menu.offsetHeight>window.innerHeight)top=Math.max(8,rect.top-menu.offsetHeight-6);
+  menu.style.left=Math.max(8,left)+"px";menu.style.top=top+"px";
+  menu.querySelectorAll("button").forEach(button=>button.onclick=e=>{
+    e.stopPropagation();
+    const action=button.dataset.action;
+    if(action.startsWith("color-soft-")){
+      const color=action.slice(6);
+      const all=getTasks(date); if(all[index]) all[index].cardColor=color;
+      if(typeof saveStorage==="function") saveStorage();
+      closeTaskMenu(); renderWeek(); return;
     }
-
-    if (top + menu.offsetHeight > window.innerHeight) {
-        top = rect.top - menu.offsetHeight - 6;
+    if(["important","urgent","normal"].includes(action)){changePriority(date,index,action);closeTaskMenu();renderWeek();return}
+    if(action.startsWith("list-")){
+      const color=action.slice(5); if(taskData.recurrenceId){if(confirm("Изменить цвет у всей повторяющейся цепочки?"))setRecurringChainListColor(taskData.recurrenceId,color);else setTaskListColor(date,index,color)}else setTaskListColor(date,index,color);closeTaskMenu();renderWeek();return
     }
-
-    menu.style.left = left + "px";
-    menu.style.top = top + "px";
-
-    menu.querySelectorAll("button").forEach(button => {
-
-        button.onclick = function (e) {
-
-            e.stopPropagation();
-
-            switch (this.dataset.action) {
-
-                case "important":
-
-                    changePriority(
-                        date,
-                        index,
-                        "important"
-                    );
-
-                    break;
-
-                case "urgent":
-
-                    changePriority(
-                        date,
-                        index,
-                        "urgent"
-                    );
-
-                    break;
-
-                case "normal":
-
-                    changePriority(
-                        date,
-                        index,
-                        "normal"
-                    );
-
-                    break;
-
-                case "edit":
-
-                    editTaskDialog(
-                        date,
-                        index
-                    );
-
-                    return;
-
-                case "delete":
-
-                    if (confirm("Удалить задачу?")) {
-
-                        deleteTask(
-                            date,
-                            index
-                        );
-
-                    }
-
-                    break;
-
-            }
-
-closeTaskMenu();
-
-setTimeout(() => {
-    renderWeek();
-}, 50);
-        };
-
-    });
-
-}
-// =====================================
-// Закрыть меню
-// =====================================
-
-function closeTaskMenu() {
-
-    const menu =
-        document.querySelector(".task-menu");
-
-    if (menu) {
-        menu.remove();
+    if(action==="edit")editTaskDialog(date,index,false);
+    else if(action==="edit-chain")editTaskDialog(date,index,true);
+    else if(action==="delete"){
+      if(confirm("Удалить только эту задачу?")){deleteTask(date,index);closeTaskMenu();renderWeek()}
+    } else if(action==="delete-chain"){
+      if(confirm("Удалить ВСЕ задачи этой повторяющейся цепочки?")){deleteRecurringChain(taskData.recurrenceId);closeTaskMenu();renderWeek()}
     }
-
+  });
 }
-
-// =====================================
-// Закрытие меню по клику вне него
-// =====================================
-
-document.addEventListener("click", function (e) {
-if (e.defaultPrevented) return;
-    const menu =
-        document.querySelector(".task-menu");
-
-    if (!menu) return;
-
-    if (menu.contains(e.target)) return;
-
-    if (e.target.closest(".task")) return;
-
-    closeTaskMenu();
-
-});
-
-// =====================================
-// Диалог редактирования
-// =====================================
-
-function editTaskDialog(date, index) {
-
-    closeTaskMenu();
-
-    const task =
-        getTasks(date)[index];
-
-    const text =
-        prompt(
-            "Изменить задачу",
-            task.text
-        );
-
-    if (text === null) {
-        return;
-    }
-
-    if (text.trim() === "") {
-        return;
-    }
-
-    editTask(
-        date,
-        index,
-        text.trim()
-    );
-
-    renderWeek();
-
+function closeTaskMenu(){document.querySelectorAll(".task-menu").forEach(x=>x.remove())}
+document.addEventListener("click",e=>{if(!e.target.closest(".task-menu")&&!e.target.closest(".task"))closeTaskMenu()});
+function editTaskDialog(date,index,wholeChain=false){
+  closeTaskMenu();
+  const task=getTasks(date)[index];if(!task)return;
+  selectedDate=date;
+  const modal=document.getElementById("taskModal"),input=document.getElementById("newTaskInput"),time=document.getElementById("newTaskTime"),title=document.getElementById("taskModalTitle"),repeat=document.getElementById("recurrenceBox"),chain=document.getElementById("chainEditHint");
+  title.textContent=wholeChain?"Редактировать цепочку":"Редактировать задачу";
+  input.value=task.text;time.value=task.time||"";
+  if(typeof setTaskCardColor==="function")setTaskCardColor(task.cardColor||"soft-blue");
+  const recurrence=task.recurrenceId&&typeof getRecurrence==="function"?getRecurrence(task.recurrenceId):null;
+  repeat.classList.remove("hidden");
+  document.getElementById("repeatTask").checked=!!recurrence;
+  document.getElementById("repeatOptions").classList.toggle("hidden",!recurrence);
+  document.getElementById("repeatType").value=recurrence?.type||"weekly";
+  document.getElementById("repeatUntil").value=recurrence?.until||"";
+  document.querySelectorAll(".repeat-weekday").forEach(x=>x.checked=!!recurrence?.weekdays?.includes(Number(x.value)));
+  document.getElementById("repeatWeekdays").classList.toggle("hidden",(recurrence?.type||"")!=="customDays");
+  chain.classList.toggle("hidden",!wholeChain);modal.dataset.editDate=date;modal.dataset.editIndex=index;modal.dataset.editChain=wholeChain?"1":"0";modal.classList.remove("hidden");input.focus();
 }
-
-// =====================================
-// Перерисовать один день
-// =====================================
-
-function refreshDay(date) {
-
-    const day =
-        document.querySelector(
-            `[data-date="${date}"]`
-        );
-
-    if (!day) return;
-
-    const container =
-        day.querySelector(".tasks");
-
-    if (!container) return;
-
-    loadTasks(
-        date,
-        container
-    );
-
-}
-
-// =====================================
-// Обновить всё
-// =====================================
-
-function refreshTasks() {
-
-    if (typeof renderWeek === "function") {
-
-        renderWeek();
-
-    }
-
-}
-
-// =====================================
-// Экспорт
-// =====================================
-
-window.loadTasks = loadTasks;
-window.showTaskMenu = showTaskMenu;
-window.closeTaskMenu = closeTaskMenu;
-window.refreshDay = refreshDay;
-window.refreshTasks = refreshTasks;
+function refreshDay(date){const day=document.querySelector(`[data-date="${date}"]`);if(day){const c=day.querySelector(".tasks");if(c)loadTasks(date,c)}}
+function refreshTasks(){if(typeof renderWeek==="function")renderWeek()}
+window.loadTasks=loadTasks;window.showTaskMenu=showTaskMenu;window.closeTaskMenu=closeTaskMenu;window.refreshDay=refreshDay;window.refreshTasks=refreshTasks;window.editTaskDialog=editTaskDialog;
