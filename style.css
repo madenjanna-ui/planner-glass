@@ -4956,52 +4956,90 @@ body:not([data-scenic-glass="off"]) #planner .day-title .day-month { color:#1685
 body[data-scenic-glass="off"] { --glass-matte-alpha: 0; }
 body.dark:not([data-scenic-glass="off"]) #planner .day { background: rgba(33,45,63,var(--glass-matte-alpha,.6025)) !important; }
 
-/* MaDenFlow 9.2 — stronger matte glass on weekly day cards */
-@supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
-  body:not([data-scenic-glass="off"]) #planner .day {
-    background: rgba(246, 249, 255, var(--glass-matte-alpha, .55)) !important;
-    background-color: rgba(246, 249, 255, var(--glass-matte-alpha, .55)) !important;
-    -webkit-backdrop-filter: blur(var(--day-card-blur, 20px)) saturate(118%) !important;
-    backdrop-filter: blur(var(--day-card-blur, 20px)) saturate(118%) !important;
-    border: 1px solid rgba(255,255,255,.76) !important;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,.38), 0 5px 18px rgba(22,34,52,.12) !important;
-  }
+/* MaDenFlow 9.2 — reliable matte layer on the whole weekly day card.
+   Use a dedicated pseudo-element so later background rules cannot make the card body transparent. */
+body:not([data-scenic-glass="off"]) #planner .day {
+  position: relative !important;
+  isolation: isolate !important;
+  background: transparent !important;
+  border: 1px solid rgba(255,255,255,.48) !important;
+  overflow: hidden !important;
 }
+body:not([data-scenic-glass="off"]) #planner .day::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+  border-radius: inherit !important;
+  background: rgba(246,249,255,var(--glass-matte-alpha,.6025)) !important;
+  -webkit-backdrop-filter: blur(var(--day-card-blur,16px)) saturate(115%) !important;
+  backdrop-filter: blur(var(--day-card-blur,16px)) saturate(115%) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.36) !important;
+}
+body:not([data-scenic-glass="off"]) #planner .day > * {
+  position: relative !important;
+  z-index: 1 !important;
+}
+body[data-scenic-glass="off"] #planner .day::before { display: none !important; }
+/* Keep the date label crisp and inset from the left edge. */
+body:not([data-scenic-glass="off"]) #planner .day-title {
+  padding: 4px 10px !important;
+  background: rgba(250,252,255,.96) !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  border-radius: 9px !important;
+}
+
+
+/* MaDenFlow 9.3 — final glass controls: live matte strength, scenery toggle does not erase card surfaces. */
+body {
+  --glass-matte-alpha: .72;
+  --day-card-blur: 16px;
+}
+body:not([data-scenic-glass="off"]) #planner .day,
 body[data-scenic-glass="off"] #planner .day {
+  position: relative !important;
+  isolation: isolate !important;
+  overflow: hidden !important;
+  background: transparent !important;
+  border: 1px solid rgba(255,255,255,.55) !important;
+}
+body:not([data-scenic-glass="off"]) #planner .day::before,
+body[data-scenic-glass="off"] #planner .day::before {
+  content: "" !important;
+  display: block !important;
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+  border-radius: inherit !important;
+  background: rgba(239,246,255,var(--glass-matte-alpha,.72)) !important;
+  -webkit-backdrop-filter: blur(var(--day-card-blur,16px)) saturate(118%) !important;
+  backdrop-filter: blur(var(--day-card-blur,16px)) saturate(118%) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.42) !important;
+}
+body:not([data-scenic-glass="off"]) #planner .day > *,
+body[data-scenic-glass="off"] #planner .day > * { position: relative !important; z-index: 1 !important; }
+/* Toggle off means no scenery-specific effects; cards remain distinct and readable. */
+body[data-scenic-glass="off"] #planner .day::before {
+  background: rgba(239,246,255, .84) !important;
   -webkit-backdrop-filter: none !important;
   backdrop-filter: none !important;
 }
-body.dark:not([data-scenic-glass="off"]) #planner .day { background: rgba(33,45,63,var(--glass-matte-alpha,.55)) !important; }
-
-/* MaDenFlow 9.3 — let the weekly canvas show through day cards so backdrop blur can frost it */
-@supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
-  body:not([data-scenic-glass="off"]) #planner .day {
-    background-image: none !important;
-    background: rgba(246, 249, 255, var(--glass-matte-alpha, .55)) !important;
-    background-color: rgba(246, 249, 255, var(--glass-matte-alpha, .55)) !important;
-    isolation: auto !important;
-    -webkit-backdrop-filter: blur(var(--day-card-blur, 20px)) saturate(118%) !important;
-    backdrop-filter: blur(var(--day-card-blur, 20px)) saturate(118%) !important;
-    border: 1px solid rgba(255,255,255,.76) !important;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,.38), 0 5px 18px rgba(22,34,52,.12) !important;
-  }
-}
-body[data-scenic-glass="off"] #planner .day {
-  background-image: none !important;
+body:not([data-scenic-glass="off"]) #planner .day-title,
+body[data-scenic-glass="off"] #planner .day-title {
+  padding: 4px 12px !important;
+  background: rgba(250,252,255,.97) !important;
+  color: #26364d !important;
+  text-shadow: none !important;
   -webkit-backdrop-filter: none !important;
   backdrop-filter: none !important;
 }
-body.dark:not([data-scenic-glass="off"]) #planner .day {
-  background: rgba(33,45,63,var(--glass-matte-alpha,.55)) !important;
+body:not([data-scenic-glass="off"]) #planner .task,
+body[data-scenic-glass="off"] #planner .task {
+  background: rgba(250,252,255,.94) !important;
+  color: #26364d !important;
 }
-
-/* MaDenFlow 9.4 — final matte day card rule */
-@supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
-  body[data-scenic-glass="on"] #planner .day,
-  body:not([data-scenic-glass="off"]) #planner .day {
-    background-image: none !important;
-    background-color: rgba(235, 241, 249, .48) !important;
-    -webkit-backdrop-filter: blur(var(--day-card-blur, 20px)) saturate(120%) !important;
-    backdrop-filter: blur(var(--day-card-blur, 20px)) saturate(120%) !important;
-  }
-}
+/* Month screen keeps its seasonal landscape regardless of the week-card glass toggle. */
+body #monthScreen { background-image: var(--seasonal-landscape-image, var(--month-background-image, none)); background-size: cover; background-position: center; }

@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "madenflow-shell-";
-const CACHE_VERSION = "9.7.0";
+const CACHE_VERSION = "7.2.0";
 const CACHE_NAME = CACHE_PREFIX + CACHE_VERSION;
 const SHELL_FILES = ["./", "./index.html", "./style.css", "./app.js", "./storage.js", "./tasks.js", "./service.js", "./visits.js", "./cloud.js", "./manifest.json", "./sw.js"];
 
@@ -63,7 +63,3 @@ self.addEventListener("fetch", event => {
     }
   })());
 });
-
-
-
-

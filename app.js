@@ -400,9 +400,9 @@ function applySettings(){
   document.body.classList.toggle("dark",!!settings.darkMode);
   document.body.dataset.theme=settings.theme||"standard";
   document.body.dataset.scenicGlass=settings.scenicGlass===false?"off":"on";
-  document.body.style.setProperty("--day-card-blur",(Number(settings.dayCardBlur ?? 20))+"px");
+  document.body.style.setProperty("--day-card-blur",(Number(settings.dayCardBlur ?? 16))+"px");
   const matteLevel=Math.max(0,Math.min(100,Number(settings.glassMatte ?? 65)));
-  document.body.style.setProperty("--glass-matte-alpha",(0.18+matteLevel*0.0065).toFixed(3));
+  document.body.style.setProperty("--glass-matte-alpha",(0.20+matteLevel*0.0075).toFixed(3));
   document.body.dataset.fontSize=settings.fontSize||"medium";
   document.body.dataset.plannerFontSize=settings.plannerFontSize||settings.fontSize||"medium";
   document.body.dataset.taskFontSize=settings.taskFontSize||settings.fontSize||"medium";
@@ -517,7 +517,7 @@ function openAppearance(){
   for(const key of ["bg","weekday","weekend","card","text","sidebar"])document.getElementById("appearance"+key[0].toUpperCase()+key.slice(1)).value=a[key];
   document.getElementById("appearanceFont").value=a.font;document.getElementById("appearanceOpacity").value=a.opacity;document.getElementById("appearanceRadius").value=a.radius;
   document.getElementById("appearanceScenicGlass").checked=appData.settings.scenicGlass!==false;
-  document.getElementById("appearanceDayBlur").value=Number(appData.settings.dayCardBlur ?? 20);document.getElementById("appearanceDayBlurValue").textContent=Number(appData.settings.dayCardBlur ?? 20)+" px";
+  document.getElementById("appearanceDayBlur").value=Number(appData.settings.dayCardBlur ?? 16);document.getElementById("appearanceDayBlurValue").textContent=Number(appData.settings.dayCardBlur ?? 16)+" px";
   document.getElementById("appearanceMatte").value=Number(appData.settings.glassMatte ?? 65);document.getElementById("appearanceMatteValue").textContent=Number(appData.settings.glassMatte ?? 65)+"%";
   document.getElementById("appearanceWeekdaySize").value=a.weekdaySize;document.getElementById("appearanceMonthSize").value=a.monthSize;document.getElementById("appearanceDateColor").value=a.dateColor||a.text;
   document.getElementById("appearanceSystemText").value=a.systemText;document.getElementById("appearanceWeekTextColor").value=a.weekTextColor;
@@ -890,4 +890,3 @@ document.querySelectorAll('.modal').forEach(modal=>{
   document.getElementById("appearanceTimeColorRow").style.display=a.timeMode==="custom"?"flex":"none";
   applySettings();saveStorage();updateAppearancePreview();
 }));
-
