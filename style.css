@@ -5043,3 +5043,67 @@ body[data-scenic-glass="off"] #planner .task {
 }
 /* Month screen keeps its seasonal landscape regardless of the week-card glass toggle. */
 body #monthScreen { background-image: var(--seasonal-landscape-image, var(--month-background-image, none)); background-size: cover; background-position: center; }
+
+
+/* MaDenFlow 9.4 — consolidated weekly glass surface and appearance preview layout. */
+.appearance-head { display:block !important; position:relative !important; padding-right:0 !important; }
+.appearance-head > .appearance-preview-wrap {
+  width:100% !important; max-width:none !important; margin:0 !important;
+  box-sizing:border-box !important; position:relative !important; inset:auto !important;
+}
+.appearance-head > .appearance-preview-wrap .appearance-preview {
+  min-height:150px !important;
+}
+.appearance-x { position:absolute !important; top:8px !important; right:8px !important; z-index:5 !important; }
+body {
+  --glass-matte-alpha: .56;
+  --day-card-blur: 16px;
+}
+/* Remove legacy pseudo glass layers: the real card itself receives the filter,
+   preventing narrow pseudo-strips and preserving one-column sizing. */
+#planner .day::before {
+  content:none !important;
+  display:none !important;
+}
+#planner .day {
+  position:relative !important;
+  isolation:auto !important;
+  overflow:hidden !important;
+  background-color:rgba(238,244,252,var(--glass-matte-alpha,.56)) !important;
+  -webkit-backdrop-filter:blur(var(--day-card-blur,16px)) saturate(118%) !important;
+  backdrop-filter:blur(var(--day-card-blur,16px)) saturate(118%) !important;
+  border:1px solid rgba(255,255,255,.56) !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.38), 0 2px 8px rgba(20,35,55,.08) !important;
+}
+#planner .day > * {
+  position:relative !important;
+  z-index:auto !important;
+}
+#planner .day-title {
+  margin-left:2px !important;
+  margin-right:2px !important;
+  padding:4px 12px !important;
+  background:rgba(250,252,255,.96) !important;
+  color:#26364d !important;
+  -webkit-backdrop-filter:none !important;
+  backdrop-filter:none !important;
+  text-shadow:none !important;
+}
+#planner .day-title .day-date-side { padding-left:3px !important; }
+#planner .day-title .day-weekday,
+#planner .day-title .day-number { color:#26364d !important; font-weight:750 !important; }
+#planner .day-title .day-month { color:#1685a1 !important; font-weight:750 !important; }
+#planner .day .task {
+  background:rgba(250,252,255,.94) !important;
+  color:#26364d !important;
+}
+/* Landscape toggle controls the scenery layer, not the existence of the glass card. */
+body[data-scenic-glass="off"] #planner .day {
+  background-color:rgba(238,244,252,.82) !important;
+  -webkit-backdrop-filter:none !important;
+  backdrop-filter:none !important;
+}
+body[data-scenic-glass="off"] #planner .day::before { display:none !important; content:none !important; }
+@media (max-width:640px) {
+  .appearance-head > .appearance-preview-wrap { width:100% !important; }
+}

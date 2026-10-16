@@ -402,7 +402,7 @@ function applySettings(){
   document.body.dataset.scenicGlass=settings.scenicGlass===false?"off":"on";
   document.body.style.setProperty("--day-card-blur",(Number(settings.dayCardBlur ?? 16))+"px");
   const matteLevel=Math.max(0,Math.min(100,Number(settings.glassMatte ?? 65)));
-  document.body.style.setProperty("--glass-matte-alpha",(0.20+matteLevel*0.0075).toFixed(3));
+  document.body.style.setProperty("--glass-matte-alpha",(0.12+(matteLevel/100)*0.68).toFixed(3));
   document.body.dataset.fontSize=settings.fontSize||"medium";
   document.body.dataset.plannerFontSize=settings.plannerFontSize||settings.fontSize||"medium";
   document.body.dataset.taskFontSize=settings.taskFontSize||settings.fontSize||"medium";
@@ -504,14 +504,29 @@ const appearanceDefaults={bg:"#eef3fb",weekday:"#dce7fa",weekend:"#f5dce9",card:
 function getAppearance(){return {...appearanceDefaults,...(appData.settings.appearance||{})};}
 function updateAppearancePreview(){
   const a=getAppearance();
+  const matte=Math.max(0,Math.min(100,Number(appData.settings?.glassMatte ?? 65)));
+  const blur=Math.max(0,Math.min(32,Number(appData.settings?.dayCardBlur ?? 16)));
+  const alpha=0.12+(matte/100)*0.68;
   const preview=document.getElementById("appearancePreview");
   if(!preview)return;
-  preview.style.background=a.bg;preview.style.color=a.text;
-  const day=preview.querySelector(".appearance-preview-day");if(day)day.style.background=a.weekday;
-  const date=preview.querySelector(".appearance-preview-date");if(date)date.style.color=a.text;
-  const tasks=preview.querySelectorAll(".appearance-preview-tasks > div");tasks.forEach(el=>{el.style.background=a.card;el.style.color=a.text;el.style.opacity=Number(a.opacity)/100;el.style.borderRadius=a.radius+"px";el.style.fontSize=a.font+"px";});
+  preview.style.background=a.bg;
+  preview.style.color=a.text;
   preview.style.borderRadius=a.radius+"px";
+  const day=preview.querySelector(".appearance-preview-day");
+  if(day){
+    day.style.background=`rgba(238,244,252,${alpha.toFixed(3)})`;
+    day.style.backdropFilter=`blur(${blur}px) saturate(118%)`;
+    day.style.webkitBackdropFilter=`blur(${blur}px) saturate(118%)`;
+    day.style.border="1px solid rgba(255,255,255,.72)";
+    day.style.boxShadow="inset 0 1px 0 rgba(255,255,255,.5)";
+    day.style.borderRadius=Math.max(8,a.radius)+"px";
+  }
+  const date=preview.querySelector(".appearance-preview-date");
+  if(date){date.style.color=a.text;date.style.background=`rgba(220,231,250,${Math.max(.5,alpha).toFixed(3)})`;}
+  const tasks=preview.querySelectorAll(".appearance-preview-tasks > div");
+  tasks.forEach(el=>{el.style.background=a.card;el.style.color=a.text;el.style.opacity=String(Number(a.opacity)/100);el.style.borderRadius=a.radius+"px";el.style.fontSize=a.font+"px";});
 }
+
 function openAppearance(){
   const a=getAppearance();
   for(const key of ["bg","weekday","weekend","card","text","sidebar"])document.getElementById("appearance"+key[0].toUpperCase()+key.slice(1)).value=a[key];
@@ -533,9 +548,9 @@ function openAppearance(){
 document.getElementById("appearanceScenicGlass").addEventListener("change",e=>{appData.settings.scenicGlass=e.target.checked;applySettings();saveStorage();});
 const dayBlurInput=document.getElementById("appearanceDayBlur");
 const dayBlurValue=document.getElementById("appearanceDayBlurValue");
-if(dayBlurInput){dayBlurInput.addEventListener("input",e=>{const v=Math.max(0,Math.min(32,Number(e.target.value)||0));appData.settings.dayCardBlur=v;if(dayBlurValue)dayBlurValue.textContent=v+" px";applySettings();saveStorage();});}
+if(dayBlurInput){dayBlurInput.addEventListener("input",e=>{const v=Math.max(0,Math.min(32,Number(e.target.value)||0));appData.settings.dayCardBlur=v;if(dayBlurValue)dayBlurValue.textContent=v+" px";applySettings();saveStorage();updateAppearancePreview();});}
 const matteInput=document.getElementById("appearanceMatte");
-if(matteInput){matteInput.addEventListener("input",e=>{const v=Math.max(0,Math.min(100,Number(e.target.value)||0));appData.settings.glassMatte=v;const label=document.getElementById("appearanceMatteValue");if(label)label.textContent=v+"%";applySettings();saveStorage();});}
+if(matteInput){matteInput.addEventListener("input",e=>{const v=Math.max(0,Math.min(100,Number(e.target.value)||0));appData.settings.glassMatte=v;const label=document.getElementById("appearanceMatteValue");if(label)label.textContent=v+"%";applySettings();saveStorage();updateAppearancePreview();});}
 document.getElementById("appearanceBtn").onclick=openAppearance;
 document.getElementById("appearanceClose").onclick=()=>appearanceModal.classList.add("hidden");
 document.getElementById("appearanceDone").onclick=()=>appearanceModal.classList.add("hidden");
