@@ -399,6 +399,7 @@ function applySettings(){
   if(settings.taskView==="list") settings.taskView="cards";
   document.body.classList.toggle("dark",!!settings.darkMode);
   document.body.dataset.theme=settings.theme||"standard";
+  document.body.dataset.glassTheme=settings.theme==="glass"?"on":"off";
   document.body.dataset.scenicGlass=settings.scenicGlass===false?"off":"on";
   document.body.style.setProperty("--day-card-blur",(Number(settings.dayCardBlur ?? 16))+"px");
   const matteLevel=Math.max(0,Math.min(100,Number(settings.glassMatte ?? 65)));
@@ -464,7 +465,7 @@ document.getElementById("settingsBtn").onclick=openSettings;
 document.getElementById("settingsClose").onclick=()=>settingsModal.classList.add("hidden");
 document.getElementById("darkModeToggle").onchange=e=>{appData.settings.darkMode=e.target.checked;applySettings();saveStorage()};
 document.getElementById("gradientDaysToggle").onchange=e=>{appData.settings.gradientDays=e.target.checked;applySettings();saveStorage()};
-document.getElementById("themeSelect").onchange=e=>{appData.settings.theme=e.target.value;if(e.target.value==="custom"){appData.settings.appearance=appData.settings.appearance||{bg:"#eef3fb",weekday:"#dce7fa",weekend:"#f5dce9",card:"#ffffff",text:"#26364d",sidebar:"#e0e8f2",font:15,opacity:100,radius:14,weekdaySize:20,dateSize:30,monthSize:14,systemText:"system",weekTextColor:"#26364d",timeMode:"auto",timeColor:"#26364d"};}applySettings();saveStorage();updateAppearancePreview();};
+document.getElementById("themeSelect").onchange=e=>{appData.settings.theme=e.target.value;appData.settings.scenicGlass=e.target.value==="glass";if(e.target.value==="custom"){appData.settings.appearance=appData.settings.appearance||{bg:"#eef3fb",weekday:"#dce7fa",weekend:"#f5dce9",card:"#ffffff",text:"#26364d",sidebar:"#e0e8f2",font:15,opacity:100,radius:14,weekdaySize:20,dateSize:30,monthSize:14,systemText:"system",weekTextColor:"#26364d",timeMode:"auto",timeColor:"#26364d"};}applySettings();saveStorage();updateAppearancePreview();};
 const sidebarColorSelect=document.getElementById("sidebarColorSelect");
 if(sidebarColorSelect) sidebarColorSelect.onchange=e=>{appData.settings.sidebarColor=e.target.value;applySettings();saveStorage()};
 function syncTaskCapacityOptions(){
@@ -504,19 +505,32 @@ const appearanceDefaults={bg:"#eef3fb",weekday:"#dce7fa",weekend:"#f5dce9",card:
 function getAppearance(){return {...appearanceDefaults,...(appData.settings.appearance||{})};}
 function updateAppearancePreview(){
   const a=getAppearance();
+  const glassOn=appData.settings?.scenicGlass!==false;
+  const swatches=document.querySelector(".appearance-swatches");
+  if(swatches) swatches.hidden=glassOn;
+  const themeSelect=document.getElementById("themeSelect");
+  if(themeSelect && appData.settings?.theme) themeSelect.value=appData.settings.theme;
   const matte=Math.max(0,Math.min(100,Number(appData.settings?.glassMatte ?? 65)));
   const blur=Math.max(0,Math.min(32,Number(appData.settings?.dayCardBlur ?? 16)));
   const alpha=0.12+(matte/100)*0.68;
+  document.documentElement.style.setProperty("--glass-matte-alpha", alpha.toFixed(3));
+  document.documentElement.style.setProperty("--day-card-blur", blur+"px");
   const preview=document.getElementById("appearancePreview");
   if(!preview)return;
-  preview.style.background=a.bg;
+  const landscape=`url("month-backgrounds/month-${String((currentDate||new Date()).getMonth()+1).padStart(2,"0")}.jpg")`;
+  preview.style.backgroundImage=`linear-gradient(rgba(238,244,252,.08),rgba(238,244,252,.08)), ${landscape}`;
+  preview.style.backgroundSize="cover";
+  preview.style.backgroundPosition="center";
   preview.style.color=a.text;
   preview.style.borderRadius=a.radius+"px";
+  preview.style.setProperty("--glass-matte-alpha", alpha.toFixed(3));
+  preview.style.setProperty("--day-card-blur", blur+"px");
   const day=preview.querySelector(".appearance-preview-day");
   if(day){
-    day.style.background=`rgba(238,244,252,${alpha.toFixed(3)})`;
-    day.style.backdropFilter=`blur(${blur}px) saturate(118%)`;
-    day.style.webkitBackdropFilter=`blur(${blur}px) saturate(118%)`;
+    day.style.background=glassOn?`rgba(238,244,252,${alpha.toFixed(3)})`:`rgba(238,244,252,.94)`;
+    day.style.backgroundImage="none";
+    day.style.backdropFilter=glassOn?`blur(${blur}px) saturate(118%)`:`none`;
+    day.style.webkitBackdropFilter=glassOn?`blur(${blur}px) saturate(118%)`:`none`;
     day.style.border="1px solid rgba(255,255,255,.72)";
     day.style.boxShadow="inset 0 1px 0 rgba(255,255,255,.5)";
     day.style.borderRadius=Math.max(8,a.radius)+"px";
@@ -528,10 +542,10 @@ function updateAppearancePreview(){
 }
 
 function openAppearance(){
+  updateAppearancePreview();
   const a=getAppearance();
   for(const key of ["bg","weekday","weekend","card","text","sidebar"])document.getElementById("appearance"+key[0].toUpperCase()+key.slice(1)).value=a[key];
   document.getElementById("appearanceFont").value=a.font;document.getElementById("appearanceOpacity").value=a.opacity;document.getElementById("appearanceRadius").value=a.radius;
-  document.getElementById("appearanceScenicGlass").checked=appData.settings.scenicGlass!==false;
   document.getElementById("appearanceDayBlur").value=Number(appData.settings.dayCardBlur ?? 16);document.getElementById("appearanceDayBlurValue").textContent=Number(appData.settings.dayCardBlur ?? 16)+" px";
   document.getElementById("appearanceMatte").value=Number(appData.settings.glassMatte ?? 65);document.getElementById("appearanceMatteValue").textContent=Number(appData.settings.glassMatte ?? 65)+"%";
   document.getElementById("appearanceWeekdaySize").value=a.weekdaySize;document.getElementById("appearanceMonthSize").value=a.monthSize;document.getElementById("appearanceDateColor").value=a.dateColor||a.text;
@@ -545,7 +559,6 @@ function openAppearance(){
   updateAppearancePreview();appearanceModal.classList.remove("hidden");
 }
 
-document.getElementById("appearanceScenicGlass").addEventListener("change",e=>{appData.settings.scenicGlass=e.target.checked;applySettings();saveStorage();});
 const dayBlurInput=document.getElementById("appearanceDayBlur");
 const dayBlurValue=document.getElementById("appearanceDayBlurValue");
 if(dayBlurInput){dayBlurInput.addEventListener("input",e=>{const v=Math.max(0,Math.min(32,Number(e.target.value)||0));appData.settings.dayCardBlur=v;if(dayBlurValue)dayBlurValue.textContent=v+" px";applySettings();saveStorage();updateAppearancePreview();});}
@@ -565,7 +578,7 @@ function changeAppearance(){
   applySettings();saveStorage();updateAppearancePreview();
 }
 ["appearanceBg","appearanceWeekday","appearanceWeekend","appearanceCard","appearanceText","appearanceSidebar","appearanceFont","appearanceOpacity","appearanceRadius","appearanceWeekdaySize","appearanceMonthSize","appearanceDateColor","appearanceWeekTextColor","appearanceTimeColor"].forEach(id=>document.getElementById(id).addEventListener("input",changeAppearance));
-document.querySelectorAll(".appearance-swatch").forEach(btn=>btn.addEventListener("click",()=>{appData.settings.theme=btn.dataset.preset;document.getElementById("themeSelect").value=btn.dataset.preset;applySettings();saveStorage();openAppearance();}));
+document.querySelectorAll(".appearance-swatch").forEach(btn=>btn.addEventListener("click",()=>{appData.settings.theme=btn.dataset.preset;appData.settings.scenicGlass=false;document.getElementById("themeSelect").value=btn.dataset.preset;applySettings();saveStorage();openAppearance();}));
 document.getElementById("appearanceReset").onclick=()=>{appData.settings.scenicGlass=true;appData.settings.appearance={...appearanceDefaults};appData.settings.theme="standard";document.getElementById("themeSelect").value="standard";applySettings();saveStorage();openAppearance();};
 
 // Обновление PWA по кнопке. Старый кэш не очищаем, пока новая версия не установлена.
@@ -694,8 +707,8 @@ function openMonthScreen(){
   closeSidePanel();
   if(!monthSelectedDate) monthSelectedDate=new Date(currentDate);
   renderMonthScreen();
-  monthScreen.classList.remove("hidden");
   planner.classList.add("month-covered");
+  monthScreen.classList.remove("hidden");
 }
 function closeMonthScreen(){
   monthScreen.classList.add("hidden");
