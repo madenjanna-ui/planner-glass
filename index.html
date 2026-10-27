@@ -84,7 +84,7 @@
   </div>
   <div id="chainEditHint" class="chain-edit-hint hidden">🔁 Изменения будут применены ко всей цепочке повторяющихся задач.</div>
   <div id="recurrenceBox" class="recurrence-box">
-    <label class="switch-row"><input type="checkbox" id="repeatTask"><span>🔁 Повторять задачу</span></label>
+    <label class="switch-row"><span class="repeat-row-icon" aria-hidden="true">⟳</span><span class="repeat-row-label">Повторять задачу</span><input type="checkbox" id="repeatTask" role="switch" aria-label="Повторять задачу"><span class="repeat-switch-track" aria-hidden="true"></span></label>
     <div id="repeatOptions" class="repeat-options hidden">
       <label class="repeat-type-label">Периодичность<select id="repeatType"><option value="daily">Каждый день</option><option value="weekly">Еженедельно</option><option value="weekdays">По будням</option><option value="monthly">Ежемесячно</option><option value="customDays">Выбранные дни недели</option></select></label>
       <div id="repeatWeekdays" class="repeat-weekdays hidden"><label><input type="checkbox" value="0" class="repeat-weekday">Пн</label><label><input type="checkbox" value="1" class="repeat-weekday">Вт</label><label><input type="checkbox" value="2" class="repeat-weekday">Ср</label><label><input type="checkbox" value="3" class="repeat-weekday">Чт</label><label><input type="checkbox" value="4" class="repeat-weekday">Пт</label><label><input type="checkbox" value="5" class="repeat-weekday">Сб</label><label><input type="checkbox" value="6" class="repeat-weekday">Вс</label></div>
@@ -132,6 +132,7 @@
 </div></div>
 <div id="settingsModal" class="modal hidden"><div class="modal-content settings-window">
   <h3>⚙️ Настройки</h3>
+  <div class="settings-section app-version-section"><div><strong>MaDenFlow</strong><div class="app-version-line">Версия <b id="appVersion">9.17.0</b></div></div><button id="appUpdateBtn" type="button">Проверить обновление</button><div id="appUpdateStatus" class="account-status" role="status" aria-live="polite">Для обновления требуется интернет.</div></div>
   <label class="settings-row"><span>🌙 Тёмный стиль</span><input type="checkbox" id="darkModeToggle"></label>
   <div class="settings-section settings-controls">
     <strong>📋 Вид недели</strong>
@@ -188,7 +189,8 @@
       <label class="appearance-color-row"><span>Выходные</span><input id="appearanceWeekend" type="color" value="#f5dce9"></label>
       <label class="appearance-color-row"><span>Карточки дел</span><input id="appearanceCard" type="color" value="#ffffff"></label>
       <label class="appearance-color-row"><span>Цвет текста</span><input id="appearanceText" type="color" value="#26364d"></label>
-      <label class="appearance-color-row"><span>Боковое меню</span><input id="appearanceSidebar" type="color" value="#e0e8f2"></label>
+      <label class="appearance-color-row"><span>Боковая панель</span><input id="appearanceSidebar" type="color" value="#e0e8f2"></label>
+      <label class="appearance-color-row"><span>Шапка дня</span><input id="appearanceHeaderColor" type="color" value="#dce7fa"></label>
     </div>
     <label class="appearance-range-row"><span>Размер шрифта дел <b id="appearanceFontValue">15 px</b></span><input id="appearanceFont" type="range" min="11" max="22" step="1" value="15"></label>
     <label class="appearance-range-row"><span>Прозрачность карточек <b id="appearanceOpacityValue">100%</b></span><input id="appearanceOpacity" type="range" min="35" max="100" step="5" value="100"></label>
@@ -196,9 +198,10 @@
     <label class="appearance-range-row"><span>Размытие карточек дней <b id="appearanceDayBlurValue">12 px</b></span><input id="appearanceDayBlur" type="range" min="0" max="32" step="1" value="12"></label>
     <label class="appearance-range-row"><span>Матовость стекла <b id="appearanceMatteValue">65%</b></span><input id="appearanceMatte" type="range" min="0" max="100" step="1" value="65"></label>
     <div class="appearance-subtitle">📅 Дата в карточке дня</div>
-    <label class="appearance-range-row"><span>День недели и число <b id="appearanceWeekdaySizeValue">20 px</b></span><input id="appearanceWeekdaySize" type="range" min="12" max="28" step="1" value="20"></label>
+    <label class="appearance-range-row"><span>Шрифт шапки дня <b id="appearanceWeekdaySizeValue">20 px</b></span><input id="appearanceWeekdaySize" type="range" min="12" max="32" step="1" value="20"></label>
     <label class="appearance-color-row"><span>Цвет даты</span><input id="appearanceDateColor" type="color" value="#26364d"></label>
-    <label class="appearance-range-row"><span>Название месяца <b id="appearanceMonthSizeValue">14 px</b></span><input id="appearanceMonthSize" type="range" min="10" max="20" step="1" value="14"></label>
+    <label class="appearance-range-row"><span>Название месяца <b id="appearanceMonthSizeValue">14 px</b></span><input id="appearanceMonthSize" type="range" min="10" max="24" step="1" value="14"></label>
+    <label class="appearance-range-row"><span>Шрифт календаря <b id="appearanceCalendarSizeValue">16 px</b></span><input id="appearanceCalendarSize" type="range" min="12" max="26" step="1" value="16"></label>
     <div class="appearance-subtitle">🔤 Цвет текста еженедельника</div>
     <label class="appearance-select-row"><span>Цвет текста</span><select id="appearanceSystemText"><option value="system">Системный (по теме)</option><option value="auto">Автоматический контраст</option><option value="custom">Свой цвет</option></select></label>
     <label class="appearance-color-row" id="appearanceWeekTextColorRow"><span>Свой цвет текста</span><input id="appearanceWeekTextColor" type="color" value="#26364d"></label>

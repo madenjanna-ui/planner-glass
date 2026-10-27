@@ -5460,3 +5460,201 @@ body[data-scenic-glass="off"] #planner .day-title { background:rgba(220,231,250,
   background: rgba(255,255,255,var(--glass-matte-alpha,.56));
 }
 #appearanceModal .appearance-window .appearance-swatches[hidden] { display: none !important; }
+
+
+/* MaDenFlow 9.11: app version/update controls and crisp date labels in color themes */
+.app-version-section{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 12px;align-items:center}
+.app-version-line{font-size:13px;color:var(--text2);margin-top:4px}
+#appUpdateBtn{border:0;border-radius:12px;padding:10px 13px;background:var(--primary,#4f8cff);color:#fff;font-weight:800;cursor:pointer;max-width:180px}
+#appUpdateBtn:disabled{opacity:.6;cursor:wait}
+#appUpdateStatus{grid-column:1/-1;margin:0;font-size:12px;line-height:1.4}
+.task-chain-edit{border-left:3px solid #4f8cff!important}
+.task-chain-delete{border-left:3px solid #e36b75!important}
+body[data-color-theme="on"] #planner .day-title,
+body[data-color-theme="on"] #planner .day-title *,
+body[data-color-theme="on"] #planner .day-date-side,
+body[data-color-theme="on"] #planner .day-date-side *,
+body[data-color-theme="on"] #planner .day-date-main,
+body[data-color-theme="on"] #planner .day-date-main *{filter:none!important;-webkit-filter:none!important;text-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;}
+@media(max-width:520px){.app-version-section{grid-template-columns:1fr}.app-version-section #appUpdateBtn{max-width:none;width:100%}}
+
+/* MaDenFlow 9.12: explicit edit-chain action in the day popup */
+.day-popup-edit-chain{border-color:rgba(76,139,245,.28);background:rgba(76,139,245,.10)}
+.day-popup-edit-chain:focus-visible{outline:2px solid var(--accent,#4c8bf5);outline-offset:2px}
+
+
+/* MaDenFlow 9.13 — cleaner recurrence controls and task modal */
+#taskModal .modal-box{display:flex;flex-direction:column;gap:12px;padding:22px 20px!important;width:min(590px,100%)!important}
+#taskModal h3{margin:0 0 2px!important}
+#taskModal #newTaskInput{margin:0!important}
+#taskModal .task-time-label{display:flex;flex-direction:column;gap:5px;font-weight:700}
+#taskModal .task-time-label input{margin:0!important}
+#taskModal .task-card-color-picker{margin:0!important}
+#taskModal .switch-row{display:flex;align-items:center;gap:10px;width:100%;min-height:48px;padding:10px 13px;border:1px solid rgba(100,120,145,.2);border-radius:14px;background:rgba(225,233,246,.55);cursor:pointer;position:relative;margin:0!important}
+#taskModal .switch-row input#repeatTask{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;margin:0!important}
+#taskModal .repeat-row-icon{font-size:21px;line-height:1;color:var(--primary);font-weight:700}
+#taskModal .repeat-row-label{font-weight:700;flex:1}
+#taskModal .repeat-switch-track{width:42px;height:24px;border-radius:20px;background:#c4ccd8;position:relative;flex:0 0 auto;transition:background .18s}
+#taskModal .repeat-switch-track:after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 4px #0002;transition:transform .18s}
+#taskModal #repeatTask:checked+.repeat-switch-track{background:var(--primary)}
+#taskModal #repeatTask:checked+.repeat-switch-track:after{transform:translateX(18px)}
+#taskModal .repeat-options{padding:12px;border-radius:14px;background:rgba(225,233,246,.38);display:grid;gap:10px}
+#taskModal .repeat-options.hidden{display:none!important}
+#taskModal .repeat-options label{margin:0!important;display:flex;flex-direction:column;gap:5px;font-size:13px;font-weight:650}
+#taskModal .repeat-options input,#taskModal .repeat-options select{margin:0!important;width:100%}
+#taskModal .repeat-weekdays{display:flex;flex-wrap:wrap;gap:6px}
+#taskModal .repeat-weekdays label{display:flex;flex-direction:row;align-items:center;gap:4px;padding:7px 9px;background:#fff9;border-radius:9px}
+#taskModal .repeat-weekdays input{width:auto!important;margin:0!important}
+#taskModal .modal-buttons{margin-top:2px}
+.day-popup-action svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.day-popup-chain{color:#477fe0!important}
+.chain-action-menu{position:absolute;z-index:20;right:0;top:calc(100% + 6px);width:min(260px,calc(100vw - 48px));padding:6px;background:rgba(250,252,255,.97);border:1px solid rgba(115,135,165,.22);border-radius:15px;box-shadow:0 12px 32px rgba(25,42,70,.20);display:grid;gap:3px;backdrop-filter:blur(16px)}
+.day-popup-task-row{position:relative!important}
+.chain-action-menu button{display:flex;align-items:center;gap:10px;width:100%;padding:10px 11px;border:0;border-radius:10px;background:transparent;text-align:left;color:#26364d;font-size:13px;font-weight:650}
+.chain-action-menu button:hover{background:rgba(80,130,220,.12)}
+.chain-action-menu button>span:first-child{width:22px;text-align:center;font-size:17px;color:#477fe0}
+.chain-action-menu button.danger,.chain-action-menu button.danger>span:first-child{color:#d94b64}
+@media(max-width:480px){#taskModal .modal-box{gap:10px;padding:15px!important}#taskModal .modal-buttons{gap:8px}.day-popup-action{width:38px!important;min-width:38px!important}}
+
+/* MaDenFlow 9.14: recurrence menu floats above the day popup scroll area */
+.chain-action-menu{position:fixed!important;z-index:100000!important;max-height:min(70vh,320px);overflow:auto;overscroll-behavior:contain;box-sizing:border-box;transform:none!important}
+.chain-action-menu button{min-height:42px;white-space:normal;line-height:1.25}
+/* Appearance dialog follows the selected preset palette instead of staying neutral. */
+#appearanceModal[data-active-theme="standard"] .appearance-window{background:linear-gradient(145deg,#edf3ff,#f8e9f1)!important;color:#26364d}
+#appearanceModal[data-active-theme="blackwhite"] .appearance-window{background:linear-gradient(145deg,#f0f1f3,#dfe2e7)!important;color:#252a32}
+#appearanceModal[data-active-theme="yellowgreen"] .appearance-window{background:linear-gradient(145deg,#fff7d8,#e7f3df)!important;color:#35432f}
+#appearanceModal[data-active-theme="pinkpurple"] .appearance-window{background:linear-gradient(145deg,#fbe8f1,#eee5ff)!important;color:#433454}
+#appearanceModal[data-active-theme="glass"] .appearance-window{background:rgba(229,236,247,.88)!important;color:#26364d;backdrop-filter:blur(var(--day-card-blur,16px)) saturate(125%);-webkit-backdrop-filter:blur(var(--day-card-blur,16px)) saturate(125%)}
+#appearanceModal[data-active-theme="custom"] .appearance-window{background:var(--custom-bg,#eef3fb)!important;color:var(--custom-text,#26364d)}
+
+#appearanceModal[data-active-theme="skyblue"] .appearance-window{background:linear-gradient(145deg,#e5f5ff,#dce7ff)!important;color:#26364d}
+#appearanceModal[data-active-theme="mintpistachio"] .appearance-window{background:linear-gradient(145deg,#e1f5ed,#e8f0d8)!important;color:#2e493f}
+
+/* MaDenFlow 9.15: color themes tint the complete day cards, not only their headers. */
+body[data-theme]:not([data-theme="glass"]):not([data-theme="custom"]) #planner .day:not(.weekend),
+body[data-theme]:not([data-theme="glass"]):not([data-theme="custom"]) #planner .day:not(.weekend).today {
+  background: color-mix(in srgb, var(--weekday, #eef6ff) 86%, transparent) !important;
+  border-color: color-mix(in srgb, var(--weekday, #eef6ff) 70%, #8295ad) !important;
+}
+body[data-theme]:not([data-theme="glass"]):not([data-theme="custom"]) #planner .day.weekend,
+body[data-theme]:not([data-theme="glass"]):not([data-theme="custom"]) #planner .day.weekend.today {
+  background: color-mix(in srgb, var(--weekend, #ffe8ee) 86%, transparent) !important;
+  border-color: color-mix(in srgb, var(--weekend, #ffe8ee) 70%, #b88d9b) !important;
+}
+body[data-custom-appearance="on"] #planner .day:not(.weekend),
+body[data-custom-appearance="on"] #planner .day:not(.weekend).today {
+  background: color-mix(in srgb, var(--custom-weekday, #dce7fa) 88%, transparent) !important;
+  border-color: color-mix(in srgb, var(--custom-weekday, #dce7fa) 75%, #879bb5) !important;
+}
+body[data-custom-appearance="on"] #planner .day.weekend,
+body[data-custom-appearance="on"] #planner .day.weekend.today {
+  background: color-mix(in srgb, var(--custom-weekend, #f5dce9) 88%, transparent) !important;
+  border-color: color-mix(in srgb, var(--custom-weekend, #f5dce9) 75%, #b58e9e) !important;
+}
+body[data-custom-appearance="on"] #planner .day .day-title {
+  background: color-mix(in srgb, var(--custom-weekday, #dce7fa) 82%, transparent) !important;
+  color: var(--custom-text, #26364d) !important;
+  text-shadow: none !important;
+}
+body[data-custom-appearance="on"] #planner .day.weekend .day-title {
+  background: color-mix(in srgb, var(--custom-weekend, #f5dce9) 82%, transparent) !important;
+}
+
+/* MaDenFlow 9.16: the month calendar keeps its scenic glass identity in every color theme. */
+#calendarModal .calendar-window {
+  background: linear-gradient(145deg, rgba(248,251,255,.72), rgba(225,235,248,.52)) !important;
+  color: #26364d !important;
+  border: 1px solid rgba(255,255,255,.72) !important;
+  box-shadow: 0 24px 60px rgba(20,32,52,.22), inset 0 1px 0 rgba(255,255,255,.62) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(125%) !important;
+  backdrop-filter: blur(22px) saturate(125%) !important;
+}
+#calendarModal .calendar-head button,
+#calendarModal .wide-btn {
+  background: rgba(255,255,255,.64) !important;
+  color: #26364d !important;
+  border: 1px solid rgba(255,255,255,.68) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(120%) !important;
+  backdrop-filter: blur(12px) saturate(120%) !important;
+}
+#calendarModal .cal-day {
+  background: rgba(248,251,255,.60) !important;
+  color: #26364d !important;
+  border: 1px solid rgba(255,255,255,.46) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.34) !important;
+}
+#calendarModal .cal-day.today {
+  background: rgba(79,140,255,.88) !important;
+  color: #fff !important;
+  border-color: rgba(255,255,255,.72) !important;
+}
+#calendarModal .cal-day.in-week { box-shadow: inset 0 0 0 2px rgba(79,140,255,.42) !important; }
+#calendarModal .cal-weekday, #calendarModal #calendarTitle { color: #26364d !important; }
+
+/* MaDenFlow 9.17 — fixed preset palettes with only the requested fine controls. */
+.appearance-controls-grid label:has(#appearanceBg),
+.appearance-controls-grid label:has(#appearanceWeekday),
+.appearance-controls-grid label:has(#appearanceWeekend),
+.appearance-controls-grid label:has(#appearanceCard),
+.appearance-controls-grid label:has(#appearanceText),
+.appearance-details > label:has(#appearanceOpacity),
+.appearance-details > label:has(#appearanceRadius),
+.appearance-details > label:has(#appearanceSystemText),
+.appearance-details > label:has(#appearanceWeekTextColor) { display:none !important; }
+/* Blur and matte are glass-only controls; color presets never blur day headers or text. */
+#appearanceModal:not([data-active-theme="glass"]) .appearance-details > label:has(#appearanceDayBlur),
+#appearanceModal:not([data-active-theme="glass"]) .appearance-details > label:has(#appearanceMatte) { display:none !important; }
+#appearanceModal[data-active-theme="glass"] .appearance-details > label:has(#appearanceDayBlur),
+#appearanceModal[data-active-theme="glass"] .appearance-details > label:has(#appearanceMatte) { display:flex !important; }
+body[data-theme]:not([data-theme="glass"]) #planner .day,
+body[data-theme]:not([data-theme="glass"]) #planner .day-title,
+body[data-theme]:not([data-theme="glass"]) #planner .day-date-side,
+body[data-theme]:not([data-theme="glass"]) #planner .day-date-side * {
+  -webkit-backdrop-filter:none !important; backdrop-filter:none !important; filter:none !important;
+}
+body[data-custom-appearance="on"] #planner .day-title,
+body[data-custom-appearance="on"] #planner .day.weekend .day-title {
+  background:var(--custom-header-color,#dce7fa) !important;
+}
+body[data-custom-appearance="on"] #planner .day-weekday,
+body[data-custom-appearance="on"] #planner .day-number,
+body[data-custom-appearance="on"] #planner .day-month { color:var(--custom-date-color,#26364d) !important; }
+body[data-custom-appearance="on"] #planner .task time,
+body[data-custom-appearance="on"] #planner .task .task-time { color:var(--custom-time-color,var(--task-time-color,#26364d)) !important; }
+body[data-custom-appearance="on"] #planner .day-weekday { font-size:var(--custom-weekday-size,20px) !important; }
+body[data-custom-appearance="on"] #planner .day-number { font-size:var(--custom-date-size,30px) !important; }
+body[data-custom-appearance="on"] #planner .day-month { font-size:var(--custom-month-size,14px) !important; }
+body[data-custom-appearance="on"] #planner .task { font-size:var(--custom-task-font,15px) !important; }
+body[data-custom-appearance="on"] #planner .day-title { color:var(--custom-date-color,#26364d) !important; }
+body[data-custom-appearance="on"] #planner .day-title { border-color:color-mix(in srgb,var(--custom-header-color,#dce7fa) 80%,white) !important; }
+#monthScreen { isolation:isolate; background:transparent !important; }
+#monthScreen::before {
+  content:""; position:fixed; inset:0; z-index:-1; pointer-events:none;
+  background-image:linear-gradient(145deg,rgba(13,28,48,.30),rgba(20,30,48,.38)),var(--month-landscape);
+  background-size:cover; background-position:center; background-repeat:no-repeat;
+}
+#monthScreen .month-screen-grid, #monthScreen .month-selected-tasks,
+#monthScreen .month-screen-nav button, #monthScreen .month-day {
+  -webkit-backdrop-filter:blur(20px) saturate(135%) !important;
+  backdrop-filter:blur(20px) saturate(135%) !important;
+}
+#monthScreen .month-day-number, #monthScreen .month-weekday { font-size:var(--custom-calendar-font,16px); }
+#monthScreen .month-screen-grid { background:rgba(245,249,255,.28) !important; }
+body { --custom-sidebar:var(--custom-sidebar,#e0e8f2); }
+body[data-custom-appearance="on"] #sidebar,
+body[data-custom-appearance="on"] .sidebar,
+body[data-custom-appearance="on"] #sidePanel { background:var(--custom-sidebar,#e0e8f2) !important; }
+body[data-appearance-overrides="on"] #planner .day-title { background:var(--custom-header-color,rgba(255,255,255,.42)) !important; }
+body[data-appearance-overrides="on"] #planner .day-weekday,
+body[data-appearance-overrides="on"] #planner .day-number,
+body[data-appearance-overrides="on"] #planner .day-month { color:var(--custom-date-color,inherit) !important; }
+body[data-appearance-overrides="on"] #planner .task time,
+body[data-appearance-overrides="on"] #planner .task .task-time { color:var(--custom-time-color,var(--task-time-color,#4b8cff)) !important; }
+body[data-appearance-overrides="on"] #planner .day-weekday { font-size:var(--custom-weekday-size,20px) !important; }
+body[data-appearance-overrides="on"] #planner .day-number { font-size:var(--custom-date-size,30px) !important; }
+body[data-appearance-overrides="on"] #planner .day-month { font-size:var(--custom-month-size,14px) !important; }
+#sidePanel { background:var(--custom-sidebar,#e0e8f2) !important; }
+.appearance-preview-date b { font-size:var(--custom-weekday-size,20px); }
+.appearance-preview-date strong { font-size:var(--custom-date-size,30px); }
+.appearance-preview-date small { font-size:var(--custom-month-size,14px); }
+#appearancePreview .appearance-preview-day { -webkit-backdrop-filter:blur(var(--day-card-blur,0px)); backdrop-filter:blur(var(--day-card-blur,0px)); }
